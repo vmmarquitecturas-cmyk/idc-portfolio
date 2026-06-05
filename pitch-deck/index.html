@@ -3,1148 +3,920 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mercado Modular Premium Puerto Rico — Investor Deck</title>
+<title>Construcción Modular Premium — Puerto Rico Investor Deck 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-  :root {
-    --navy: #0B1C3A;
-    --navy-light: #132347;
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
-    --white: #FFFFFF;
-    --gray: #F4F6F9;
-    --gray-text: #8892A4;
-    --accent: #1E6FBB;
-    --green: #27AE60;
-    --red: #E74C3C;
-    --slide-w: 1280px;
-    --slide-h: 720px;
-  }
+:root {
+  --navy: #0A1628;
+  --navy2: #112040;
+  --gold: #C9A84C;
+  --gold2: #E8C97A;
+  --white: #FFFFFF;
+  --offwhite: #F7F8FA;
+  --gray: #8A95A8;
+  --red: #D94F3D;
+  --green: #2EAF6A;
+  --blue: #1B6DBF;
+  --W: 1280px;
+  --H: 720px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:#111;
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  display:flex;flex-direction:column;align-items:center;
+  min-height:100vh;padding:0;
+}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── NAVIGATION ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(10,22,40,0.96);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(201,168,76,0.25);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 28px;height:52px;
+}
+.nav-brand{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.nav-controls{display:flex;gap:6px;align-items:center;}
+.nbtn{
+  background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.35);
+  color:var(--gold);padding:5px 14px;border-radius:3px;cursor:pointer;
+  font-size:12px;font-weight:700;letter-spacing:.5px;transition:all .2s;
+}
+.nbtn:hover{background:rgba(201,168,76,0.28);}
+.nctr{color:var(--gray);font-size:12px;min-width:52px;text-align:center;}
+.nprog{
+  position:fixed;top:52px;left:0;right:0;z-index:998;
+  height:2px;background:rgba(201,168,76,0.15);
+}
+.nprog-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .3s;}
 
-  body {
-    background: #0a0a0a;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    gap: 16px;
-  }
+/* ── SLIDES WRAPPER ── */
+#deck{
+  margin-top:52px;
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;width:100%;
+}
 
-  /* NAV */
-  .nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: rgba(0,0,0,0.92);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 32px;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(201,168,76,0.3);
-  }
-  .nav-title { color: var(--gold); font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
-  .nav-controls { display: flex; gap: 8px; align-items: center; }
-  .nav-btn {
-    background: rgba(201,168,76,0.15);
-    border: 1px solid rgba(201,168,76,0.4);
-    color: var(--gold);
-    padding: 6px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: all 0.2s;
-  }
-  .nav-btn:hover { background: rgba(201,168,76,0.3); }
-  .nav-counter { color: var(--gray-text); font-size: 13px; min-width: 60px; text-align: center; }
+/* ── SLIDE BASE ── */
+.slide{
+  width:var(--W);min-height:var(--H);
+  position:relative;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.04);
+  page-break-after:always;
+}
+.slide+.slide{margin-top:2px;}
 
-  /* SLIDE WRAPPER */
-  .slides-container { margin-top: 60px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 32px; padding-bottom: 40px; }
+/* ═══ FULL-BLEED PHOTO SLIDES ═══ */
+.photo-slide{
+  background:var(--navy);
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+}
+.photo-slide .bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform 8s ease;
+}
+.photo-slide:hover .bg{transform:scale(1.03);}
+.photo-slide .overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,22,40,.92) 0%,rgba(10,22,40,.4) 55%,rgba(10,22,40,.15) 100%);
+}
+.photo-slide .content{position:relative;z-index:2;padding:52px 64px;}
 
-  /* SLIDE BASE */
-  .slide {
-    width: var(--slide-w);
-    min-height: var(--slide-h);
-    position: relative;
-    overflow: hidden;
-    border-radius: 4px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    page-break-after: always;
-  }
+/* ═══ WHITE SLIDES ═══ */
+.white-slide{background:var(--white);}
+.slide-hd{
+  background:var(--navy);
+  padding:24px 56px 20px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  border-bottom:3px solid var(--gold);
+}
+.slide-hd-left{}
+.snum{color:rgba(201,168,76,0.4);font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:4px;}
+.stitle{color:#fff;font-size:28px;font-weight:800;line-height:1.1;}
+.stitle em{color:var(--gold);font-style:normal;}
+.stag{
+  color:var(--gold);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);
+  padding:4px 12px;border-radius:20px;
+}
+.sbody{padding:32px 56px;flex:1;}
 
-  /* ── SLIDE 1: COVER ── */
-  .slide-cover {
-    background: var(--navy);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px;
-    position: relative;
-  }
-  .slide-cover::before {
-    content: '';
-    position: absolute;
-    right: 0; top: 0; bottom: 0;
-    width: 45%;
-    background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80') center/cover;
-    opacity: 0.25;
-  }
-  .slide-cover::after {
-    content: '';
-    position: absolute;
-    right: 0; top: 0; bottom: 0;
-    width: 45%;
-    background: linear-gradient(to right, var(--navy) 0%, transparent 100%);
-  }
-  .cover-label {
-    color: var(--gold);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    position: relative; z-index: 1;
-  }
-  .cover-title {
-    color: var(--white);
-    font-size: 56px;
-    font-weight: 800;
-    line-height: 1.1;
-    max-width: 580px;
-    position: relative; z-index: 1;
-    margin-bottom: 24px;
-  }
-  .cover-title span { color: var(--gold); }
-  .cover-subtitle {
-    color: rgba(255,255,255,0.65);
-    font-size: 20px;
-    max-width: 500px;
-    line-height: 1.5;
-    position: relative; z-index: 1;
-    margin-bottom: 48px;
-  }
-  .cover-meta {
-    display: flex;
-    gap: 40px;
-    position: relative; z-index: 1;
-  }
-  .cover-meta-item { }
-  .cover-meta-label { color: var(--gold); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
-  .cover-meta-val { color: white; font-size: 15px; font-weight: 600; }
-  .cover-logo {
-    position: absolute; top: 48px; right: 80px;
-    color: var(--gold); font-size: 22px; font-weight: 800;
-    letter-spacing: 1px; z-index: 3;
-    border: 2px solid var(--gold);
-    padding: 8px 20px;
-    border-radius: 2px;
-  }
-  .gold-bar {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
-  }
+/* ─── TYPOGRAPHY ─── */
+.label{color:var(--gold);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.h1{color:#fff;font-size:54px;font-weight:900;line-height:1.05;margin-bottom:18px;}
+.h1 em{color:var(--gold);font-style:normal;}
+.h2{color:#fff;font-size:32px;font-weight:800;line-height:1.1;}
+.h3{color:var(--navy);font-size:17px;font-weight:800;margin-bottom:6px;}
+.body-text{font-size:13px;color:#555;line-height:1.6;}
+.body-text-light{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;}
+.footnote{font-size:10px;color:var(--gray);margin-top:12px;font-style:italic;}
 
-  /* ── SLIDE HEADER ── */
-  .slide-inner {
-    background: var(--white);
-    min-height: var(--slide-h);
-    display: flex;
-    flex-direction: column;
-  }
-  .slide-header {
-    background: var(--navy);
-    padding: 28px 56px 22px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    border-bottom: 3px solid var(--gold);
-  }
-  .slide-num {
-    color: rgba(201,168,76,0.5);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
-  }
-  .slide-tag {
-    color: var(--gold);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: rgba(201,168,76,0.15);
-    padding: 4px 12px;
-    border-radius: 20px;
-    border: 1px solid rgba(201,168,76,0.3);
-  }
-  .slide-title-h {
-    color: var(--white);
-    font-size: 30px;
-    font-weight: 800;
-    line-height: 1.1;
-  }
-  .slide-title-h span { color: var(--gold); }
-  .slide-body { padding: 36px 56px; flex: 1; }
+/* ─── STAT CARDS ─── */
+.stats-row{display:grid;gap:16px;margin-bottom:28px;}
+.stats-row.c4{grid-template-columns:repeat(4,1fr);}
+.stats-row.c3{grid-template-columns:repeat(3,1fr);}
+.stat-card{
+  background:var(--navy);border-radius:6px;padding:20px;
+  border-top:3px solid var(--gold);text-align:center;
+}
+.stat-val{color:var(--gold);font-size:34px;font-weight:900;line-height:1;margin-bottom:5px;}
+.stat-lbl{color:rgba(255,255,255,0.65);font-size:11px;line-height:1.4;}
+.stat-sub{color:var(--green);font-size:10px;margin-top:4px;font-weight:700;}
 
-  /* ── STAT CARDS ── */
-  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
-  .stat-card {
-    background: var(--navy);
-    border-radius: 8px;
-    padding: 24px 20px;
-    border-top: 3px solid var(--gold);
-    text-align: center;
-  }
-  .stat-val { color: var(--gold); font-size: 36px; font-weight: 800; line-height: 1; margin-bottom: 6px; }
-  .stat-label { color: rgba(255,255,255,0.7); font-size: 12px; line-height: 1.4; }
-  .stat-sub { color: var(--green); font-size: 11px; margin-top: 4px; font-weight: 600; }
+/* ─── CALLOUT BOXES ─── */
+.callout{
+  border-radius:4px;padding:14px 18px;margin-bottom:12px;
+}
+.callout-gold{
+  background:rgba(201,168,76,0.07);
+  border-left:3px solid var(--gold);
+}
+.callout-red{background:rgba(217,79,61,0.07);border-left:3px solid var(--red);}
+.callout-green{background:rgba(46,175,106,0.07);border-left:3px solid var(--green);}
+.callout-lbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.callout-gold .callout-lbl{color:var(--gold);}
+.callout-red .callout-lbl{color:var(--red);}
+.callout-green .callout-lbl{color:var(--green);}
+.callout-body{font-size:12px;color:#333;line-height:1.55;}
+.callout-body strong{color:var(--navy);}
 
-  /* ── COMPETITOR GRID ── */
-  .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .comp-card {
-    border: 1px solid #E2E8F0;
-    border-radius: 8px;
-    overflow: hidden;
-    background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .comp-img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    background: var(--navy);
-    display: block;
-  }
-  .comp-img-placeholder {
-    width: 100%;
-    height: 140px;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.4);
-    font-size: 13px;
-  }
-  .comp-body { padding: 14px 16px; }
-  .comp-name { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
-  .comp-origin { font-size: 11px; color: var(--gray-text); margin-bottom: 8px; }
-  .comp-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
-  .tag {
-    font-size: 10px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 20px;
-    letter-spacing: 0.3px;
-  }
-  .tag-luxury { background: rgba(201,168,76,0.15); color: #8B6914; }
-  .tag-local { background: rgba(39,174,96,0.12); color: #1B6B3A; }
-  .tag-intl { background: rgba(30,111,187,0.12); color: #0D4A8A; }
-  .tag-green { background: rgba(46,204,113,0.12); color: #1A7A42; }
-  .comp-price { font-size: 12px; color: var(--navy); font-weight: 700; }
-  .comp-diff { font-size: 11px; color: var(--gray-text); margin-top: 4px; line-height: 1.4; }
+/* ─── TWO / THREE COL ─── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
 
-  /* ── CHART CONTAINERS ── */
-  .chart-wrap { position: relative; width: 100%; }
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+/* ─── PHOTO CARD ─── */
+.photo-card{
+  border-radius:8px;overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,0.12);
+  background:var(--navy);
+  display:flex;flex-direction:column;
+}
+.photo-card img{
+  width:100%;height:180px;object-fit:cover;display:block;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);
+}
+.photo-card-body{padding:14px 16px;}
+.photo-card-name{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.photo-card-sub{font-size:11px;color:var(--gray);margin-bottom:8px;}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;}
+.tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;}
+.t-lux{background:rgba(201,168,76,0.15);color:#7A5F1A;}
+.t-intl{background:rgba(27,109,191,0.12);color:#0D4580;}
+.t-local{background:rgba(46,175,106,0.12);color:#1A6B42;}
+.t-green{background:rgba(46,175,106,0.14);color:#1B7040;}
+.t-warn{background:rgba(217,79,61,0.14);color:#8B2515;}
+.photo-card-price{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.photo-card-diff{font-size:11px;color:#555;line-height:1.45;}
 
-  /* ── HIGHLIGHT BOX ── */
-  .highlight {
-    background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.03) 100%);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-left: 4px solid var(--gold);
-    border-radius: 4px;
-    padding: 16px 20px;
-    margin-bottom: 16px;
-  }
-  .highlight-title { font-size: 12px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-  .highlight-text { font-size: 13px; color: var(--navy); line-height: 1.5; }
+/* ─── TABLE ─── */
+.tbl{width:100%;border-collapse:collapse;font-size:12px;}
+.tbl th{background:var(--navy);color:var(--gold);padding:9px 12px;text-align:left;font-size:10px;letter-spacing:.5px;text-transform:uppercase;}
+.tbl td{padding:8px 12px;border-bottom:1px solid #EEF0F3;color:#333;vertical-align:middle;}
+.tbl tr:nth-child(even) td{background:#FAFBFD;}
 
-  .alert-red {
-    background: rgba(231,76,60,0.06);
-    border-left: 4px solid var(--red);
-    border-radius: 4px;
-    padding: 14px 18px;
-    margin-bottom: 12px;
-  }
-  .alert-green {
-    background: rgba(39,174,96,0.06);
-    border-left: 4px solid var(--green);
-    border-radius: 4px;
-    padding: 14px 18px;
-    margin-bottom: 12px;
-  }
-  .alert-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-  .alert-red .alert-title { color: var(--red); }
-  .alert-green .alert-title { color: var(--green); }
-  .alert-text { font-size: 12px; color: #333; line-height: 1.5; }
+/* ─── DIVIDER SLIDE ─── */
+.divider-slide{
+  background:linear-gradient(135deg,var(--navy) 0%,#1a3060 100%);
+  min-height:var(--H);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.divider-slide::before{
+  content:'';position:absolute;
+  width:700px;height:700px;border-radius:50%;
+  border:100px solid rgba(201,168,76,0.05);
+  top:-250px;right:-200px;
+}
+.divider-slide::after{
+  content:'';position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  border:70px solid rgba(201,168,76,0.03);
+  bottom:-200px;left:-100px;
+}
+.div-inner{text-align:center;position:relative;z-index:1;}
+.div-n{font-size:100px;font-weight:900;color:rgba(201,168,76,0.07);line-height:1;margin-bottom:-12px;}
+.div-t{font-size:46px;font-weight:900;color:#fff;margin-bottom:12px;}
+.div-t em{color:var(--gold);font-style:normal;}
+.div-s{font-size:17px;color:rgba(255,255,255,0.45);}
 
-  /* ── TABLE ── */
-  .data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  .data-table th { background: var(--navy); color: var(--gold); padding: 10px 14px; text-align: left; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; }
-  .data-table td { padding: 9px 14px; border-bottom: 1px solid #EEF0F3; color: #333; vertical-align: top; }
-  .data-table tr:nth-child(even) td { background: #FAFBFD; }
-  .data-table tr:hover td { background: rgba(201,168,76,0.05); }
+/* ─── GOLD BAR ─── */
+.gold-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold2) 50%,var(--gold) 100%);}
 
-  /* ── HURRICANE SLIDE ── */
-  .hurricane-bg {
-    background: var(--navy);
-    min-height: var(--slide-h);
-    position: relative;
-    overflow: hidden;
-  }
-  .hurricane-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('https://images.unsplash.com/photo-1548793541-34d0bbd7f8d8?w=1280&q=70') center/cover;
-    opacity: 0.12;
-  }
-  .hurricane-grid {
-    position: relative; z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    min-height: var(--slide-h);
-  }
-  .hurricane-left {
-    padding: 56px;
-    border-right: 1px solid rgba(255,255,255,0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .hurricane-right {
-    padding: 56px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .h-section-title { color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-  .h-item { margin-bottom: 16px; padding-left: 20px; border-left: 2px solid rgba(255,255,255,0.15); }
-  .h-item-title { color: white; font-size: 13px; font-weight: 700; margin-bottom: 3px; }
-  .h-item-text { color: rgba(255,255,255,0.6); font-size: 12px; line-height: 1.5; }
-  .h-verdict {
-    background: rgba(39,174,96,0.15);
-    border: 1px solid rgba(39,174,96,0.4);
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin-top: 24px;
-  }
-  .h-verdict-title { color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
-  .h-verdict-text { color: rgba(255,255,255,0.85); font-size: 13px; line-height: 1.6; }
+/* ─── PHOTO GRID for gallery slides ─── */
+.photo-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.photo-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.pg-item{
+  position:relative;overflow:hidden;cursor:pointer;
+  aspect-ratio:4/3;background:var(--navy);
+}
+.pg-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.pg-item:hover img{transform:scale(1.06);}
+.pg-item .pg-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(10,22,40,.88) 0%,transparent 100%);
+  padding:24px 12px 10px;
+  color:#fff;font-size:11px;font-weight:700;
+}
+.pg-item .pg-label span{color:var(--gold);display:block;font-size:9px;letter-spacing:1px;text-transform:uppercase;}
 
-  /* ── PRICING SLIDE ── */
-  .price-badge {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--navy);
-    font-size: 11px;
-    font-weight: 800;
-    padding: 3px 10px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;
-  }
+/* ─── HURRICANE DARK SLIDE ─── */
+.hurr-slide{
+  background:var(--navy);
+  min-height:var(--H);
+  display:flex;flex-direction:column;
+}
+.hurr-slide .bg{
+  position:absolute;inset:0;
+  background:url('https://nuconic.com/wp-content/uploads/2025/03/NUCONIC-Dorado-HEADER.jpg') center/cover;
+  opacity:.07;
+}
+.hurr-grid{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  flex:1;
+}
+.hurr-col{padding:36px 44px;display:flex;flex-direction:column;justify-content:flex-start;}
+.hurr-col+.hurr-col{border-left:1px solid rgba(255,255,255,0.08);}
+.hurr-sec-label{color:var(--gold);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:6px;}
+.hurr-item{margin-bottom:14px;padding-left:14px;border-left:2px solid rgba(255,255,255,0.1);}
+.hurr-item-t{color:#fff;font-size:13px;font-weight:700;margin-bottom:2px;}
+.hurr-item-b{color:rgba(255,255,255,0.55);font-size:11px;line-height:1.5;}
+.hurr-item.pos .hurr-item-t{color:var(--green);}
+.hurr-item.pos{border-left-color:rgba(46,175,106,0.35);}
+.verdict{
+  margin-top:18px;background:rgba(46,175,106,0.1);
+  border:1px solid rgba(46,175,106,0.35);border-radius:6px;padding:16px 20px;
+}
+.verdict-lbl{color:var(--green);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;}
+.verdict-body{color:rgba(255,255,255,0.8);font-size:12px;line-height:1.6;}
 
-  /* ── OPPORTUNITY SLIDE ── */
-  .opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .opp-card {
-    border-radius: 8px;
-    padding: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-  .opp-card-num {
-    position: absolute;
-    top: 16px; right: 16px;
-    font-size: 48px;
-    font-weight: 900;
-    opacity: 0.06;
-    color: var(--navy);
-    line-height: 1;
-  }
-  .opp-card-icon { font-size: 24px; margin-bottom: 12px; }
-  .opp-card-title { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
-  .opp-card-text { font-size: 12px; color: #555; line-height: 1.5; }
-  .opp-card-stat { font-size: 20px; font-weight: 800; color: var(--gold); margin-top: 8px; }
+/* ─── STRATEGY TIMELINE ─── */
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom,var(--gold),rgba(201,168,76,0.1));}
+.tl-item{position:relative;margin-bottom:22px;}
+.tl-dot{position:absolute;left:-26px;top:4px;width:14px;height:14px;background:var(--gold);border-radius:50%;border:2px solid white;box-shadow:0 0 0 2px var(--gold);}
+.tl-phase{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px;}
+.tl-title{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.tl-body{font-size:11.5px;color:#666;line-height:1.5;}
 
-  /* ── STRATEGY SLIDE ── */
-  .strategy-timeline { position: relative; padding-left: 32px; }
-  .strategy-timeline::before {
-    content: '';
-    position: absolute;
-    left: 8px; top: 0; bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-  }
-  .strategy-item { position: relative; margin-bottom: 28px; }
-  .strategy-dot {
-    position: absolute;
-    left: -30px; top: 2px;
-    width: 16px; height: 16px;
-    background: var(--gold);
-    border-radius: 50%;
-    border: 3px solid white;
-    box-shadow: 0 0 0 2px var(--gold);
-  }
-  .strategy-phase { font-size: 10px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px; }
-  .strategy-title { font-size: 14px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
-  .strategy-text { font-size: 12px; color: #666; line-height: 1.5; }
+/* ─── BACK COVER ─── */
+.back-cover{
+  background:var(--navy);min-height:var(--H);
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:80px;position:relative;overflow:hidden;
+}
+.back-cover .bg{
+  position:absolute;inset:0;
+  background:url('https://nuconic.com/wp-content/uploads/2025/04/NUCONIC-Palma-Nido-nowa-HEADER-desktop.jpg') center/cover;
+  opacity:.08;
+}
+.back-cover .glow{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(201,168,76,0.06) 0%,transparent 65%);
+}
 
-  /* ── BACK COVER ── */
-  .slide-back {
-    background: var(--navy);
-    min-height: var(--slide-h);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 80px;
-    position: relative;
-  }
-  .slide-back::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 70%);
-  }
+/* ─── DATA BARS ─── */
+.data-bar-row{margin-bottom:10px;}
+.data-bar-label{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;}
+.data-bar-label span:first-child{color:#333;font-weight:600;}
+.data-bar-label span:last-child{color:var(--navy);font-weight:800;}
+.data-bar-track{background:#EEF0F3;border-radius:20px;height:8px;overflow:hidden;}
+.data-bar-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--navy),var(--blue));}
+.data-bar-fill.gold{background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.data-bar-fill.red{background:linear-gradient(90deg,var(--red),#f07060);}
+.data-bar-fill.green{background:linear-gradient(90deg,var(--green),#5fcf90);}
 
-  /* ── SECTION DIVIDER ── */
-  .section-divider {
-    background: linear-gradient(135deg, var(--navy) 0%, #1a3060 100%);
-    min-height: var(--slide-h);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .section-divider::before {
-    content: '';
-    position: absolute;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    border: 80px solid rgba(201,168,76,0.06);
-    top: -200px; right: -200px;
-  }
-  .section-divider::after {
-    content: '';
-    position: absolute;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    border: 60px solid rgba(201,168,76,0.04);
-    bottom: -150px; left: -100px;
-  }
-  .section-divider-inner { text-align: center; position: relative; z-index: 1; }
-  .section-divider-num { font-size: 120px; font-weight: 900; color: rgba(201,168,76,0.1); line-height: 1; margin-bottom: -20px; }
-  .section-divider-title { font-size: 48px; font-weight: 800; color: white; margin-bottom: 16px; }
-  .section-divider-title span { color: var(--gold); }
-  .section-divider-sub { font-size: 18px; color: rgba(255,255,255,0.5); }
+/* ─── CHART WRAP ─── */
+.cw{position:relative;width:100%;}
 
-  .footnote { font-size: 10px; color: var(--gray-text); margin-top: 16px; font-style: italic; }
-
-  @media print {
-    body { background: white; padding: 0; gap: 0; }
-    .nav { display: none; }
-    .slides-container { margin-top: 0; gap: 0; }
-    .slide { page-break-after: always; border-radius: 0; box-shadow: none; width: 100%; }
-  }
+@media print{
+  body{background:#fff;padding:0;}
+  #nav,#nav+div{display:none;}
+  #deck{margin-top:0;gap:0;}
+  .slide{page-break-after:always;box-shadow:none;width:100%;}
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="nav">
-  <span class="nav-title">🏗 Modular Premium PR — Investor Deck 2026</span>
+<div id="nav">
+  <span class="nav-brand">Modular Premium PR · Investor Deck 2026</span>
   <div class="nav-controls">
-    <button class="nav-btn" onclick="scrollToSlide(-1)">← Anterior</button>
-    <span class="nav-counter" id="slideCounter">1 / 14</span>
-    <button class="nav-btn" onclick="scrollToSlide(1)">Siguiente →</button>
+    <button class="nbtn" onclick="go(-1)">← Anterior</button>
+    <span class="nctr" id="ctr">1/18</span>
+    <button class="nbtn" onclick="go(1)">Siguiente →</button>
   </div>
-</nav>
+</div>
+<div class="nprog"><div class="nprog-bar" id="pbar" style="width:5.5%"></div></div>
 
-<div class="slides-container" id="slidesContainer">
+<div id="deck">
 
-<!-- ═══════════════════════════════════════════
-     SLIDE 1 — COVER
-═══════════════════════════════════════════ -->
-<div class="slide slide-cover" data-slide="1">
-  <div class="cover-logo">CONFIDENCIAL</div>
-  <div class="cover-label">Estudio de Mercado · Puerto Rico · 2026</div>
-  <div class="cover-title">Construcción Modular <span>Premium</span> en Puerto Rico</div>
-  <div class="cover-subtitle">Análisis competitivo y oportunidad de inversión para el segmento de alta calidad</div>
-  <div class="cover-meta">
-    <div class="cover-meta-item">
-      <div class="cover-meta-label">Mercado Total</div>
-      <div class="cover-meta-val">$346,000M USD</div>
+<!-- ═══════════════════════════════
+  S1 · COVER
+═══════════════════════════════ -->
+<div class="slide photo-slide" id="s1">
+  <div class="bg" style="background-image:url('https://nuconic.com/wp-content/uploads/2025/03/NUCONIC-Dorado-HEADER.jpg')"></div>
+  <div class="overlay" style="background:linear-gradient(to top,rgba(10,22,40,0.97) 0%,rgba(10,22,40,0.55) 60%,rgba(10,22,40,0.2) 100%)"></div>
+  <div class="content">
+    <div class="label" style="margin-bottom:14px;">Estudio de Mercado · Puerto Rico · Junio 2026 · Confidencial</div>
+    <div class="h1">Construcción Modular<br><em>Premium</em> en Puerto Rico</div>
+    <div class="body-text-light" style="font-size:16px;max-width:520px;margin-bottom:40px;line-height:1.6;">
+      Análisis competitivo completo y oportunidad de inversión<br>para el segmento de alta calidad — mercado de $346B
     </div>
-    <div class="cover-meta-item">
-      <div class="cover-meta-label">Déficit habitacional</div>
-      <div class="cover-meta-val">55,000+ unidades</div>
-    </div>
-    <div class="cover-meta-item">
-      <div class="cover-meta-label">Crecimiento precios 2024</div>
-      <div class="cover-meta-val">+22% interanual</div>
-    </div>
-    <div class="cover-meta-item">
-      <div class="cover-meta-label">Fecha</div>
-      <div class="cover-meta-val">Junio 2026</div>
+    <div style="display:flex;gap:48px;">
+      <div><div class="label">Mercado Total</div><div style="color:#fff;font-size:17px;font-weight:700;">$346,000M USD</div></div>
+      <div><div class="label">Déficit Habitacional</div><div style="color:#fff;font-size:17px;font-weight:700;">55,000+ unidades</div></div>
+      <div><div class="label">Apreciación 2024</div><div style="color:var(--gold);font-size:17px;font-weight:700;">+22% interanual</div></div>
+      <div><div class="label">Ventana Clave</div><div style="color:var(--gold);font-size:17px;font-weight:700;">Act 60 · hasta 2027</div></div>
     </div>
   </div>
   <div class="gold-bar"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     SLIDE 2 — RESUMEN EJECUTIVO
-═══════════════════════════════════════════ -->
-<div class="slide" data-slide="2">
-  <div class="slide-inner">
-    <div class="slide-header">
+<!-- ═══════════════════════════════
+  S2 · RESUMEN EJECUTIVO
+═══════════════════════════════ -->
+<div class="slide white-slide" id="s2" style="display:flex;flex-direction:column;">
+  <div class="slide-hd">
+    <div><div class="snum">01</div><div class="stitle">Resumen <em>Ejecutivo</em></div></div>
+    <div class="stag">Executive Summary</div>
+  </div>
+  <div class="sbody">
+    <div class="stats-row c4">
+      <div class="stat-card"><div class="stat-val">55K+</div><div class="stat-lbl">Déficit de unidades habitacionales documentado (HUD 2025)</div><div class="stat-sub">↑ Demanda insatisfecha masiva</div></div>
+      <div class="stat-card"><div class="stat-val">+22%</div><div class="stat-lbl">Apreciación precios Q4 2024 — récord histórico FHFA</div><div class="stat-sub">↑ Mercado en ebullición</div></div>
+      <div class="stat-card"><div class="stat-val">75/mes</div><div class="stat-lbl">Unidades nuevas construidas en 2025 vs. 3,000 necesarias</div><div class="stat-sub">Solo el 2.5% de la demanda</div></div>
+      <div class="stat-card"><div class="stat-val">$15.3B</div><div class="stat-lbl">Fondos CDBG-DR federales sin gastar en PR (nov. 2025)</div><div class="stat-sub">↑ Capital disponible</div></div>
+    </div>
+    <div class="two-col">
       <div>
-        <div class="slide-num">01</div>
-        <div class="slide-title-h">Resumen <span>Ejecutivo</span></div>
-      </div>
-      <div class="slide-tag">Executive Summary</div>
-    </div>
-    <div class="slide-body">
-      <div class="stat-grid">
-        <div class="stat-card">
-          <div class="stat-val">55K+</div>
-          <div class="stat-label">Déficit de unidades habitacionales documentado</div>
-          <div class="stat-sub">↑ Demanda insatisfecha masiva</div>
+        <div class="callout callout-gold" style="margin-bottom:12px;">
+          <div class="callout-lbl">La Oportunidad</div>
+          <div class="callout-body">Puerto Rico combina tres vectores únicos: <strong>déficit estructural masivo</strong> (55,000+ unidades), <strong>compradores Act 60 con urgencia y presupuesto</strong> (deben comprar en 2 años), y <strong>precios apreciándose al 22% anual</strong>. El segmento luxury real está dominado por solo 2-3 actores, con mercado vastamente sub-atendido.</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-val">+22%</div>
-          <div class="stat-label">Apreciación precio vivienda Q4 2024 (récord FHFA)</div>
-          <div class="stat-sub">↑ Mercado en ebullición</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-val">~75</div>
-          <div class="stat-label">Unidades nuevas construidas por mes en 2025</div>
-          <div class="stat-sub">vs. 3,000 necesarias</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-val">2027</div>
-          <div class="stat-label">Ventana Act 60 — oleada de compradores con urgencia</div>
-          <div class="stat-sub">↑ Demanda acelerada ahora</div>
+        <div class="callout callout-gold">
+          <div class="callout-lbl">El Diferenciador Decisivo</div>
+          <div class="callout-body">La ventaja competitiva del modular premium en PR no es el precio — es la <strong>velocidad</strong> (6-9 meses vs. 18-36 meses tradicional). Los compradores Act 60 deben comprar antes de enero 2027: tiempo vale dinero. Una empresa que garantice entrega en 8 meses tiene un argumento de venta inigualable.</div>
         </div>
       </div>
-
-      <div class="two-col">
-        <div>
-          <div class="highlight">
-            <div class="highlight-title">La Oportunidad</div>
-            <div class="highlight-text">Puerto Rico presenta una de las ventanas más claras del Caribe: déficit estructural de 55,000+ unidades, compradores Act 60 con urgencia temporal, precios apreciándose al 22% anual, y una industria que produce menos del 5% de lo que el mercado necesita. El segmento premium real está dominado por solo 2 actores serios, con mercado vastamente sub-atendido.</div>
-          </div>
-          <div class="highlight">
-            <div class="highlight-title">El Diferenciador Clave</div>
-            <div class="highlight-text">La ventaja competitiva del modular premium en PR no es el precio — es la <strong>velocidad</strong> (6-9 meses vs. 18-36 meses de construcción tradicional) y la <strong>calidad de diseño</strong>. Los compradores Act 60 deben comprar en 2 años de su decreto: tiempo vale dinero.</div>
-          </div>
-        </div>
-        <div>
-          <div class="highlight">
-            <div class="highlight-title">Los Huracanes: Riesgo o Catalizador</div>
-            <div class="highlight-text">Contraintuitivo pero documentado: el Huracán María (2017) <strong>disparó la demanda</strong> de vivienda resiliente, generó $20,000M en fondos federales para reconstrucción, y creó el mandato cultural de "construir resistente". Un huracán no destruye el negocio modular premium — lo convierte en la solución más urgente del mercado.</div>
-          </div>
-          <div class="highlight">
-            <div class="highlight-title">La Barrera Crítica</div>
-            <div class="highlight-text">La Ley Jones encarece el flete marítimo 25-40%. La percepción cultural pro-concreto aún existe. Y el proceso de permisos (OGPe) requiere ingenieros licenciados localmente. Estas barreras son <strong>navegables</strong> con las alianzas correctas — y actúan como barreras de entrada para competidores.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     DIVIDER — MERCADO
-═══════════════════════════════════════════ -->
-<div class="slide section-divider" data-slide="3">
-  <div class="section-divider-inner">
-    <div class="section-divider-num">I</div>
-    <div class="section-divider-title">El <span>Mercado</span></div>
-    <div class="section-divider-sub">Contexto, tamaño y catalizadores de crecimiento</div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SLIDE 4 — CONTEXTO DE MERCADO
-═══════════════════════════════════════════ -->
-<div class="slide" data-slide="4">
-  <div class="slide-inner">
-    <div class="slide-header">
       <div>
-        <div class="slide-num">02</div>
-        <div class="slide-title-h">Mercado PR: <span>Tres Catalizadores</span> Convergentes</div>
-      </div>
-      <div class="slide-tag">Market Context</div>
-    </div>
-    <div class="slide-body">
-      <div class="two-col" style="align-items:start; gap: 40px;">
-        <div>
-          <div style="margin-bottom: 20px;">
-            <div class="price-badge">Catalizador 1</div>
-            <div style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 8px;">Crisis de Vivienda Estructural</div>
-            <div style="font-size: 13px; color: #444; line-height: 1.6;">Puerto Rico produce <strong>65-75 unidades/mes</strong> cuando necesita 3,000+. El déficit de 55,000+ unidades asequibles es el mayor desde los años 2000, con un inventario de nuevas construcciones cayendo año a año. Solo el 66% de los hogares de ingresos bajos tienen acceso a vivienda asequible.</div>
-          </div>
-          <div style="margin-bottom: 20px;">
-            <div class="price-badge">Catalizador 2</div>
-            <div style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 8px;">Apreciación de Precios Sin Freno</div>
-            <div style="font-size: 13px; color: #444; line-height: 1.6;">El índice FHFA marcó <strong>+22%</strong> en Q4 2024 —el mayor salto registrado. Dorado Beach cotiza a $820/sqft (+14% YoY). El segmento luxury $1M+ tiene mediana de $2.4M con crecimiento del 8.1% interanual. El mercado total de transacciones residenciales superó <strong>$1,830M</strong> en 2025.</div>
-          </div>
-          <div>
-            <div class="price-badge">Catalizador 3</div>
-            <div style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 8px;">Ventana Act 60 — Urgencia Temporal</div>
-            <div style="font-size: 13px; color: #444; line-height: 1.6;">~10,000 titulares Act 60 activos. ~2,000 nuevos decretos/año. A partir de enero 2027, nuevos solicitantes pagan 4% (antes: 0%). Esto genera una <strong>oleada de compradores acelerada</strong> que deben comprar propiedad en máximo 2 años. El modular con entrega en 6-9 meses es la única opción viable para estos compradores.</div>
-          </div>
+        <div class="callout callout-green" style="margin-bottom:12px;">
+          <div class="callout-lbl">Huracanes: Catalizador, no Destructor</div>
+          <div class="callout-body">Post-María (2017), la inversión en construcción PR creció <strong>+238% en valor de permisos</strong> y el empleo casi se duplicó. Las casas modulares post-código HUD tuvieron <strong>0 daños serios</strong> en Charley 2004 vs. 75% sin código. Un huracán activa $20B+ en fondos federales y dispara demanda de reconstrucción rápida — exactamente donde el modular gana.</div>
         </div>
-        <div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Apreciación Precio Vivienda PR ($/sqft)</div>
-          <div class="chart-wrap" style="height: 280px;">
-            <canvas id="priceAppreciationChart"></canvas>
-          </div>
-          <div class="footnote">Fuentes: FHFA, Christie's Real Estate PR, InvEstate PR 2025-2026</div>
+        <div class="callout callout-red">
+          <div class="callout-lbl">La Barrera Principal</div>
+          <div class="callout-body">La <strong>Ley Jones</strong> encarece el flete marítimo 25-40%. La percepción cultural pro-concreto aún existe. Y OGPe requiere ingenieros licenciados localmente para permisos. Estas barreras son <strong>navegables con las alianzas correctas</strong> — y actúan como barreras de entrada para competidores.</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     SLIDE 5 — TAMAÑO DE MERCADO
-═══════════════════════════════════════════ -->
-<div class="slide" data-slide="5">
-  <div class="slide-inner">
-    <div class="slide-header">
+<!-- ═══════════════════════════════
+  S3 · DIVIDER — MERCADO
+═══════════════════════════════ -->
+<div class="slide divider-slide" id="s3">
+  <div class="div-inner">
+    <div class="div-n">I</div>
+    <div class="div-t">El <em>Mercado</em></div>
+    <div class="div-s">Tamaño, tendencias y tres catalizadores de crecimiento</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+  S4 · CONTEXTO DE MERCADO
+═══════════════════════════════ -->
+<div class="slide white-slide" id="s4" style="display:flex;flex-direction:column;">
+  <div class="slide-hd">
+    <div><div class="snum">02</div><div class="stitle">Tres <em>Catalizadores</em> Convergentes</div></div>
+    <div class="stag">Market Context</div>
+  </div>
+  <div class="sbody">
+    <div class="two-col" style="gap:40px;">
       <div>
-        <div class="slide-num">03</div>
-        <div class="slide-title-h">Tamaño de <span>Mercado</span> y Proyecciones</div>
-      </div>
-      <div class="slide-tag">Market Size</div>
-    </div>
-    <div class="slide-body">
-      <div class="stat-grid" style="grid-template-columns: repeat(4,1fr); margin-bottom: 28px;">
-        <div class="stat-card">
-          <div class="stat-val">$346B</div>
-          <div class="stat-label">Valor total mercado inmobiliario PR (2025)</div>
+        <div style="margin-bottom:20px;">
+          <div class="label">Catalizador 1</div>
+          <div class="h3">Crisis de Vivienda Estructural</div>
+          <div class="body-text">Puerto Rico produce <strong>65-75 unidades/mes</strong> cuando necesita 3,000+. El déficit de 55,000+ unidades asequibles es el mayor desde los 2000s. La isla tiene la <strong>tasa más alta de propiedades vacías de EE.UU.</strong> (~30%) mientras el mercado activo se comprime.</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-val">$390B</div>
-          <div class="stat-label">Proyección 2029 (CAGR 3.01%)</div>
-          <div class="stat-sub">↑ Crecimiento sostenido</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-val">$1.83B</div>
-          <div class="stat-label">Ventas residenciales totales 2025</div>
-          <div class="stat-sub">+11.4% interanual</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-val">$600M</div>
-          <div class="stat-label">Mercado direccionable premium $800K-$3M</div>
-          <div class="stat-sub">~300-400 unidades/año</div>
-        </div>
-      </div>
-      <div class="two-col">
-        <div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Producción de Vivienda Nueva vs. Demanda</div>
-          <div class="chart-wrap" style="height: 230px;">
-            <canvas id="supplyDemandChart"></canvas>
-          </div>
+        <div style="margin-bottom:20px;">
+          <div class="label">Catalizador 2</div>
+          <div class="h3">Precios Sin Freno — Récord FHFA</div>
+          <div class="body-text">El índice marcó <strong>+22% en Q4 2024</strong> — el mayor salto registrado. Dorado Beach: $820/sqft (+14% YoY). Mediana isla 2026: $385,000 (+6.2% YoY). Segmento luxury $1M+: mediana $2.4M, +8.1% interanual.</div>
         </div>
         <div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Precios por Zona Premium ($/sqft · 2026)</div>
-          <div class="chart-wrap" style="height: 230px;">
-            <canvas id="priceByZoneChart"></canvas>
-          </div>
+          <div class="label">Catalizador 3</div>
+          <div class="h3">Ventana Act 60 — Urgencia Real</div>
+          <div class="body-text">~10,000 titulares Act 60 activos. ~2,000 nuevos decretos/año. Desde <strong>enero 2027</strong>, nuevos solicitantes pagan 4% (antes: 0%). Esto genera oleada de compradores que deben adquirir propiedad en máximo 2 años. Solo el modular puede entregar a tiempo.</div>
         </div>
       </div>
-      <div class="footnote">Fuentes: HUD 2025, GlobalPropertyGuide, FHFA, Christie's RE PR, Beyond Commercial Group</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     DIVIDER — COMPETIDORES
-═══════════════════════════════════════════ -->
-<div class="slide section-divider" data-slide="6">
-  <div class="section-divider-inner">
-    <div class="section-divider-num">II</div>
-    <div class="section-divider-title">Paisaje <span>Competitivo</span></div>
-    <div class="section-divider-sub">Quién está en el mercado y qué los diferencia</div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SLIDE 7 — COMPETIDORES LUXURY
-═══════════════════════════════════════════ -->
-<div class="slide" data-slide="7">
-  <div class="slide-inner">
-    <div class="slide-header">
       <div>
-        <div class="slide-num">04</div>
-        <div class="slide-title-h">Segmento <span>Luxury</span> — Competidores Reales</div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Precio Vivienda PR — Trayectoria 2019–2026</div>
+        <div class="cw" style="height:260px;"><canvas id="c_price"></canvas></div>
+        <div class="footnote">Fuentes: FHFA, Christie's Real Estate PR, InvEstate PR, HUD 2025</div>
       </div>
-      <div class="slide-tag">Competitive Landscape</div>
-    </div>
-    <div class="slide-body" style="padding-top: 24px;">
-      <div class="comp-grid">
-
-        <!-- KEU HOMES -->
-        <div class="comp-card">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80" alt="KEU Homes - Luxury Modular" onerror="this.style.display='none'">
-          <div class="comp-body">
-            <div class="comp-name">KEU Homes</div>
-            <div class="comp-origin">🇪🇸 España · Subsidiaria caribeña activa</div>
-            <div class="comp-tags">
-              <span class="tag tag-luxury">Luxury</span>
-              <span class="tag tag-intl">Internacional</span>
-            </div>
-            <div class="comp-price">$307–$384/sqft (solo estructura)</div>
-            <div class="comp-diff">Líder indiscutido del segmento luxury. Estructura metálica naval, acabados italianos, entrega turnkey. Proyectos: Culebra, Fajardo, Playa Combate, Aguadilla. Única empresa con precios públicos y presencia multi-municipio activa.</div>
-          </div>
-        </div>
-
-        <!-- KONTI DESIGN -->
-        <div class="comp-card">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="KONTi Design - LEED Platinum" onerror="this.style.display='none'">
-          <div class="comp-body">
-            <div class="comp-name">KONTi Design</div>
-            <div class="comp-origin">🇵🇷 Puerto Rico · Arq. Carla Gautier Castro</div>
-            <div class="comp-tags">
-              <span class="tag tag-luxury">Premium</span>
-              <span class="tag tag-local">Local</span>
-              <span class="tag tag-green">LEED Platino</span>
-            </div>
-            <div class="comp-price">N/D · Est. $600K–$1.5M proyecto completo</div>
-            <div class="comp-diff">Primera vivienda LEED Platino del Caribe (Casa Mar Azul, Isabela 2022). Containers reciclados. Off-grid 100%. Ganadora USGBC 2024. Resistencia hasta 200 mph. Referente aspiracional para compradores eco-conscientes.</div>
-          </div>
-        </div>
-
-        <!-- PACIFIC BUILDER -->
-        <div class="comp-card">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=600&q=80" alt="Pacific Builder PR" onerror="this.style.display='none'">
-          <div class="comp-body">
-            <div class="comp-name">Pacific Builder PR</div>
-            <div class="comp-origin">🇺🇸 Florida/EE.UU. · Opera en toda PR</div>
-            <div class="comp-tags">
-              <span class="tag tag-luxury">Mid-Premium</span>
-              <span class="tag tag-intl">Continental</span>
-            </div>
-            <div class="comp-price">-20-30% vs. construcción tradicional · Solo cotización</div>
-            <div class="comp-diff">Especialistas en PR: ADUs Airbnb, rooftop additions San Juan, residencias nuevas. 4-6 meses entrega total. Ingenieros internos para acelerar permisos. Única empresa con discurso específico para mercado local PR.</div>
-          </div>
-        </div>
-
-        <!-- DEV BUILDERS -->
-        <div class="comp-card">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="DEV Builders" onerror="this.style.display='none'">
-          <div class="comp-body">
-            <div class="comp-name">DEV Builders Group</div>
-            <div class="comp-origin">🇵🇷 Puerto Rico · 20+ años experiencia</div>
-            <div class="comp-tags">
-              <span class="tag tag-luxury">Luxury Custom</span>
-              <span class="tag tag-local">Local</span>
-            </div>
-            <div class="comp-price">$300–$500/sqft (construcción custom)</div>
-            <div class="comp-diff">Constructor de lujo que aplica estándares comerciales a residencias. Equipo propio + equipo pesado propio. Servicio de conserjería completo. Asesor activo sobre pros/cons de prefab para clientes.</div>
-          </div>
-        </div>
-
-        <!-- BIOS HOMES -->
-        <div class="comp-card">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=600&q=80" alt="BIOS Homes" onerror="this.style.display='none'">
-          <div class="comp-body">
-            <div class="comp-name">BIOS Homes</div>
-            <div class="comp-origin">🇺🇸 EE.UU. · Broker global modular</div>
-            <div class="comp-tags">
-              <span class="tag tag-luxury">Premium Broker</span>
-              <span class="tag tag-intl">Global</span>
-            </div>
-            <div class="comp-price">Variable según fabricante seleccionado</div>
-            <div class="comp-diff">"World's First Global Modular &amp; Panelized Building Brokerage". Conecta compradores PR con los mejores fabricantes mundiales. Presencia activa en PR y todo el Caribe. No construyen, intermedian.</div>
-          </div>
-        </div>
-
-        <!-- NUCONIC -->
-        <div class="comp-card" style="border: 2px solid var(--gold); box-shadow: 0 4px 20px rgba(201,168,76,0.2);">
-          <div style="position:relative;">
-            <img class="comp-img" src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80" alt="Nuconic - Dorado Grove PR" onerror="this.style.display='none'">
-            <div style="position:absolute;top:8px;right:8px;background:var(--gold);color:var(--navy);font-size:9px;font-weight:800;padding:3px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;">⚠ Competidor Clave</div>
-          </div>
-          <div class="comp-body">
-            <div class="comp-name">Nuconic <span style="color:var(--gray-text);font-weight:400;font-size:11px;">(ex-QMODULAR)</span></div>
-            <div class="comp-origin">🇵🇱 Polonia · Oficina EE.UU. en Reno, NV</div>
-            <div class="comp-tags">
-              <span class="tag tag-luxury">Ultra-Luxury</span>
-              <span class="tag tag-intl">Internacional</span>
-            </div>
-            <div class="comp-price">N/D · Christie's PR comercializa Dorado Grove</div>
-            <div class="comp-diff"><strong>3 proyectos activos en PR:</strong> Dorado Grove (114 aptos, 166,331 sqft — listado en Christie's), Palma Nido (villas 7,135–9,461 sqft, beach club 2026), Dorado Residence (custom). Acero prefabricado off-site. Entrega en 5 meses. Ingresos 2024: $21.8M USD (+600% YoY). Competidor más serio no identificado inicialmente.</div>
-          </div>
-        </div>
-
-        <!-- ECOPRECAST -->
-        <div class="comp-card">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="EcoPrecast" onerror="this.style.display='none'">
-          <div class="comp-body">
-            <div class="comp-name">EcoPrecast PR</div>
-            <div class="comp-origin">🇵🇷 Juana Díaz, PR · Concreto prefab</div>
-            <div class="comp-tags">
-              <span class="tag tag-local">Local</span>
-              <span class="tag tag-green">Eco</span>
-            </div>
-            <div class="comp-price">~50% del costo de construcción tradicional</div>
-            <div class="comp-diff">Concreto prefabricado de alta calidad local. 90 días de entrega. Diseño ecológico y energéticamente eficiente. Fortaleza: no depende de la Ley Jones (materiales locales). Debilidad: menor diferenciación de diseño en premium.</div>
-          </div>
-        </div>
-
-      </div>
-      <div class="footnote" style="margin-top: 12px;">Fuentes: nuconic.com, christiesrealestatepr.com, keu.es, kontidesign.com, pacificbuilderpr.com, devbuilders.com, bioshomes.com, ecoprecastpr.com · Imágenes ilustrativas del segmento</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     SLIDE 8 — MATRIZ COMPETITIVA
-═══════════════════════════════════════════ -->
-<div class="slide" data-slide="8">
-  <div class="slide-inner">
-    <div class="slide-header">
-      <div>
-        <div class="slide-num">05</div>
-        <div class="slide-title-h">Matriz <span>Competitiva</span> — Posicionamiento</div>
-      </div>
-      <div class="slide-tag">Competitive Matrix</div>
+<!-- ═══════════════════════════════
+  S5 · TAMAÑO DE MERCADO
+═══════════════════════════════ -->
+<div class="slide white-slide" id="s5" style="display:flex;flex-direction:column;">
+  <div class="slide-hd">
+    <div><div class="snum">03</div><div class="stitle">Tamaño de <em>Mercado</em></div></div>
+    <div class="stag">Market Size</div>
+  </div>
+  <div class="sbody" style="padding-top:24px;">
+    <div class="stats-row c4" style="margin-bottom:24px;">
+      <div class="stat-card"><div class="stat-val">$346B</div><div class="stat-lbl">Valor total mercado inmobiliario PR (2025)</div></div>
+      <div class="stat-card"><div class="stat-val">$390B</div><div class="stat-lbl">Proyección 2029 — CAGR 3.01%</div><div class="stat-sub">↑ Crecimiento sostenido</div></div>
+      <div class="stat-card"><div class="stat-val">$1.83B</div><div class="stat-lbl">Ventas residenciales totales 2025 (+11.4% YoY)</div></div>
+      <div class="stat-card"><div class="stat-val">$600M</div><div class="stat-lbl">Mercado direccionable premium $800K–$3M</div><div class="stat-sub">~300-400 unidades/año</div></div>
     </div>
-    <div class="slide-body" style="padding-top: 20px;">
-      <div class="two-col" style="gap: 32px;">
-        <div>
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Empresa</th>
-                <th>Segmento</th>
-                <th>$/sqft</th>
-                <th>Entrega</th>
-                <th>Presencia PR</th>
-              </tr>
-            </thead>
+    <div class="two-col">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Producción Actual vs. Demanda (unidades/mes)</div>
+        <div class="cw" style="height:220px;"><canvas id="c_supply"></canvas></div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Precio de Venta por Zona Premium ($/sqft · 2026)</div>
+        <div class="cw" style="height:220px;"><canvas id="c_zones"></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+  S6 · DIVIDER — COMPETIDORES
+═══════════════════════════════ -->
+<div class="slide divider-slide" id="s6">
+  <div class="div-inner">
+    <div class="div-n">II</div>
+    <div class="div-t">Paisaje <em>Competitivo</em></div>
+    <div class="div-s">Quién está en el mercado · proyectos reales · diferenciadores</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+  S7 · GALLERY — PROYECTOS REALES
+═══════════════════════════════ -->
+<div class="slide white-slide" id="s7" style="display:flex;flex-direction:column;">
+  <div class="slide-hd">
+    <div><div class="snum">04</div><div class="stitle">Proyectos <em>Reales</em> en Puerto Rico — Competidores Activos</div></div>
+    <div class="stag">Project Gallery</div>
+  </div>
+  <div style="padding:16px 20px 10px;">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;">
+      <!-- Nuconic Dorado Grove -->
+      <div class="pg-item" style="grid-column:span 2;aspect-ratio:auto;height:200px;">
+        <img src="https://nuconic.com/wp-content/uploads/2025/03/NUCONIC-Dorado-HEADER.jpg" alt="Nuconic Dorado Grove PR" style="width:100%;height:100%;object-fit:cover;">
+        <div class="pg-label">Dorado Grove — 114 Apartamentos Exclusivos<span>Nuconic · Dorado, Puerto Rico · 2025</span></div>
+      </div>
+      <!-- Nuconic Palma Nido -->
+      <div class="pg-item" style="height:200px;">
+        <img src="https://nuconic.com/wp-content/uploads/2025/04/NUCONIC-Palma-Nido-nowa-HEADER-desktop.jpg" alt="Nuconic Palma Nido PR" style="width:100%;height:100%;object-fit:cover;">
+        <div class="pg-label">Palma Nido — Villas Ultra-Luxury<span>Nuconic · Playa Breñas, PR · 2025</span></div>
+      </div>
+      <!-- Nuconic Dorado Grove 2 -->
+      <div class="pg-item" style="height:200px;">
+        <img src="https://nuconic.com/wp-content/uploads/2025/03/1-1024x576.jpg" alt="Nuconic Dorado Grove interior" style="width:100%;height:100%;object-fit:cover;">
+        <div class="pg-label">Dorado Grove — Interior<span>Nuconic · Dorado, Puerto Rico</span></div>
+      </div>
+      <!-- Pacific Builder Coastal -->
+      <div class="pg-item" style="height:200px;">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/QbCOk97wwD0KIbfB9RNo/media/68a86de73a9e2928649e4f90.png" alt="Pacific Builder PR coastal" style="width:100%;height:100%;object-fit:cover;">
+        <div class="pg-label">Vivienda Costera Premium<span>Pacific Builder PR · Puerto Rico</span></div>
+      </div>
+      <!-- Pacific Builder Rooftop -->
+      <div class="pg-item" style="height:200px;">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/QbCOk97wwD0KIbfB9RNo/media/68a86eaa7dc6b063f77034e0.png" alt="Pacific Builder rooftop modular" style="width:100%;height:100%;object-fit:cover;">
+        <div class="pg-label">Rooftop Addition San Juan<span>Pacific Builder PR</span></div>
+      </div>
+      <!-- KONTi Casa Mar Azul -->
+      <div class="pg-item" style="height:200px;">
+        <img src="https://cdn.prod.website-files.com/672bddf2d4c953c9be42ab8c/67f3d2ed5669232094c7f230_Casa%20Mar%20Azul.png" alt="KONTi Design Casa Mar Azul LEED Platinum" style="width:100%;height:100%;object-fit:cover;">
+        <div class="pg-label">Casa Mar Azul — LEED Platino<span>KONTi Design · Isabela, PR · 2022</span></div>
+      </div>
+      <!-- Nuconic Dorado Gallery -->
+      <div class="pg-item" style="height:200px;">
+        <img src="https://nuconic.com/wp-content/uploads/2025/03/3-1024x576.jpg" alt="Nuconic Dorado Grove PR exterior" style="width:100%;height:100%;object-fit:cover;">
+        <div class="pg-label">Dorado Grove — Fachada<span>Nuconic · Dorado, Puerto Rico</span></div>
+      </div>
+      <!-- Pacific Builder El Yunque -->
+      <div class="pg-item" style="height:200px;">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/QbCOk97wwD0KIbfB9RNo/media/68a8760b3a9e2920349f3ae4.png" alt="Pacific Builder PR modular El Yunque" style="width:100%;height:100%;object-fit:cover;">
+        <div class="pg-label">Residencia Modular — El Yunque<span>Pacific Builder PR</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footnote" style="padding:0 20px 8px;">Fuentes: nuconic.com, christiesrealestatepr.com, pacificbuilderpr.com, kontidesign.com — Fotografías de proyectos activos en Puerto Rico 2022–2025</div>
+</div>
+
+<!-- ═══════════════════════════════
+  S8 · NUCONIC — FULL SLIDE
+═══════════════════════════════ -->
+<div class="slide photo-slide" id="s8" style="min-height:var(--H);">
+  <div class="bg" style="background-image:url('https://nuconic.com/wp-content/uploads/2025/04/NUCONIC-DEVELOPMENTS-Palma-Nido-1024x674.jpg')"></div>
+  <div class="overlay" style="background:linear-gradient(to right,rgba(10,22,40,0.96) 0%,rgba(10,22,40,0.7) 55%,rgba(10,22,40,0.25) 100%)"></div>
+  <div style="position:relative;z-index:2;padding:48px 64px;display:grid;grid-template-columns:1fr 1fr;gap:48px;min-height:var(--H);align-items:center;">
+    <div>
+      <div class="label" style="margin-bottom:10px;">⚠ Competidor Clave — Análisis Urgente</div>
+      <div class="h2" style="margin-bottom:6px;font-size:38px;">Nuconic</div>
+      <div style="color:var(--gold2);font-size:14px;margin-bottom:20px;font-style:italic;">ex-QMODULAR · Polonia · Reno, Nevada (EE.UU.)</div>
+      <div class="body-text-light" style="margin-bottom:20px;font-size:13px;">
+        "The Global Leader in Luxury Off-Site Steel Manufactured Building" — autodenominación. Tienen 3 proyectos activos simultáneos en PR en 2025. Son el competidor más relevante y menos conocido del mercado.
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;">
+        <div style="background:rgba(255,255,255,0.07);border-radius:6px;padding:12px;text-align:center;border-top:2px solid var(--gold);">
+          <div style="color:var(--gold);font-size:20px;font-weight:900;">$21.8M</div>
+          <div style="color:rgba(255,255,255,0.5);font-size:10px;">Ingresos 2024 USD</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border-radius:6px;padding:12px;text-align:center;border-top:2px solid var(--gold);">
+          <div style="color:var(--gold);font-size:20px;font-weight:900;">+600%</div>
+          <div style="color:rgba(255,255,255,0.5);font-size:10px;">Crecimiento ventas 2023</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border-radius:6px;padding:12px;text-align:center;border-top:2px solid var(--gold);">
+          <div style="color:var(--gold);font-size:20px;font-weight:900;">5 meses</div>
+          <div style="color:rgba(255,255,255,0.5);font-size:10px;">Entrega prometida</div>
+        </div>
+      </div>
+      <div style="background:rgba(46,175,106,0.12);border:1px solid rgba(46,175,106,0.3);border-radius:6px;padding:12px 16px;margin-bottom:10px;">
+        <div style="color:var(--green);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Fortaleza</div>
+        <div style="color:rgba(255,255,255,0.8);font-size:12px;">114 apartamentos en Dorado (vía Christie's PR), villas 7K–9K sqft en Playa Breñas con PORCELANOSA, Kohler, Minotti. Distribución de lujo establecida.</div>
+      </div>
+      <div style="background:rgba(217,79,61,0.1);border:1px solid rgba(217,79,61,0.3);border-radius:6px;padding:12px 16px;">
+        <div style="color:var(--red);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Vulnerabilidad</div>
+        <div style="color:rgba(255,255,255,0.8);font-size:12px;">Solo 4 años de historia (fundada 2021). Pérdida bruta -$4.1M en 2024. Capital social mínimo. Sin proyecto de referencia visitable terminado en PR aún.</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <img src="https://nuconic.com/wp-content/uploads/2025/03/Dorado-Grove-2.jpg" alt="Nuconic Dorado Grove" style="width:100%;height:200px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,0.1);">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <img src="https://nuconic.com/wp-content/uploads/2025/04/1-1-1024x715.jpg" alt="Nuconic Palma Nido" style="width:100%;height:130px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,0.1);">
+        <img src="https://nuconic.com/wp-content/uploads/2025/03/2-1024x576.jpg" alt="Nuconic Dorado Grove" style="width:100%;height:130px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,0.1);">
+      </div>
+      <div style="color:rgba(255,255,255,0.35);font-size:10px;text-align:center;font-style:italic;">Arriba: Dorado Grove (Dorado, PR) · Abajo: Palma Nido (Playa Breñas, PR)</div>
+    </div>
+  </div>
+  <div class="gold-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════
+  S9 · KEU + KONTI + PACIFIC BUILDER
+═══════════════════════════════ -->
+<div class="slide white-slide" id="s9" style="display:flex;flex-direction:column;">
+  <div class="slide-hd">
+    <div><div class="snum">05</div><div class="stitle">KEU Homes · KONTi Design · <em>Pacific Builder PR</em></div></div>
+    <div class="stag">Competitive Landscape</div>
+  </div>
+  <div class="sbody" style="padding-top:20px;">
+    <div class="three-col">
+      <!-- KEU -->
+      <div class="photo-card">
+        <div style="width:100%;height:180px;background:linear-gradient(135deg,#0A1628 0%,#1B3060 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:url('https://nuconic.com/wp-content/uploads/2025/04/Photo4-1920x999.jpg') center/cover;opacity:0.3;"></div>
+          <div style="position:relative;z-index:1;text-align:center;">
+            <div style="color:var(--gold);font-size:22px;font-weight:900;letter-spacing:1px;">KEU Homes</div>
+            <div style="color:rgba(255,255,255,0.6);font-size:12px;">🇪🇸 España · Caribe</div>
+          </div>
+        </div>
+        <div class="photo-card-body">
+          <div class="photo-card-name">KEU Homes</div>
+          <div class="photo-card-sub">🇪🇸 España · Subsidiaria caribeña activa en PR</div>
+          <div class="tags"><span class="tag t-lux">Luxury</span><span class="tag t-intl">Internacional</span></div>
+          <div class="photo-card-price">$307–$384/sqft estructura · $500-700/sqft instalado PR</div>
+          <div class="photo-card-diff">Único con precios públicos. Estructura metálica naval, acabados italianos, entrega turnkey. Proyectos: Culebra, Fajardo, Playa Combate, Quebradillas, Aguadilla. Certif. Cat.5.</div>
+        </div>
+      </div>
+      <!-- KONTI -->
+      <div class="photo-card">
+        <img src="https://cdn.prod.website-files.com/672bddf2d4c953c9be42ab8c/67f3d2ed5669232094c7f230_Casa%20Mar%20Azul.png" alt="KONTi Design Casa Mar Azul LEED Platinum Puerto Rico" style="width:100%;height:180px;object-fit:cover;display:block;">
+        <div class="photo-card-body">
+          <div class="photo-card-name">KONTi Design</div>
+          <div class="photo-card-sub">🇵🇷 Puerto Rico · Arq. Carla Gautier Castro</div>
+          <div class="tags"><span class="tag t-lux">Premium</span><span class="tag t-local">Local</span><span class="tag t-green">LEED Platino</span></div>
+          <div class="photo-card-price">Est. $600K–$1.5M proyecto completo</div>
+          <div class="photo-card-diff"><strong>Casa Mar Azul</strong> (Isabela, 2022): 1ª vivienda LEED Platino del Caribe. Off-grid total. Ganadora USGBC 2024. Referente sostenible aspiracional. Huella de CO₂ -80%.</div>
+        </div>
+      </div>
+      <!-- PACIFIC BUILDER -->
+      <div class="photo-card">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/QbCOk97wwD0KIbfB9RNo/media/68a8760b3a9e2920349f3ae4.png" alt="Pacific Builder PR modular home El Yunque" style="width:100%;height:180px;object-fit:cover;display:block;">
+        <div class="photo-card-body">
+          <div class="photo-card-name">Pacific Builder PR</div>
+          <div class="photo-card-sub">🇺🇸 Florida/EE.UU. · Opera en toda PR</div>
+          <div class="tags"><span class="tag t-lux">Mid-Premium</span><span class="tag t-intl">Continental</span></div>
+          <div class="photo-card-price">-20-30% vs. construcción tradicional · Solo cotización</div>
+          <div class="photo-card-diff">4-6 meses entrega total. ADUs Airbnb, rooftop additions San Juan, residencias nuevas. Ingenieros internos aceleran permisos. Conocimiento profundo del mercado local PR.</div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom row -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px;">
+      <div style="background:#F8F9FB;border-radius:6px;padding:12px 16px;border-left:3px solid var(--gold);">
+        <div style="font-size:11px;font-weight:800;color:var(--navy);margin-bottom:4px;">DEV Builders Group 🇵🇷</div>
+        <div style="font-size:11px;color:#555;">20+ años · Luxury custom · $300-500/sqft · Metro PR</div>
+      </div>
+      <div style="background:#F8F9FB;border-radius:6px;padding:12px 16px;border-left:3px solid var(--blue);">
+        <div style="font-size:11px;font-weight:800;color:var(--navy);margin-bottom:4px;">BIOS Homes 🇺🇸 · Impresa Modular 🇺🇸</div>
+        <div style="font-size:11px;color:#555;">Broker global · Mid-premium · Red internacional de fabricantes</div>
+      </div>
+      <div style="background:#F8F9FB;border-radius:6px;padding:12px 16px;border-left:3px solid var(--green);">
+        <div style="font-size:11px;font-weight:800;color:var(--navy);margin-bottom:4px;">EcoPrecast 🇵🇷 · Island Homes 🇵🇷 · Karmod 🇹🇷</div>
+        <div style="font-size:11px;color:#555;">Entry-mid · Concreto y acero prefab · Mercado local masivo</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+  S10 · MATRIZ COMPETITIVA
+═══════════════════════════════ -->
+<div class="slide white-slide" id="s10" style="display:flex;flex-direction:column;">
+  <div class="slide-hd">
+    <div><div class="snum">06</div><div class="stitle">Matriz <em>Competitiva</em> — Posicionamiento</div></div>
+    <div class="stag">Competitive Matrix</div>
+  </div>
+  <div class="sbody" style="padding-top:20px;">
+    <div class="two-col" style="gap:28px;">
+      <div>
+        <table class="tbl">
+          <thead><tr><th>Empresa</th><th>Segmento</th><th>$/sqft</th><th>Entrega</th><th>Proyectos PR</th></tr></thead>
+          <tbody>
+            <tr style="background:rgba(201,168,76,0.06);">
+              <td><strong>Nuconic</strong> 🇵🇱 <span style="font-size:9px;color:var(--red);font-weight:700;">⭐NUEVO</span></td>
+              <td><span class="tag t-lux">Ultra-Luxury</span></td>
+              <td>N/D · Christie's</td><td>5 meses</td><td>3 activos (2025)</td>
+            </tr>
+            <tr><td><strong>KEU Homes</strong> 🇪🇸</td><td><span class="tag t-lux">Luxury</span></td><td>$307–$700+</td><td>5-7 m</td><td>Multi-municipio</td></tr>
+            <tr><td><strong>KONTi Design</strong> 🇵🇷</td><td><span class="tag t-green">Premium Eco</span></td><td>N/D</td><td>N/D</td><td>Casa Mar Azul</td></tr>
+            <tr><td><strong>Pacific Builder PR</strong> 🇺🇸</td><td><span class="tag t-intl">Mid-Prem</span></td><td>-20-30% trad.</td><td>4-6 m</td><td>Toda la isla</td></tr>
+            <tr><td><strong>DEV Builders</strong> 🇵🇷</td><td><span class="tag t-lux">Luxury Custom</span></td><td>$300–$500</td><td>18-30 m</td><td>Metro + PR</td></tr>
+            <tr><td><strong>BIOS Homes</strong> 🇺🇸</td><td><span class="tag t-intl">Premium Broker</span></td><td>Variable</td><td>Variable</td><td>PR + Caribe</td></tr>
+            <tr><td><strong>EcoPrecast</strong> 🇵🇷</td><td><span class="tag t-local">Mid-Range</span></td><td>~50% trad.</td><td>90 días</td><td>Toda PR</td></tr>
+            <tr><td><strong>Karmod</strong> 🇹🇷</td><td><span class="tag t-intl">Entry-Mid</span></td><td>$90–$200</td><td>Variable</td><td>Cobertura global</td></tr>
+          </tbody>
+        </table>
+        <div class="footnote">*Nuconic opera activamente en PR con distribución vía Christie's International Real Estate PR</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Posicionamiento — Velocidad vs. Nivel de Lujo</div>
+        <div class="cw" style="height:310px;"><canvas id="c_pos"></canvas></div>
+        <div class="footnote">Eje X: velocidad de entrega (1=lento, 10=rápido) · Eje Y: nivel de lujo/diseño</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+  S11 · PRECIOS
+═══════════════════════════════ -->
+<div class="slide white-slide" id="s11" style="display:flex;flex-direction:column;">
+  <div class="slide-hd">
+    <div><div class="snum">07</div><div class="stitle">Análisis de <em>Precios</em> — El Spread que Justifica Invertir</div></div>
+    <div class="stag">Pricing Analysis</div>
+  </div>
+  <div class="sbody">
+    <div class="two-col">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Costo Construcción vs. Precio de Venta ($/sqft · 2026)</div>
+        <div class="cw" style="height:270px;"><canvas id="c_spread"></canvas></div>
+        <div class="footnote">Costo instalado total estimado incluye site work, fundación, permisos y flete.</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;">Rangos Costo Construcción PR ($/sqft · 2024-2026)</div>
+        <div class="data-bar-row"><div class="data-bar-label"><span>Prefab básica</span><span>$90–$140</span></div><div class="data-bar-track"><div class="data-bar-fill green" style="width:20%"></div></div></div>
+        <div class="data-bar-row"><div class="data-bar-label"><span>Modular estándar</span><span>$110–$200</span></div><div class="data-bar-track"><div class="data-bar-fill green" style="width:28%"></div></div></div>
+        <div class="data-bar-row"><div class="data-bar-label"><span>Modular mid-range instalado</span><span>$150–$250</span></div><div class="data-bar-track"><div class="data-bar-fill" style="width:36%"></div></div></div>
+        <div class="data-bar-row"><div class="data-bar-label"><span>Modular premium instalado</span><span>$250–$500</span></div><div class="data-bar-track"><div class="data-bar-fill gold" style="width:58%"></div></div></div>
+        <div class="data-bar-row"><div class="data-bar-label"><span>Tradicional mid-range</span><span>$300–$500</span></div><div class="data-bar-track"><div class="data-bar-fill" style="width:60%"></div></div></div>
+        <div class="data-bar-row"><div class="data-bar-label"><span>Tradicional luxury beachfront</span><span>$400–$700</span></div><div class="data-bar-track"><div class="data-bar-fill red" style="width:78%"></div></div></div>
+        <div class="data-bar-row"><div class="data-bar-label"><span>Branded residences nuevas</span><span>$500–$1,000</span></div><div class="data-bar-track"><div class="data-bar-fill red" style="width:100%"></div></div></div>
+        <div class="callout callout-gold" style="margin-top:16px;">
+          <div class="callout-lbl">El Spread Clave</div>
+          <div class="callout-body">En Dorado Beach, el mercado paga <strong>$820/sqft</strong> de venta. Costo modular premium instalado: <strong>$450–$600/sqft</strong>. Spread bruto de <strong>$220–$370/sqft</strong> sobre unidades de 2,000–4,000 sqft = <strong>$440K–$1.48M por unidad</strong> antes de tierra y desarrollo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+  S12 · HURACANES DARK SLIDE
+═══════════════════════════════ -->
+<div class="slide hurr-slide" id="s12" style="display:flex;flex-direction:column;">
+  <div class="bg"></div>
+  <div style="background:var(--navy);padding:24px 56px 18px;border-bottom:3px solid var(--gold);display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:2;">
+    <div><div class="snum" style="color:rgba(201,168,76,0.4);">08</div><div class="stitle">Huracanes: ¿Riesgo o <em>Catalizador</em>?</div></div>
+    <div class="stag">Risk Analysis</div>
+  </div>
+  <div class="hurr-grid" style="flex:1;">
+    <div class="hurr-col">
+      <div class="hurr-sec-label"><span style="color:var(--red);">⚠</span> Riesgos Operativos Reales</div>
+      <div class="hurr-item">
+        <div class="hurr-item-t">Daño a módulos en tránsito</div>
+        <div class="hurr-item-b">Durante temporada (jun–nov), retrasos o daños en transporte marítimo. Mitigación: seguro de carga, ventanas de envío fuera de pico.</div>
+      </div>
+      <div class="hurr-item">
+        <div class="hurr-item-t">Interrupción cadena de suministro</div>
+        <div class="hurr-item-b">Cierre de puertos post-huracán puede demorar materiales 2-8 semanas. El modular mitiga esto: construcción ocurre en fábrica, fuera de PR.</div>
+      </div>
+      <div class="hurr-item">
+        <div class="hurr-item-t">Permisos post-evento saturados</div>
+        <div class="hurr-item-b">OGPe puede saturarse. Sin embargo, FEMA activa vías expeditas para construcción resiliente certificada — ventaja para empresas registradas.</div>
+      </div>
+      <div class="hurr-item">
+        <div class="hurr-item-t">Mano de obra redirigida a emergencia</div>
+        <div class="hurr-item-b">El modular minimiza dependencia de mano de obra local: ensamblaje final en sitio es solo 15-20% del trabajo total.</div>
+      </div>
+    </div>
+    <div class="hurr-col">
+      <div class="hurr-sec-label"><span style="color:var(--green);">↑</span> Por qué el huracán es un <strong style="color:var(--green);">catalizador</strong></div>
+      <div class="hurr-item pos">
+        <div class="hurr-item-t">Explosión documentada de demanda post-evento</div>
+        <div class="hurr-item-b">María destruyó 200,000 hogares. La inversión en construcción PR creció <strong style="color:white;">+238%</strong> en valor de permisos 2017→2024. El empleo casi se duplicó: 20K→39K.</div>
+      </div>
+      <div class="hurr-item pos">
+        <div class="hurr-item-t">$20B+ en fondos federales se liberan</div>
+        <div class="hurr-item-b">CDBG-DR, FEMA HMGP, R3 y ReSURge se activan. PR ya tiene <strong style="color:white;">$15.3B sin gastar</strong>. El modular certificado es elegible y prioritario.</div>
+      </div>
+      <div class="hurr-item pos">
+        <div class="hurr-item-t">La construcción tradicional colapsa; el modular no</div>
+        <div class="hurr-item-b">Post-huracán, la construcción tradicional enfrenta escasez de materiales, mano de obra ocupada, permisos saturados. El modular fabrica lejos del caos y entrega en 6 meses.</div>
+      </div>
+      <div class="hurr-item pos">
+        <div class="hurr-item-t">0/2,883 casas mod. post-código dañadas seriamente</div>
+        <div class="hurr-item-b">Huracán Charley (2004, Florida). Casas FORTIFIED Home: <strong style="color:white;">73% menos reclamaciones</strong> vs. estándar en Sally (2020, IBHS/Carrier Management).</div>
+      </div>
+      <div class="verdict">
+        <div class="verdict-lbl">✔ Veredicto del Inversor — Respaldado por Datos Empíricos</div>
+        <div class="verdict-body">FEMA (post-Andrew, 1992): <em>"Minimal structural damage in modular developments — performed much better than conventional framing."</em> El próximo huracán en PR no destruye el negocio: reinicia el ciclo de demanda, activa fondos federales, y valida el producto certificado ante el mercado.</div>
+      </div>
+    </div>
+  </div>
+  <div class="gold-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════
+  S13 · DATOS EMPÍRICOS HURACÁN
+═══════════════════════════════ -->
+<div class="slide white-slide" id="s13" style="display:flex;flex-direction:column;">
+  <div class="slide-hd">
+    <div><div class="snum">09</div><div class="stitle">Datos Empíricos: <em>Huracanes en PR</em></div></div>
+    <div class="stag">Hurricane Data</div>
+  </div>
+  <div class="sbody" style="padding-top:20px;">
+    <div class="two-col">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">% con Daño Serio: Modular Certificado vs. Sin Código</div>
+        <div class="cw" style="height:240px;"><canvas id="c_hurr"></canvas></div>
+        <div class="footnote">Fuentes: FEMA FIA-22 (Andrew 1992), HUD USER (Charley 2004), IBHS (Sally 2020), RAND (María 2017)</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Boom de Construcción Post-María 2017→2024</div>
+        <div class="cw" style="height:185px;"><canvas id="c_postmaria"></canvas></div>
+        <div style="margin-top:14px;">
+          <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Grandes Eventos PR (daño &gt;$1B · NOAA/NCEI)</div>
+          <table class="tbl" style="font-size:11px;">
+            <thead><tr><th>Huracán</th><th>Año</th><th>Cat.</th><th>Daño estimado</th><th>Ciclo post-evento</th></tr></thead>
             <tbody>
-              <tr style="background: rgba(201,168,76,0.08);">
-                <td><strong>Nuconic</strong> 🇵🇱 <span style="font-size:9px;color:var(--gold);font-weight:700;">⭐ CLAVE</span></td>
-                <td><span class="tag tag-luxury">Ultra-Luxury</span></td>
-                <td>N/D · Christie's</td>
-                <td>5 meses</td>
-                <td>3 proyectos activos (Dorado, Breñas)</td>
-              </tr>
-              <tr>
-                <td><strong>KEU Homes</strong> 🇪🇸</td>
-                <td><span class="tag tag-luxury">Luxury</span></td>
-                <td>$307–$700+ instalado</td>
-                <td>5-7 meses</td>
-                <td>Multi-municipio activo</td>
-              </tr>
-              <tr>
-                <td><strong>KONTi Design</strong> 🇵🇷</td>
-                <td><span class="tag tag-luxury">Premium</span></td>
-                <td>N/D</td>
-                <td>N/D</td>
-                <td>Boutique, Casa Mar Azul</td>
-              </tr>
-              <tr>
-                <td><strong>Pacific Builder PR</strong> 🇺🇸</td>
-                <td><span class="tag tag-intl">Mid-Prem</span></td>
-                <td>-20-30% trad.</td>
-                <td>4-6 meses</td>
-                <td>Toda la isla</td>
-              </tr>
-              <tr>
-                <td><strong>DEV Builders</strong> 🇵🇷</td>
-                <td><span class="tag tag-luxury">Luxury Custom</span></td>
-                <td>$300–$500</td>
-                <td>18-30 meses</td>
-                <td>Metro + toda PR</td>
-              </tr>
-              <tr>
-                <td><strong>BIOS Homes</strong> 🇺🇸</td>
-                <td><span class="tag tag-intl">Premium Broker</span></td>
-                <td>Variable</td>
-                <td>Variable</td>
-                <td>PR + Caribe</td>
-              </tr>
-              <tr>
-                <td><strong>Impresa Modular</strong> 🇺🇸</td>
-                <td><span class="tag tag-intl">Mid-Premium</span></td>
-                <td>$150–$250</td>
-                <td>4-7 meses</td>
-                <td>5+ municipios</td>
-              </tr>
-              <tr>
-                <td><strong>EcoPrecast</strong> 🇵🇷</td>
-                <td><span class="tag tag-local">Mid-Range</span></td>
-                <td>~50% trad.</td>
-                <td>90 días</td>
-                <td>Toda PR</td>
-              </tr>
-              <tr>
-                <td><strong>Karmod</strong> 🇹🇷</td>
-                <td><span class="tag tag-intl">Mid-Range</span></td>
-                <td>$90–$200</td>
-                <td>Variable</td>
-                <td>Cobertura global</td>
-              </tr>
-              <tr>
-                <td><strong>Island Homes PR</strong> 🇵🇷</td>
-                <td><span class="tag tag-local">Entry-Mid</span></td>
-                <td>N/D</td>
-                <td>N/D</td>
-                <td>PR local</td>
-              </tr>
-              <tr>
-                <td><strong>Casas Borincanas</strong> 🇵🇷</td>
-                <td><span class="tag tag-local">Entry</span></td>
-                <td>N/D</td>
-                <td>N/D</td>
-                <td>Hatillo + PR</td>
-              </tr>
+              <tr><td>Georges</td><td>1998</td><td>3</td><td>$11.6B</td><td>↑ Boom reconstrucción</td></tr>
+              <tr><td>Jeanne</td><td>2004</td><td>3</td><td>$12.4B</td><td>↑ Boom reconstrucción</td></tr>
+              <tr style="background:rgba(217,79,61,0.06);"><td><strong>María</strong></td><td><strong>2017</strong></td><td><strong>4</strong></td><td><strong>$90B</strong></td><td><strong>+238% permisos 2017→2024</strong></td></tr>
+              <tr><td>Fiona</td><td>2022</td><td>1</td><td>$2.5B</td><td>↑ Demanda resiliente</td></tr>
+              <tr style="color:var(--gray);font-style:italic;"><td>Erin (Cat.5 cerca)</td><td>2025</td><td>5</td><td>No landfall directo</td><td>—</td></tr>
             </tbody>
           </table>
-        </div>
-        <div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Mapa de Posicionamiento Competitivo</div>
-          <div class="chart-wrap" style="height: 300px;">
-            <canvas id="positioningChart"></canvas>
-          </div>
-          <div class="footnote">Ejes: Velocidad de entrega vs. Nivel de diseño/lujo</div>
+          <div class="footnote">Probabilidad anual Cat.3+ landfall en PR: 4-7% · Frecuencia histórica: cada ~15-25 años</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     SLIDE 9 — ANÁLISIS HURACÁN
-═══════════════════════════════════════════ -->
-<div class="slide hurricane-bg" data-slide="9">
-  <div style="background: var(--navy); min-height: var(--slide-h); position: relative; overflow: hidden;">
-    <div style="position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1542281286-9e0a16bb7366?w=1280&q=60') center/cover; opacity: 0.08;"></div>
-    <!-- Header -->
-    <div style="background: rgba(0,0,0,0.4); padding: 28px 56px 22px; border-bottom: 3px solid var(--gold); display: flex; align-items: flex-end; justify-content: space-between; position: relative; z-index:2;">
+<!-- ═══════════════════════════════
+  S14 · DIVIDER — ESTRATEGIA
+═══════════════════════════════ -->
+<div class="slide divider-slide" id="s14">
+  <div class="div-inner">
+    <div class="div-n">III</div>
+    <div class="div-t">Comprador &amp; <em>Estrategia</em></div>
+    <div class="div-s">A quién le vendemos · cómo entramos · qué construir primero</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+  S15 · PERFIL DEL COMPRADOR
+═══════════════════════════════ -->
+<div class="slide white-slide" id="s15" style="display:flex;flex-direction:column;">
+  <div class="slide-hd">
+    <div><div class="snum">10</div><div class="stitle">Perfil del <em>Comprador</em> Objetivo</div></div>
+    <div class="stag">Target Buyer</div>
+  </div>
+  <div class="sbody" style="padding-top:20px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:20px;">
+      <div style="background:var(--navy);border-radius:8px;padding:20px;border-top:3px solid var(--gold);">
+        <div class="label" style="margin-bottom:8px;">🎯 Primario</div>
+        <div style="color:#fff;font-size:15px;font-weight:800;margin-bottom:8px;">Compradores Act 60</div>
+        <div style="color:rgba(255,255,255,0.65);font-size:12px;line-height:1.6;margin-bottom:12px;">Inversionistas, entrepreneurs de tech, hedge funds, médicos del mainland EE.UU. 0% impuesto ganancias de capital. <strong style="color:white;">Deben comprar propiedad en PR en 2 años del decreto.</strong> ~2,000 nuevos/año.</div>
+        <div style="color:var(--gold);font-size:22px;font-weight:900;">$800K–$3M</div>
+        <div style="color:rgba(255,255,255,0.4);font-size:10px;">Presupuesto objetivo</div>
+      </div>
+      <div style="background:var(--navy);border-radius:8px;padding:20px;border-top:3px solid var(--blue);">
+        <div class="label" style="margin-bottom:8px;color:var(--blue);">🏖 Secundario</div>
+        <div style="color:#fff;font-size:15px;font-weight:800;margin-bottom:8px;">Inversores Renta Vacacional</div>
+        <div style="color:rgba(255,255,255,0.65);font-size:12px;line-height:1.6;margin-bottom:12px;">Villas de lujo para Airbnb Luxe, VRBO, Plum Guide. Rincón, Palmas del Mar, costa oeste. La arquitectura modular contemporánea tiene <strong style="color:white;">alto valor fotogénico</strong> — ROI diferencial en plataformas premium.</div>
+        <div style="color:var(--gold);font-size:22px;font-weight:900;">$500K–$1.5M</div>
+        <div style="color:rgba(255,255,255,0.4);font-size:10px;">Presupuesto objetivo</div>
+      </div>
       <div>
-        <div class="slide-num" style="color: rgba(201,168,76,0.5);">06</div>
-        <div class="slide-title-h">Huracanes: ¿Riesgo o <span>Catalizador?</span></div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Distribución Mercado Luxury PR</div>
+        <div class="cw" style="height:180px;"><canvas id="c_buyers"></canvas></div>
+        <div style="margin-top:10px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="background:#F8F9FB;border-radius:5px;padding:8px 10px;border-left:2px solid var(--gold);font-size:11px;"><strong style="color:var(--navy);">Sin sesgo cultural</strong><br><span style="color:#666;">No tienen el prejuicio pro-concreto local</span></div>
+            <div style="background:#F8F9FB;border-radius:5px;padding:8px 10px;border-left:2px solid var(--gold);font-size:11px;"><strong style="color:var(--navy);">Urgencia 2027</strong><br><span style="color:#666;">Cambio al 4%: oleada acelerada ahora</span></div>
+            <div style="background:#F8F9FB;border-radius:5px;padding:8px 10px;border-left:2px solid var(--blue);font-size:11px;"><strong style="color:var(--navy);">10,000 activos</strong><br><span style="color:#666;">Titulares Act 60 en PR actualmente</span></div>
+            <div style="background:#F8F9FB;border-radius:5px;padding:8px 10px;border-left:2px solid var(--blue);font-size:11px;"><strong style="color:var(--navy);">+23% transacc.</strong><br><span style="color:#666;">Segmento $1M+ en 2024</span></div>
+          </div>
+        </div>
       </div>
-      <div class="slide-tag">Risk Analysis</div>
     </div>
-    <div style="padding: 36px 56px; position: relative; z-index:2;">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
-        <!-- LEFT: RISKS -->
-        <div>
-          <div class="h-section-title">
-            <span style="color: #E74C3C;">⚠</span> Riesgos Reales
-          </div>
-
-          <div class="h-item">
-            <div class="h-item-title">Daño a inventario en tránsito</div>
-            <div class="h-item-text">Módulos durante transporte marítimo pueden retrasarse o dañarse en temporada de huracanes (junio–noviembre). Mitigación: seguro de carga, ventanas de envío fuera de temporada.</div>
-          </div>
-          <div class="h-item">
-            <div class="h-item-title">Interrupción de la cadena de suministro</div>
-            <div class="h-item-text">Cierre de puertos y aeropuertos post-huracán puede demorar materiales y equipos 2-8 semanas. Impacto: retrasos en proyectos activos.</div>
-          </div>
-          <div class="h-item">
-            <div class="h-item-title">Escasez temporal de mano de obra</div>
-            <div class="h-item-text">La mano de obra local se redirige a reparaciones de emergencia. El modular mitiga este riesgo: la mayor parte de la construcción ocurre en fábrica, fuera de PR.</div>
-          </div>
-          <div class="h-item">
-            <div class="h-item-title">Demoras en permisos post-huracán</div>
-            <div class="h-item-text">OGPe puede saturarse con solicitudes de emergencia. Sin embargo, FEMA activa vías expeditas para construcción resiliente certificada.</div>
-          </div>
-        </div>
-
-        <!-- RIGHT: OPPORTUNITIES -->
-        <div>
-          <div class="h-section-title">
-            <span style="color: var(--green);">↑</span> Por qué los huracanes son un <strong style="color: var(--green);">catalizador</strong>
-          </div>
-
-          <div class="h-item" style="border-left-color: rgba(39,174,96,0.4);">
-            <div class="h-item-title" style="color: var(--green);">Explosión de demanda post-evento</div>
-            <div class="h-item-text">María destruyó ~200,000 hogares. La demanda de vivienda nueva y resiliente se disparó y no ha vuelto al nivel pre-María. Un nuevo huracán genera el mismo ciclo: <strong style="color:white;">demanda masiva, urgente, financiada federalmente.</strong></div>
-          </div>
-          <div class="h-item" style="border-left-color: rgba(39,174,96,0.4);">
-            <div class="h-item-title" style="color: var(--green);">$20,000M+ en fondos federales liberados</div>
-            <div class="h-item-text">CDBG-DR, FEMA HMGP, programas R3 y ReSURge se activan post-desastre. El modular certificado para huracanes es elegible. Post-María, PR recibió $20B+ — aún con $15,300M sin gastar.</div>
-          </div>
-          <div class="h-item" style="border-left-color: rgba(39,174,96,0.4);">
-            <div class="h-item-title" style="color: var(--green);">La competencia tradicional tarda 18-36 meses</div>
-            <div class="h-item-text">Post-huracán, la construcción tradicional colapsa: escasez de materiales, mano de obra ocupada en reparaciones, permisos saturados. El modular fabrica en fábrica, lejos del caos, y entrega en 6 meses.</div>
-          </div>
-          <div class="h-item" style="border-left-color: rgba(39,174,96,0.4);">
-            <div class="h-item-title" style="color: var(--green);">Posicionamiento "anti-huracán" como activo de marca</div>
-            <div class="h-item-text">Las certificaciones Cat.5 se vuelven argumentos de venta poderosos exactamente cuando el mercado más los necesita. El evento valida el producto.</div>
-          </div>
-
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
-            <div style="background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.3);border-radius:6px;padding:12px;text-align:center;">
-              <div style="color:var(--green);font-size:22px;font-weight:900;">+238%</div>
-              <div style="color:rgba(255,255,255,0.6);font-size:10px;">Valor permisos construcción<br>PR 2017→2024 (post-María)</div>
-            </div>
-            <div style="background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.3);border-radius:6px;padding:12px;text-align:center;">
-              <div style="color:var(--green);font-size:22px;font-weight:900;">0/2,883</div>
-              <div style="color:rgba(255,255,255,0.6);font-size:10px;">Casas mod. post-código HUD<br>destruidas en Charley 2004</div>
-            </div>
-            <div style="background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.3);border-radius:6px;padding:12px;text-align:center;">
-              <div style="color:var(--green);font-size:22px;font-weight:900;">-73%</div>
-              <div style="color:rgba(255,255,255,0.6);font-size:10px;">Reducción de reclamaciones<br>FORTIFIED vs. estándar (Sally 2020)</div>
-            </div>
-            <div style="background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.3);border-radius:6px;padding:12px;text-align:center;">
-              <div style="color:var(--green);font-size:22px;font-weight:900;">$15.3B</div>
-              <div style="color:rgba(255,255,255,0.6);font-size:10px;">Fondos federales CDBG-DR<br>sin gastar en PR (nov. 2025)</div>
-            </div>
-          </div>
-          <div class="h-verdict">
-            <div class="h-verdict-title">✔ Veredicto del Inversor — Respaldado por Datos</div>
-            <div class="h-verdict-text">FEMA (1992, post-Andrew): "Minimal structural damage in modular developments — performed much better than conventional framing." Post-María 2017: el sector construcción PR creció un <strong>+238% en valor de permisos</strong> y el empleo casi se duplicó (20K→39K). El próximo huracán reiniciará ese ciclo. Una empresa modular con certificación FORTIFIED/HUD Code entra como <strong>solución preferida, no como víctima</strong>.</div>
-          </div>
-        </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+      <div style="background:#F8F9FB;border-radius:6px;padding:10px 14px;text-align:center;border-top:2px solid var(--gold);">
+        <div style="font-size:22px;font-weight:900;color:var(--navy);">$820</div>
+        <div style="font-size:10px;color:var(--gray);">$/sqft Dorado Beach</div>
+      </div>
+      <div style="background:#F8F9FB;border-radius:6px;padding:10px 14px;text-align:center;border-top:2px solid var(--gold);">
+        <div style="font-size:22px;font-weight:900;color:var(--navy);">$790</div>
+        <div style="font-size:10px;color:var(--gray);">$/sqft Condado</div>
+      </div>
+      <div style="background:#F8F9FB;border-radius:6px;padding:10px 14px;text-align:center;border-top:2px solid var(--blue);">
+        <div style="font-size:22px;font-weight:900;color:var(--navy);">$2.4M</div>
+        <div style="font-size:10px;color:var(--gray);">Mediana luxury $1M+ (2026)</div>
+      </div>
+      <div style="background:#F8F9FB;border-radius:6px;padding:10px 14px;text-align:center;border-top:2px solid var(--blue);">
+        <div style="font-size:22px;font-weight:900;color:var(--navy);">$12.25M</div>
+        <div style="font-size:10px;color:var(--gray);">Venta récord Dorado Beach (2024)</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     SLIDE 10 — PRECIOS
-═══════════════════════════════════════════ -->
-<div class="slide" data-slide="10">
-  <div class="slide-inner">
-    <div class="slide-header">
+<!-- ═══════════════════════════════
+  S16 · BARRERAS + OPORTUNIDADES
+═══════════════════════════════ -->
+<div class="slide white-slide" id="s16" style="display:flex;flex-direction:column;">
+  <div class="slide-hd">
+    <div><div class="snum">11</div><div class="stitle">Barreras de Entrada y <em>Oportunidades</em></div></div>
+    <div class="stag">SWOT / Market Entry</div>
+  </div>
+  <div class="sbody" style="padding-top:20px;">
+    <div class="two-col">
       <div>
-        <div class="slide-num">07</div>
-        <div class="slide-title-h">Análisis de <span>Precios</span> — El Spread que Justifica Invertir</div>
-      </div>
-      <div class="slide-tag">Pricing Analysis</div>
-    </div>
-    <div class="slide-body">
-      <div class="two-col">
-        <div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Costo Construcción vs. Precio de Venta ($/sqft)</div>
-          <div class="chart-wrap" style="height: 280px;">
-            <canvas id="spreadChart"></canvas>
-          </div>
-          <div class="footnote">Costo instalado total estimado (incluye site work, fundación, permisos, flete)</div>
+        <div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">🔴 Barreras de Entrada</div>
+        <div class="callout callout-red" style="margin-bottom:10px;">
+          <div class="callout-lbl">🔴 Crítica — Ley Jones (Merchant Marine Act)</div>
+          <div class="callout-body">Flete marítimo entre puertos EE.UU. encarece el transporte 25-40%. Empresa que fabrique en Europa (como KEU, Nuconic) no está sujeta — <strong>ventaja logística real frente a fabricantes en EE.UU. continental.</strong></div>
         </div>
-        <div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;">Estructura de Costos — Modular Premium PR</div>
-
-          <div class="chart-wrap" style="height: 200px;">
-            <canvas id="costBreakdownChart"></canvas>
-          </div>
-
-          <div style="margin-top: 16px;">
-            <div class="highlight">
-              <div class="highlight-title">El Spread Clave</div>
-              <div class="highlight-text">En Dorado Beach, el mercado paga <strong>$820/sqft</strong> de venta. El costo de construcción modular premium instalado es <strong>$450-$600/sqft</strong>. El spread bruto de <strong>$220-$370/sqft</strong> sobre unidades de 2,000-4,000 sqft = <strong>$440K–$1.48M por unidad</strong> antes de costos de tierra y desarrollo.</div>
-            </div>
-          </div>
+        <div class="callout callout-red" style="margin-bottom:10px;">
+          <div class="callout-lbl">🔴 Crítica — Percepción Cultural Pro-Concreto</div>
+          <div class="callout-body">El concreto reforzado = símbolo de permanencia en PR. Estrategia: <strong>Nunca usar "prefabricado". Posicionarse como "arquitectura de precisión industrial".</strong> Un proyecto de referencia visitable es el mayor acelerador de confianza.</div>
+        </div>
+        <div class="callout callout-red" style="opacity:.8;">
+          <div class="callout-lbl">🟡 Importante — OGPe: Solo Ingenieros CIAPR</div>
+          <div class="callout-body">Solo profesionales licenciados en PR pueden radicar permisos. Proceso: 3-6 meses. <strong>Mitigación: alianzas con ingenieros locales desde el día 1.</strong> Ley 122-2024 introduce vías expeditas de 2 días.</div>
         </div>
       </div>
-      <div class="footnote">Fuentes: KEU Homes, DevBuilders, InvEstate PR, Christie's RE PR, Beyond Commercial Group 2025-2026</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     DIVIDER — ESTRATEGIA
-═══════════════════════════════════════════ -->
-<div class="slide section-divider" data-slide="11">
-  <div class="section-divider-inner">
-    <div class="section-divider-num">III</div>
-    <div class="section-divider-title">Buyer Profile &amp; <span>Estrategia</span></div>
-    <div class="section-divider-sub">A quién le vendemos y cómo entramos al mercado</div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SLIDE 12 — PERFIL DEL COMPRADOR
-═══════════════════════════════════════════ -->
-<div class="slide" data-slide="12">
-  <div class="slide-inner">
-    <div class="slide-header">
       <div>
-        <div class="slide-num">08</div>
-        <div class="slide-title-h">Perfil del <span>Comprador</span> Objetivo</div>
-      </div>
-      <div class="slide-tag">Target Buyer</div>
-    </div>
-    <div class="slide-body" style="padding-top: 24px;">
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px;">
-        <div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
-
-            <div style="background: linear-gradient(135deg, #0B1C3A 0%, #1E3A6E 100%); border-radius: 10px; padding: 20px; color: white;">
-              <div style="font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;">🎯 Segmento Primario</div>
-              <div style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">Compradores Act 60</div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.5;">Inversionistas de capital, entrepreneurs de tech, gestores de fondos, médicos del mainland EE.UU. Beneficio: 0% impuesto ganancias de capital. Obligación: comprar propiedad en PR dentro de 2 años del decreto. <strong style="color: var(--gold);">~2,000 nuevos/año.</strong></div>
-              <div style="margin-top: 12px; font-size: 18px; font-weight: 900; color: var(--gold);">$800K–$3M</div>
-              <div style="font-size: 11px; color: rgba(255,255,255,0.5);">Presupuesto objetivo</div>
-            </div>
-
-            <div style="background: linear-gradient(135deg, #1a3060 0%, #0B1C3A 100%); border-radius: 10px; padding: 20px; color: white; border: 1px solid rgba(201,168,76,0.2);">
-              <div style="font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;">🏖 Segmento Secundario</div>
-              <div style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">Inversores Renta Vacacional</div>
-              <div style="font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.5;">Compradores de villas de lujo para Airbnb Luxe, VRBO, Plum Guide. Zonas: Rincón, Palmas del Mar, costa oeste. La arquitectura modular contemporánea tiene <strong style="color: var(--gold);">alto valor fotogénico</strong> — ROI diferencial.</div>
-              <div style="margin-top: 12px; font-size: 18px; font-weight: 900; color: var(--gold);">$500K–$1.5M</div>
-              <div style="font-size: 11px; color: rgba(255,255,255,0.5);">Presupuesto objetivo</div>
-            </div>
+        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">✅ Oportunidades Estratégicas</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:rgba(46,175,106,0.06);border:1px solid rgba(46,175,106,0.2);border-radius:7px;padding:14px;">
+            <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:5px;">Brecha de oferta 40x</div>
+            <div style="font-size:11px;color:#555;line-height:1.45;">75 unidades/mes vs. 3,000 necesarias. Quien produce a escala captura demanda inmediata sin competencia real.</div>
+            <div style="font-size:18px;font-weight:900;color:var(--green);margin-top:6px;">×40</div>
           </div>
-
-          <div style="background: #F8F9FC; border-radius: 8px; padding: 16px 20px; border: 1px solid #E2E8F0;">
-            <div style="font-size: 11px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Por qué Act 60 es el target ideal para modular premium</div>
-            <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;">
-              <div style="text-align: center;">
-                <div style="font-size: 22px; font-weight: 900; color: var(--gold);">Sin sesgo</div>
-                <div style="font-size: 11px; color: #666;">No tienen la cultura pro-concreto local. Conocen y valoran el modular de calidad.</div>
-              </div>
-              <div style="text-align: center;">
-                <div style="font-size: 22px; font-weight: 900; color: var(--gold);">Urgencia</div>
-                <div style="font-size: 11px; color: #666;">Deben comprar en máximo 2 años. La velocidad del modular es argumento directo.</div>
-              </div>
-              <div style="text-align: center;">
-                <div style="font-size: 22px; font-weight: 900; color: var(--gold);">Ventana 2027</div>
-                <div style="font-size: 11px; color: #666;">Cambio al 4% crea oleada de solicitudes aceleradas. La demanda es ahora.</div>
-              </div>
-            </div>
+          <div style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:7px;padding:14px;">
+            <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:5px;">Ventana Act 60 · 2027</div>
+            <div style="font-size:11px;color:#555;line-height:1.45;">Oleada de compradores con urgencia temporal. Velocidad de entrega = argumento cuantificable.</div>
+            <div style="font-size:18px;font-weight:900;color:var(--gold);margin-top:6px;">2,000/año</div>
           </div>
-        </div>
-
-        <div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Distribución del Mercado Luxury</div>
-          <div class="chart-wrap" style="height: 200px;">
-            <canvas id="buyerSegmentChart"></canvas>
+          <div style="background:rgba(27,109,191,0.06);border:1px solid rgba(27,109,191,0.2);border-radius:7px;padding:14px;">
+            <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:5px;">Fondos federales</div>
+            <div style="font-size:11px;color:#555;line-height:1.45;">$15.3B CDBG-DR sin gastar. Construcción resiliente certificada = elegible y prioritaria.</div>
+            <div style="font-size:18px;font-weight:900;color:var(--blue);margin-top:6px;">$15.3B</div>
           </div>
-          <div style="margin-top: 16px;">
-            <div style="font-size: 11px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Zonas de Mercado Premium</div>
-            <table style="width: 100%; font-size: 11px; border-collapse: collapse;">
-              <tr style="background: var(--navy);">
-                <td style="padding: 6px 10px; color: var(--gold); font-weight: 700;">Zona</td>
-                <td style="padding: 6px 10px; color: var(--gold); font-weight: 700;">$/sqft</td>
-              </tr>
-              <tr><td style="padding: 6px 10px; border-bottom: 1px solid #eee;">Dorado Beach</td><td style="padding: 6px 10px; border-bottom: 1px solid #eee; font-weight: 700; color: var(--navy);">$820</td></tr>
-              <tr style="background: #fafbfd;"><td style="padding: 6px 10px; border-bottom: 1px solid #eee;">Condado</td><td style="padding: 6px 10px; border-bottom: 1px solid #eee; font-weight: 700; color: var(--navy);">$790</td></tr>
-              <tr><td style="padding: 6px 10px; border-bottom: 1px solid #eee;">Bahía Beach</td><td style="padding: 6px 10px; border-bottom: 1px solid #eee; font-weight: 700; color: var(--navy);">~$700</td></tr>
-              <tr style="background: #fafbfd;"><td style="padding: 6px 10px; border-bottom: 1px solid #eee;">Rincón oceanfront</td><td style="padding: 6px 10px; border-bottom: 1px solid #eee; font-weight: 700; color: var(--navy);">~$600</td></tr>
-              <tr><td style="padding: 6px 10px;">San Juan metro</td><td style="padding: 6px 10px; font-weight: 700; color: var(--navy);">$509</td></tr>
-            </table>
+          <div style="background:rgba(155,89,182,0.06);border:1px solid rgba(155,89,182,0.2);border-radius:7px;padding:14px;">
+            <div style="font-size:13px;font-weight:800;color:var(--navy);margin-bottom:5px;">Turismo residencial</div>
+            <div style="font-size:11px;color:#555;line-height:1.45;">Rincón, Palmas del Mar. Airbnb Luxe = ROI diferencial para diseño fotogénico modular.</div>
+            <div style="font-size:18px;font-weight:900;color:#8E44AD;margin-top:6px;">+23%</div>
           </div>
         </div>
       </div>
@@ -1152,656 +924,316 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     SLIDE — NUCONIC DEEP DIVE
-═══════════════════════════════════════════ -->
-<div class="slide" data-slide="nuconic">
-  <div class="slide-inner">
-    <div class="slide-header">
-      <div>
-        <div class="slide-num">06</div>
-        <div class="slide-title-h"><span>Nuconic</span> — El Competidor que Cambió el Análisis</div>
+<!-- ═══════════════════════════════
+  S17 · ESTRATEGIA DE ENTRADA
+═══════════════════════════════ -->
+<div class="slide white-slide" id="s17" style="display:flex;flex-direction:column;">
+  <div class="slide-hd">
+    <div><div class="snum">12</div><div class="stitle">Estrategia de <em>Entrada al Mercado</em></div></div>
+    <div class="stag">Go-to-Market</div>
+  </div>
+  <div class="sbody" style="padding-top:20px;">
+    <div class="two-col">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Fase 1 · Meses 1-6</div>
+          <div class="tl-title">Alianzas locales y estructura legal</div>
+          <div class="tl-body">Contratar ingeniero/arquitecto CIAPR. Alianza con agente Act 60 (Christie's PR, Sotheby's, InvEstate). Operador logístico marítimo para Ley Jones. Registro bajo DDEC.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Fase 2 · Meses 6-18</div>
+          <div class="tl-title">Proyecto de referencia — el activo más crítico</div>
+          <div class="tl-body">1 unidad "showcase" en Dorado Beach o Rincón. Arquitecto internacional. Certificación Cat.5 documentada. Es el mayor acelerador de confianza en un mercado pro-concreto.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Fase 3 · Meses 12-30</div>
+          <div class="tl-title">Pipeline Act 60 — capturar la ventana 2027</div>
+          <div class="tl-body">5-15 unidades/año en $800K–$2M. "Entrega garantizada en 8 meses o penalización contractual". Comisión preferencial a agentes Act 60. Marketing en Airbnb Luxe.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Fase 4 · Año 3+</div>
+          <div class="tl-title">Escala y fondos federales</div>
+          <div class="tl-body">"Approved Fabricator" bajo PRBC §1704 para acelerar permisos. Producto elegible CDBG-DR y R3. Expansión: Vieques, Culebra, costa este. Multi-unidad a escala.</div>
+        </div>
       </div>
-      <div class="slide-tag" style="background:rgba(231,76,60,0.15);border-color:rgba(231,76,60,0.4);color:#E74C3C;">⚠ Alerta Competitiva</div>
-    </div>
-    <div class="slide-body" style="padding-top:20px;">
-      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:32px;">
-        <div>
-          <div style="background:var(--navy);border-radius:10px;padding:20px;margin-bottom:16px;border-top:3px solid var(--gold);">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
-              <div>
-                <div style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">Empresa</div>
-                <div style="color:white;font-size:20px;font-weight:900;">Nuconic <span style="font-size:12px;color:rgba(255,255,255,0.4);font-weight:400;">(ex-QMODULAR)</span></div>
-              </div>
-              <div style="text-align:right;">
-                <div style="color:var(--gold);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Origen</div>
-                <div style="color:white;font-size:14px;font-weight:700;">🇵🇱 Polonia · Reno, NV (USA)</div>
-              </div>
+      <div>
+        <div style="background:var(--navy);border-radius:10px;padding:22px;margin-bottom:16px;border-top:3px solid var(--gold);">
+          <div class="label" style="margin-bottom:10px;">Posicionamiento de Marca — Crítico</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div>
+              <div style="color:var(--red);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Nunca usar</div>
+              <div style="color:rgba(255,255,255,0.4);font-size:11px;text-decoration:line-through;margin-bottom:4px;">❌ "Prefabricado"</div>
+              <div style="color:rgba(255,255,255,0.4);font-size:11px;text-decoration:line-through;margin-bottom:4px;">❌ "Rápido y barato"</div>
+              <div style="color:rgba(255,255,255,0.4);font-size:11px;text-decoration:line-through;">❌ "Casa modular" (primera impresión)</div>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
-              <div style="text-align:center;background:rgba(255,255,255,0.05);border-radius:6px;padding:10px;">
-                <div style="color:var(--gold);font-size:18px;font-weight:900;">$21.8M</div>
-                <div style="color:rgba(255,255,255,0.5);font-size:10px;">Ingresos 2024 (USD)</div>
-              </div>
-              <div style="text-align:center;background:rgba(255,255,255,0.05);border-radius:6px;padding:10px;">
-                <div style="color:var(--gold);font-size:18px;font-weight:900;">+600%</div>
-                <div style="color:rgba(255,255,255,0.5);font-size:10px;">Crecimiento ventas 2023</div>
-              </div>
-              <div style="text-align:center;background:rgba(255,255,255,0.05);border-radius:6px;padding:10px;">
-                <div style="color:var(--gold);font-size:18px;font-weight:900;">5 meses</div>
-                <div style="color:rgba(255,255,255,0.5);font-size:10px;">Entrega prometida</div>
-              </div>
-            </div>
-          </div>
-
-          <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Sus 3 Proyectos en Puerto Rico (2025)</div>
-
-          <div style="border:1px solid #E2E8F0;border-radius:8px;overflow:hidden;margin-bottom:12px;">
-            <div style="background:var(--navy);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;">
-              <span style="color:var(--gold);font-size:13px;font-weight:800;">Dorado Grove</span>
-              <span style="color:rgba(255,255,255,0.5);font-size:11px;">Dorado, PR · Christie's International</span>
-            </div>
-            <div style="padding:12px 14px;font-size:12px;color:#444;line-height:1.5;">
-              2 edificios · <strong>114 apartamentos exclusivos</strong> · 166,331 sqft total. Comercializado por Christie's International Real Estate PR. Nuevo benchmark en desarrollo residencial moderno de Dorado — la zona de mayor precio por sqft de la isla ($820/sqft).
-            </div>
-          </div>
-
-          <div style="border:1px solid #E2E8F0;border-radius:8px;overflow:hidden;margin-bottom:12px;">
-            <div style="background:var(--navy);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;">
-              <span style="color:var(--gold);font-size:13px;font-weight:800;">Palma Nido</span>
-              <span style="color:rgba(255,255,255,0.5);font-size:11px;">Playa Breñas, PR · Ultra-luxury</span>
-            </div>
-            <div style="padding:12px 14px;font-size:12px;color:#444;line-height:1.5;">
-              Villas <strong>7,135–9,461 sqft</strong> cada una · 5 habitaciones · piscina privada · Interiores: PORCELANOSA, Kohler, Kallista, Giorgetti, Minotti, Holly Hunt. Beach club privado (apertura 2026). Spa/wellness. <strong>Segmento estimado $3M–$8M+ por villa.</strong>
-            </div>
-          </div>
-
-          <div style="border:1px solid #E2E8F0;border-radius:8px;overflow:hidden;">
-            <div style="background:var(--navy);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;">
-              <span style="color:var(--gold);font-size:13px;font-weight:800;">Dorado Residence</span>
-              <span style="color:rgba(255,255,255,0.5);font-size:11px;">Dorado, PR · Custom home</span>
-            </div>
-            <div style="padding:12px 14px;font-size:12px;color:#444;line-height:1.5;">
-              Residencia unifamiliar custom. "Steel Home Built for Speed and Endurance." Diseño residencial de alta calidad con tecnología de acero prefabricado off-site.
+            <div>
+              <div style="color:var(--green);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Sí usar</div>
+              <div style="color:white;font-size:11px;margin-bottom:4px;">✅ "Arquitectura de precisión industrial"</div>
+              <div style="color:white;font-size:11px;margin-bottom:4px;">✅ "Construcción industrializada de lujo"</div>
+              <div style="color:white;font-size:11px;">✅ "Entrega certificada en 8 meses"</div>
             </div>
           </div>
         </div>
-
-        <div>
-          <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;">Diferenciadores vs. Competencia</div>
-          <div style="background:#F8F9FC;border-radius:8px;padding:16px;margin-bottom:16px;">
-            <table style="width:100%;font-size:11px;border-collapse:collapse;">
-              <tr style="background:var(--navy);">
-                <td style="padding:7px 10px;color:var(--gold);font-weight:700;">Factor</td>
-                <td style="padding:7px 10px;color:var(--gold);font-weight:700;">Nuconic</td>
-                <td style="padding:7px 10px;color:var(--gold);font-weight:700;">KEU</td>
-              </tr>
-              <tr><td style="padding:7px 10px;border-bottom:1px solid #eee;font-weight:700;">Material</td><td style="padding:7px 10px;border-bottom:1px solid #eee;">Acero off-site</td><td style="padding:7px 10px;border-bottom:1px solid #eee;">Acero naval</td></tr>
-              <tr style="background:#fafbfd;"><td style="padding:7px 10px;border-bottom:1px solid #eee;font-weight:700;">Escala</td><td style="padding:7px 10px;border-bottom:1px solid #eee;color:var(--green);font-weight:700;">Multi-unidad / resort</td><td style="padding:7px 10px;border-bottom:1px solid #eee;">Unidades individuales</td></tr>
-              <tr><td style="padding:7px 10px;border-bottom:1px solid #eee;font-weight:700;">Distribución</td><td style="padding:7px 10px;border-bottom:1px solid #eee;color:var(--green);font-weight:700;">Christie's PR</td><td style="padding:7px 10px;border-bottom:1px solid #eee;">Venta directa</td></tr>
-              <tr style="background:#fafbfd;"><td style="padding:7px 10px;border-bottom:1px solid #eee;font-weight:700;">Entrega</td><td style="padding:7px 10px;border-bottom:1px solid #eee;">5 meses</td><td style="padding:7px 10px;border-bottom:1px solid #eee;">5-7 meses</td></tr>
-              <tr><td style="padding:7px 10px;border-bottom:1px solid #eee;font-weight:700;">Historial PR</td><td style="padding:7px 10px;border-bottom:1px solid #eee;color:var(--green);font-weight:700;">3 proyectos activos</td><td style="padding:7px 10px;border-bottom:1px solid #eee;">Multi-municipio</td></tr>
-              <tr style="background:#fafbfd;"><td style="padding:7px 10px;font-weight:700;">Rentabilidad</td><td style="padding:7px 10px;color:var(--red);font-weight:700;">-$4.1M pérdida (2024)</td><td style="padding:7px 10px;">N/D</td></tr>
-            </table>
-          </div>
-
-          <div class="alert-red" style="margin-bottom:12px;">
-            <div class="alert-title">⚠ Nuconic: Fortalezas</div>
-            <div class="alert-text">Escala (114 aptos en un solo proyecto), distribución de lujo vía Christie's, tecnología probada en Europa (Hotel en Islandia), crecimiento de +600% YoY en ventas. Posicionados exactamente en el mismo segmento target.</div>
-          </div>
-          <div class="alert-green">
-            <div class="alert-title">✅ Nuconic: Vulnerabilidades</div>
-            <div class="alert-text">Empresa de solo 4-5 años de historia (fundada 2021). Capital social mínimo (40K PLN). Pérdida bruta de $4.1M en 2024 — expansión agresiva con riesgo financiero. No tienen proyecto de referencia visitable aún en PR. Holding americana sin información pública.</div>
-          </div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Socios Críticos — Día 1</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="background:#F8F9FB;border-radius:5px;padding:10px 12px;border-left:3px solid var(--gold);font-size:11px;"><strong style="color:var(--navy);">Ingeniero CIAPR</strong><br><span style="color:#666;">Permisos OGPe y certificaciones</span></div>
+          <div style="background:#F8F9FB;border-radius:5px;padding:10px 12px;border-left:3px solid var(--gold);font-size:11px;"><strong style="color:var(--navy);">Agente Act 60</strong><br><span style="color:#666;">Christie's PR, Sotheby's, InvEstate</span></div>
+          <div style="background:#F8F9FB;border-radius:5px;padding:10px 12px;border-left:3px solid var(--blue);font-size:11px;"><strong style="color:var(--navy);">Operador logístico</strong><br><span style="color:#666;">Especialista Ley Jones PR</span></div>
+          <div style="background:#F8F9FB;border-radius:5px;padding:10px 12px;border-left:3px solid var(--blue);font-size:11px;"><strong style="color:var(--navy);">Asesor regulatorio</strong><br><span style="color:#666;">OGPe + fondos CDBG-DR/FEMA</span></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     SLIDE — DATOS HURACÁN
-═══════════════════════════════════════════ -->
-<div class="slide" data-slide="hurricane2">
-  <div class="slide-inner">
-    <div class="slide-header">
-      <div>
-        <div class="slide-num">06B</div>
-        <div class="slide-title-h">Huracanes en PR: <span>La Evidencia Empírica</span></div>
-      </div>
-      <div class="slide-tag">Hurricane Data</div>
+<!-- ═══════════════════════════════
+  S18 · BACK COVER
+═══════════════════════════════ -->
+<div class="slide back-cover" id="s18">
+  <div class="bg"></div>
+  <div class="glow"></div>
+  <div style="position:relative;z-index:2;text-align:center;">
+    <div class="label" style="margin-bottom:20px;">Estudio de Mercado · Puerto Rico · Junio 2026 · Confidencial</div>
+    <div class="h1" style="font-size:48px;margin-bottom:16px;">Construcción Modular<br><em>Premium PR</em></div>
+    <div style="color:rgba(255,255,255,0.45);font-size:16px;max-width:560px;margin:0 auto 44px;line-height:1.6;">
+      Déficit de 55,000 unidades. Precios +22% interanual. Compradores con dinero y urgencia. Menos de 3 actores serios en luxury. La ventana está abierta.
     </div>
-    <div class="slide-body" style="padding-top:20px;">
-      <div class="two-col">
-        <div>
-          <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Daño Modular vs. Convencional — Datos FEMA/IBHS</div>
-          <div class="chart-wrap" style="height:240px;">
-            <canvas id="hurricaneDamageChart"></canvas>
-          </div>
-          <div class="footnote">Fuentes: FEMA Report FIA-22 (Andrew 1992), HUD USER (Charley 2004), IBHS (Sally 2020), RAND (María 2017)</div>
-        </div>
-        <div>
-          <div style="font-size:12px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Efecto Post-Huracán María en Construcción PR</div>
-          <div class="chart-wrap" style="height:200px;">
-            <canvas id="postMariaChart"></canvas>
-          </div>
-
-          <div style="margin-top:14px;">
-            <div style="font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Historial Grandes Eventos PR (daño &gt;$1B)</div>
-            <table style="width:100%;font-size:11px;border-collapse:collapse;">
-              <tr style="background:var(--navy);">
-                <td style="padding:6px 10px;color:var(--gold);font-weight:700;">Huracán</td>
-                <td style="padding:6px 10px;color:var(--gold);font-weight:700;">Año</td>
-                <td style="padding:6px 10px;color:var(--gold);font-weight:700;">Cat.</td>
-                <td style="padding:6px 10px;color:var(--gold);font-weight:700;">Daño</td>
-              </tr>
-              <tr><td style="padding:5px 10px;border-bottom:1px solid #eee;">Georges</td><td style="padding:5px 10px;border-bottom:1px solid #eee;">1998</td><td style="padding:5px 10px;border-bottom:1px solid #eee;">Cat.3</td><td style="padding:5px 10px;border-bottom:1px solid #eee;">$11.6B</td></tr>
-              <tr style="background:#fafbfd;"><td style="padding:5px 10px;border-bottom:1px solid #eee;">Jeanne</td><td style="padding:5px 10px;border-bottom:1px solid #eee;">2004</td><td style="padding:5px 10px;border-bottom:1px solid #eee;">Cat.3</td><td style="padding:5px 10px;border-bottom:1px solid #eee;">$12.4B</td></tr>
-              <tr><td style="padding:5px 10px;border-bottom:1px solid #eee;font-weight:700;color:var(--red);">María</td><td style="padding:5px 10px;border-bottom:1px solid #eee;font-weight:700;color:var(--red);">2017</td><td style="padding:5px 10px;border-bottom:1px solid #eee;font-weight:700;color:var(--red);">Cat.4</td><td style="padding:5px 10px;border-bottom:1px solid #eee;font-weight:700;color:var(--red);">$90B</td></tr>
-              <tr style="background:#fafbfd;"><td style="padding:5px 10px;border-bottom:1px solid #eee;">Fiona</td><td style="padding:5px 10px;border-bottom:1px solid #eee;">2022</td><td style="padding:5px 10px;border-bottom:1px solid #eee;">Cat.1</td><td style="padding:5px 10px;border-bottom:1px solid #eee;">$2.5B</td></tr>
-              <tr><td style="padding:5px 10px;font-style:italic;color:#888;">Erin (Cat.5 cerca PR)</td><td style="padding:5px 10px;font-style:italic;color:#888;">2025</td><td style="padding:5px 10px;font-style:italic;color:#888;">Cat.5</td><td style="padding:5px 10px;font-style:italic;color:#888;">No landfall directo</td></tr>
-            </table>
-            <div class="footnote" style="margin-top:6px;">Probabilidad anual Cat.3+ landfall en PR: 4-7% · Frecuencia histórica Cat.3+: cada ~15-25 años · Fuente: NOAA/NHC</div>
-          </div>
-        </div>
-      </div>
+    <div style="display:flex;gap:56px;justify-content:center;margin-bottom:44px;">
+      <div><div style="font-size:32px;font-weight:900;color:var(--gold);">$346B</div><div style="font-size:11px;color:rgba(255,255,255,0.4);">Mercado Total PR</div></div>
+      <div><div style="font-size:32px;font-weight:900;color:var(--gold);">+22%</div><div style="font-size:11px;color:rgba(255,255,255,0.4);">Apreciación 2024</div></div>
+      <div><div style="font-size:32px;font-weight:900;color:var(--gold);">2027</div><div style="font-size:11px;color:rgba(255,255,255,0.4);">Ventana Act 60</div></div>
+      <div><div style="font-size:32px;font-weight:900;color:var(--gold);">$15.3B</div><div style="font-size:11px;color:rgba(255,255,255,0.4);">Fondos Federales PR</div></div>
     </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SLIDE 13 — BARRERAS + OPORTUNIDADES
-═══════════════════════════════════════════ -->
-<div class="slide" data-slide="13">
-  <div class="slide-inner">
-    <div class="slide-header">
-      <div>
-        <div class="slide-num">09</div>
-        <div class="slide-title-h">Barreras de Entrada y <span>Oportunidades</span></div>
-      </div>
-      <div class="slide-tag">SWOT / Market Entry</div>
-    </div>
-    <div class="slide-body" style="padding-top: 24px;">
-      <div class="two-col">
-        <div>
-          <div style="font-size: 12px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">🔴 Barreras de Entrada</div>
-          <div class="alert-red">
-            <div class="alert-title">🔴 Crítica — Ley Jones (Merchant Marine Act)</div>
-            <div class="alert-text">Flete marítimo entre puertos EE.UU. debe usar bandera americana. Encarece el transporte 25-40% vs. competidores del Caribe. Una empresa que fabrique en Europa (como KEU) o en Asia no está sujeta a esta restricción — ventaja logística real.</div>
-          </div>
-          <div class="alert-red">
-            <div class="alert-title">🔴 Crítica — Percepción Cultural Pro-Concreto</div>
-            <div class="alert-text">El concreto reforzado = símbolo de permanencia en PR. Hugo y María destruyeron casas de madera prefabricada. <strong>Estrategia:</strong> Nunca usar "prefabricado". Posicionarse como "arquitectura de precisión industrial". Un proyecto de referencia visitable es el mayor acelerador de confianza.</div>
-          </div>
-          <div class="alert-red" style="opacity: 0.8;">
-            <div class="alert-title">🟡 Importante — Permisos y Certificación Local</div>
-            <div class="alert-text">Solo ingenieros/arquitectos licenciados en PR (CIAPR) pueden radicar permisos. Proceso: 3-6 meses. <strong>Mitigación:</strong> Alianzas con ingenieros locales establecidos desde el día 1. Ley 122-2024 introduce vías expeditas de 2 días para proyectos certificables.</div>
-          </div>
-        </div>
-        <div>
-          <div style="font-size: 12px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">✅ Oportunidades Estratégicas</div>
-          <div class="opp-grid">
-            <div class="opp-card" style="background: rgba(39,174,96,0.06); border: 1px solid rgba(39,174,96,0.2);">
-              <div class="opp-card-num">1</div>
-              <div class="opp-card-title">Brecha de oferta estructural</div>
-              <div class="opp-card-text">75 unidades/mes vs. 3,000 necesarias. Quien produce a escala captura demanda inmediata.</div>
-              <div class="opp-card-stat">40x</div>
-            </div>
-            <div class="opp-card" style="background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.2);">
-              <div class="opp-card-num">2</div>
-              <div class="opp-card-title">Ventana Act 60 hasta 2027</div>
-              <div class="opp-card-text">Oleada de compradores con urgencia temporal. Velocidad de entrega = argumento de venta cuantificable.</div>
-              <div class="opp-card-stat">2,000/año</div>
-            </div>
-            <div class="opp-card" style="background: rgba(30,111,187,0.06); border: 1px solid rgba(30,111,187,0.2);">
-              <div class="opp-card-num">3</div>
-              <div class="opp-card-title">Fondos federales</div>
-              <div class="opp-card-text">$15,300M CDBG-DR sin gastar. Construcción resiliente certificada = elegible.</div>
-              <div class="opp-card-stat">$15.3B</div>
-            </div>
-            <div class="opp-card" style="background: rgba(155,89,182,0.06); border: 1px solid rgba(155,89,182,0.2);">
-              <div class="opp-card-num">4</div>
-              <div class="opp-card-title">Turismo residencial en auge</div>
-              <div class="opp-card-text">Rincón, Palmas del Mar, costa oeste. Airbnb Luxe = ROI diferencial para diseño fotogénico.</div>
-              <div class="opp-card-stat">+23%</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SLIDE 14 — ESTRATEGIA DE ENTRADA
-═══════════════════════════════════════════ -->
-<div class="slide" data-slide="14">
-  <div class="slide-inner">
-    <div class="slide-header">
-      <div>
-        <div class="slide-num">10</div>
-        <div class="slide-title-h">Estrategia de <span>Entrada al Mercado</span></div>
-      </div>
-      <div class="slide-tag">Go-to-Market</div>
-    </div>
-    <div class="slide-body" style="padding-top: 24px;">
-      <div class="two-col">
-        <div class="strategy-timeline">
-          <div class="strategy-item">
-            <div class="strategy-dot"></div>
-            <div class="strategy-phase">Fase 1 · Meses 1-6</div>
-            <div class="strategy-title">Establecer presencia y alianzas locales</div>
-            <div class="strategy-text">Contratar ingeniero/arquitecto licenciado en PR (CIAPR). Alianza con agente inmobiliario especializado en Act 60 (Christie's PR, Sotheby's, InvEstate). Seleccionar operador logístico marítimo para optimizar Ley Jones. Registrar empresa en PR bajo DDEC.</div>
-          </div>
-          <div class="strategy-item">
-            <div class="strategy-dot"></div>
-            <div class="strategy-phase">Fase 2 · Meses 6-18</div>
-            <div class="strategy-title">Proyecto de referencia — el activo más importante</div>
-            <div class="strategy-text">Construir 1 unidad "showcase" visible y visitable en Dorado Beach o Rincón. Diseñada por arquitecto de nivel internacional. Certificación de resistencia Cat.5 documentada. Esto es el mayor acelerador de confianza en un mercado donde el prejuicio pro-concreto existe.</div>
-          </div>
-          <div class="strategy-item">
-            <div class="strategy-dot"></div>
-            <div class="strategy-phase">Fase 3 · Meses 12-30</div>
-            <div class="strategy-title">Escalar en el segmento Act 60</div>
-            <div class="strategy-text">Pipeline de 5-15 unidades/año en rango $800K-$2M. Posicionamiento como solución de velocidad: "Entrega garantizada en 8 meses o penalización contractual". Activar canales de agentes Act 60 con comisión preferencial. Desarrollar marketing en plataformas Airbnb Luxe para compradores de inversión.</div>
-          </div>
-          <div class="strategy-item">
-            <div class="strategy-dot"></div>
-            <div class="strategy-phase">Fase 4 · Año 3+</div>
-            <div class="strategy-title">Expansión y fondos federales</div>
-            <div class="strategy-text">Aplicar como "Approved Fabricator" bajo PRBC §1704 para acelerar permisos. Desarrollar producto elegible para CDBG-DR y programas R3. Expandir a mercados secundarios: Vieques, Culebra, costa este. Considerar desarrollo multi-unidad (escala modular).</div>
-          </div>
-        </div>
-
-        <div>
-          <div style="font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;">Posicionamiento de Marca Recomendado</div>
-          <div style="background: var(--navy); border-radius: 10px; padding: 24px; margin-bottom: 16px; border-top: 3px solid var(--gold);">
-            <div style="color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;">NUNCA usar</div>
-            <div style="color: rgba(255,255,255,0.5); text-decoration: line-through; font-size: 13px; margin-bottom: 8px;">❌ "Prefabricado"</div>
-            <div style="color: rgba(255,255,255,0.5); text-decoration: line-through; font-size: 13px; margin-bottom: 8px;">❌ "Casa modular" (como primera impresión)</div>
-            <div style="color: rgba(255,255,255,0.5); text-decoration: line-through; font-size: 13px;">❌ "Rápido y económico"</div>
-            <div style="margin-top: 16px; color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;">SÍ usar</div>
-            <div style="color: white; font-size: 13px; margin-bottom: 8px;">✅ "Arquitectura de precisión industrial"</div>
-            <div style="color: white; font-size: 13px; margin-bottom: 8px;">✅ "Construcción industrializada de lujo"</div>
-            <div style="color: white; font-size: 13px;">✅ "Entrega certificada en 8 meses"</div>
-          </div>
-
-          <div style="font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Socios Críticos (Día 1)</div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <div style="background: #F8F9FC; border-radius: 6px; padding: 12px; border-left: 3px solid var(--gold); font-size: 12px;">
-              <strong style="color: var(--navy);">Ingenieros CIAPR</strong><br>
-              <span style="color: #666;">Para permisos OGPe y certificaciones locales</span>
-            </div>
-            <div style="background: #F8F9FC; border-radius: 6px; padding: 12px; border-left: 3px solid var(--gold); font-size: 12px;">
-              <strong style="color: var(--navy);">Agentes Act 60</strong><br>
-              <span style="color: #666;">Christie's PR, Sotheby's, InvEstate PR</span>
-            </div>
-            <div style="background: #F8F9FC; border-radius: 6px; padding: 12px; border-left: 3px solid var(--accent); font-size: 12px;">
-              <strong style="color: var(--navy);">Operador logístico</strong><br>
-              <span style="color: #666;">Especialista Ley Jones y flete marítimo PR</span>
-            </div>
-            <div style="background: #F8F9FC; border-radius: 6px; padding: 12px; border-left: 3px solid var(--accent); font-size: 12px;">
-              <strong style="color: var(--navy);">Asesor regulatorio</strong><br>
-              <span style="color: #666;">OGPe y fondos CDBG-DR / FEMA</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SLIDE 15 — BACK COVER
-═══════════════════════════════════════════ -->
-<div class="slide slide-back" data-slide="15">
-  <div style="position: relative; z-index: 1; text-align: center;">
-    <div style="color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 24px;">Estudio de Mercado · Puerto Rico · 2026</div>
-    <div style="font-size: 52px; font-weight: 900; color: white; line-height: 1.1; margin-bottom: 20px;">Construcción Modular<br><span style="color: var(--gold);">Premium PR</span></div>
-    <div style="color: rgba(255,255,255,0.5); font-size: 16px; max-width: 600px; margin: 0 auto 48px; line-height: 1.6;">Un mercado con déficit estructural de 55,000 unidades, compradores con dinero y urgencia, y menos de 2 actores serios en el segmento de lujo. La ventana está abierta.</div>
-    <div style="display: flex; gap: 60px; justify-content: center; margin-bottom: 48px;">
-      <div>
-        <div style="font-size: 36px; font-weight: 900; color: var(--gold);">$346B</div>
-        <div style="font-size: 12px; color: rgba(255,255,255,0.5);">Mercado Total PR</div>
-      </div>
-      <div>
-        <div style="font-size: 36px; font-weight: 900; color: var(--gold);">+22%</div>
-        <div style="font-size: 12px; color: rgba(255,255,255,0.5);">Apreciación 2024</div>
-      </div>
-      <div>
-        <div style="font-size: 36px; font-weight: 900; color: var(--gold);">2027</div>
-        <div style="font-size: 12px; color: rgba(255,255,255,0.5);">Ventana Act 60</div>
-      </div>
-    </div>
-    <div style="color: rgba(255,255,255,0.3); font-size: 12px;">Documento Confidencial · Junio 2026 · Preparado con investigación multi-fuente verificada</div>
+    <div style="color:rgba(255,255,255,0.2);font-size:11px;">Documento Confidencial · Investigación multi-fuente verificada con 7 agentes paralelos · 40+ fuentes primarias</div>
   </div>
   <div class="gold-bar"></div>
 </div>
 
-</div><!-- /slides-container -->
+</div><!-- /deck -->
 
 <script>
 // ── NAVIGATION ──
-const slides = document.querySelectorAll('.slide');
-let current = 0;
-function scrollToSlide(dir) {
-  current = Math.max(0, Math.min(slides.length - 1, current + dir));
-  slides[current].scrollIntoView({ behavior: 'smooth', block: 'center' });
-  document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
+const slides = Array.from(document.querySelectorAll('.slide'));
+let cur = 0;
+function go(d){
+  cur = Math.max(0, Math.min(slides.length-1, cur+d));
+  slides[cur].scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('ctr').textContent = (cur+1)+'/'+slides.length;
+  document.getElementById('pbar').style.width = ((cur+1)/slides.length*100)+'%';
 }
-// Update counter on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting && e.intersectionRatio > 0.5) {
-      const idx = Array.from(slides).indexOf(e.target);
-      if (idx !== -1) {
-        current = idx;
-        document.getElementById('slideCounter').textContent = (idx + 1) + ' / ' + slides.length;
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') go(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') go(-1);
+});
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&e.intersectionRatio>0.4){
+      const i = slides.indexOf(e.target);
+      if(i>=0){
+        cur=i;
+        document.getElementById('ctr').textContent=(i+1)+'/'+slides.length;
+        document.getElementById('pbar').style.width=((i+1)/slides.length*100)+'%';
       }
     }
   });
-}, { threshold: 0.5 });
-slides.forEach(s => observer.observe(s));
+},{threshold:0.4});
+slides.forEach(s=>io.observe(s));
 
-// ── CHARTS ──
-const GOLD = '#C9A84C';
-const NAVY = '#0B1C3A';
-const GRAY = '#8892A4';
-const GREEN = '#27AE60';
-const RED = '#E74C3C';
-const BLUE = '#1E6FBB';
+// ── CHART DEFAULTS ──
+const G='#C9A84C',N='#0A1628',GR='#8A95A8',GN='#2EAF6A',R='#D94F3D',B='#1B6DBF';
+Chart.defaults.font.family="'Segoe UI',system-ui,sans-serif";
 
-// Chart 1: Price Appreciation
-new Chart(document.getElementById('priceAppreciationChart'), {
-  type: 'line',
-  data: {
-    labels: ['2019', '2020', '2021', '2022', '2023', '2024 Q2', '2024 Q4', '2025 Q1', '2026'],
-    datasets: [{
-      label: 'Precio Mediano Isla ($/sqft)',
-      data: [120, 130, 155, 185, 220, 260, 290, 320, 340],
-      borderColor: GOLD,
-      backgroundColor: 'rgba(201,168,76,0.08)',
-      borderWidth: 2.5,
-      tension: 0.4,
-      fill: true,
-      pointBackgroundColor: GOLD,
-      pointRadius: 4,
-    }, {
-      label: 'Dorado Beach ($/sqft)',
-      data: [280, 310, 380, 480, 580, 680, 760, 800, 820],
-      borderColor: BLUE,
-      backgroundColor: 'rgba(30,111,187,0.05)',
-      borderWidth: 2,
-      tension: 0.4,
-      fill: false,
-      pointBackgroundColor: BLUE,
-      pointRadius: 4,
+// C1: Price appreciation
+new Chart(document.getElementById('c_price'),{
+  type:'line',
+  data:{
+    labels:['2019','2020','2021','2022','2023','Q2 2024','Q4 2024','Q1 2025','2026'],
+    datasets:[{
+      label:'Precio Mediano Isla ($/sqft)',
+      data:[120,132,158,190,228,265,295,328,342],
+      borderColor:G,backgroundColor:'rgba(201,168,76,0.08)',
+      borderWidth:2.5,tension:.4,fill:true,pointBackgroundColor:G,pointRadius:4
+    },{
+      label:'Dorado Beach ($/sqft)',
+      data:[285,315,390,490,590,695,770,810,820],
+      borderColor:B,backgroundColor:'transparent',
+      borderWidth:2,tension:.4,fill:false,pointBackgroundColor:B,pointRadius:4
     }]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { labels: { font: { size: 11 }, color: '#333' } } },
-    scales: {
-      x: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 10 }, color: GRAY } },
-      y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 10 }, color: GRAY, callback: v => '$' + v } }
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{size:10},color:'#333'}}},
+    scales:{
+      x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:9},color:GR}},
+      y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:9},color:GR,callback:v=>'$'+v}}
     }
   }
 });
 
-// Chart 2: Supply vs Demand
-new Chart(document.getElementById('supplyDemandChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Pico 2000s', '2017\n(Post-María)', '2020', '2022', '2024', '2025', 'Necesidad\nAnual'],
-    datasets: [{
-      label: 'Unidades/mes producidas',
-      data: [1100, 200, 55, 65, 70, 75, null],
-      backgroundColor: [NAVY, RED, BLUE, BLUE, BLUE, GOLD, null],
-      borderRadius: 4,
-    }, {
-      label: 'Unidades/mes necesarias',
-      data: [null, null, null, null, null, null, 250],
-      backgroundColor: 'rgba(231,76,60,0.6)',
-      borderRadius: 4,
+// C2: Supply vs Demand
+new Chart(document.getElementById('c_supply'),{
+  type:'bar',
+  data:{
+    labels:['Pico 2000s','Post-María\n2017','2020','2022','2024','2025','Necesidad\nAnual'],
+    datasets:[{
+      label:'Unidades/mes producidas',
+      data:[1100,200,55,65,72,75,null],
+      backgroundColor:[N,R,B,B,B,G,null],
+      borderRadius:4
+    },{
+      label:'Necesidad real',
+      data:[null,null,null,null,null,null,250],
+      backgroundColor:'rgba(217,79,61,0.65)',
+      borderRadius:4
     }]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { labels: { font: { size: 10 }, color: '#333' } } },
-    scales: {
-      x: { ticks: { font: { size: 9 }, color: GRAY } },
-      y: { ticks: { font: { size: 10 }, color: GRAY }, title: { display: true, text: 'Unidades/mes', font: { size: 10 }, color: GRAY } }
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{size:10},color:'#333'}}},
+    scales:{x:{ticks:{font:{size:9},color:GR}},y:{ticks:{font:{size:9},color:GR}}}
+  }
+});
+
+// C3: Price by zone
+new Chart(document.getElementById('c_zones'),{
+  type:'bar',
+  data:{
+    labels:['Dorado\nBeach','Condado','Bahía\nBeach','Rincón\nOcean','San Juan\nMetro','Guaynabo'],
+    datasets:[{
+      label:'$/sqft (2026)',
+      data:[820,790,700,600,509,329],
+      backgroundColor:[G,G,G+'aa',G+'66',B+'99',GR+'88'],
+      borderRadius:5
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{x:{ticks:{font:{size:9},color:GR}},y:{ticks:{font:{size:9},color:GR,callback:v=>'$'+v},min:0,max:900}}
+  }
+});
+
+// C4: Positioning scatter
+new Chart(document.getElementById('c_pos'),{
+  type:'scatter',
+  data:{
+    datasets:[
+      {label:'Nuconic',data:[{x:9.5,y:9.5}],backgroundColor:R,pointRadius:14},
+      {label:'KEU Homes',data:[{x:9,y:9}],backgroundColor:G,pointRadius:13},
+      {label:'KONTi Design',data:[{x:6,y:9.2}],backgroundColor:GN,pointRadius:12},
+      {label:'Pacific Builder PR',data:[{x:8.5,y:6.5}],backgroundColor:B,pointRadius:11},
+      {label:'DEV Builders',data:[{x:2.5,y:8.5}],backgroundColor:'#8E44AD',pointRadius:11},
+      {label:'BIOS Homes',data:[{x:7,y:7}],backgroundColor:'#E67E22',pointRadius:10},
+      {label:'EcoPrecast',data:[{x:9,y:4.5}],backgroundColor:'#16A085',pointRadius:9},
+      {label:'⭐ Espacio Óptimo',data:[{x:9.2,y:8.3}],backgroundColor:'rgba(255,200,0,0.85)',pointRadius:20,pointStyle:'star'},
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{size:9},color:'#333',boxWidth:10},position:'right'}},
+    scales:{
+      x:{min:0,max:10,title:{display:true,text:'Velocidad de entrega →',font:{size:9},color:GR},ticks:{font:{size:9},color:GR}},
+      y:{min:0,max:10,title:{display:true,text:'Nivel de lujo/diseño →',font:{size:9},color:GR},ticks:{font:{size:9},color:GR}}
     }
   }
 });
 
-// Chart 3: Price by Zone
-new Chart(document.getElementById('priceByZoneChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Dorado\nBeach', 'Condado', 'Bahía\nBeach', 'Rincón\nOceanfront', 'San Juan\nMetro', 'Guaynabo'],
-    datasets: [{
-      label: '$/sqft (precio de venta 2026)',
-      data: [820, 790, 700, 600, 509, 329],
-      backgroundColor: [GOLD, GOLD, '#C9A84C99', '#C9A84C66', BLUE + '99', GRAY + '88'],
-      borderRadius: 6,
-    }]
+// C5: Spread chart
+new Chart(document.getElementById('c_spread'),{
+  type:'bar',
+  data:{
+    labels:['Dorado Beach','Condado','Rincón','San Juan Metro'],
+    datasets:[
+      {label:'Costo modular (mín)',data:[450,400,350,300],backgroundColor:'rgba(27,109,191,0.55)',borderRadius:3},
+      {label:'Costo modular (máx)',data:[600,550,500,450],backgroundColor:'rgba(27,109,191,0.25)',borderRadius:3},
+      {label:'Precio de venta mercado',data:[820,790,600,509],type:'line',borderColor:G,backgroundColor:'transparent',borderWidth:3,pointRadius:7,pointBackgroundColor:G}
+    ]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { ticks: { font: { size: 9 }, color: GRAY } },
-      y: { ticks: { font: { size: 10 }, color: GRAY, callback: v => '$' + v }, min: 0, max: 900 }
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{size:10},color:'#333'}}},
+    scales:{
+      x:{ticks:{font:{size:10},color:GR}},
+      y:{ticks:{font:{size:10},color:GR,callback:v=>'$'+v},min:0,max:950}
     }
   }
 });
 
-// Chart 4: Positioning
-new Chart(document.getElementById('positioningChart'), {
-  type: 'scatter',
-  data: {
-    datasets: [{
-      label: 'KEU Homes',
-      data: [{x: 9, y: 9.5}],
-      backgroundColor: GOLD,
-      pointRadius: 14,
-      pointStyle: 'circle',
-    }, {
-      label: 'KONTi Design',
-      data: [{x: 6, y: 9}],
-      backgroundColor: GREEN,
-      pointRadius: 12,
-    }, {
-      label: 'Pacific Builder PR',
-      data: [{x: 8.5, y: 6.5}],
-      backgroundColor: BLUE,
-      pointRadius: 11,
-    }, {
-      label: 'DEV Builders',
-      data: [{x: 3, y: 8.5}],
-      backgroundColor: '#8E44AD',
-      pointRadius: 11,
-    }, {
-      label: 'BIOS Homes',
-      data: [{x: 7, y: 7}],
-      backgroundColor: '#E67E22',
-      pointRadius: 10,
-    }, {
-      label: 'EcoPrecast',
-      data: [{x: 9, y: 5}],
-      backgroundColor: '#16A085',
-      pointRadius: 10,
-    }, {
-      label: 'Casas Borincanas',
-      data: [{x: 7.5, y: 3.5}],
-      backgroundColor: GRAY,
-      pointRadius: 9,
-    }, {
-      label: 'Nuconic',
-      data: [{x: 9.5, y: 9.5}],
-      backgroundColor: '#E74C3C',
-      pointRadius: 14,
-    }, {
-      label: '⭐ Espacio\nOptimo Nuevo\nEntrante',
-      data: [{x: 9.2, y: 8.2}],
-      backgroundColor: 'rgba(255,200,0,0.85)',
-      pointRadius: 18,
-      pointStyle: 'star',
+// C6: Buyer segments
+new Chart(document.getElementById('c_buyers'),{
+  type:'doughnut',
+  data:{
+    labels:['Act 60 / Relocalizados','Inversores Airbnb','Locales luxury','Institucional'],
+    datasets:[{
+      data:[42,28,20,10],
+      backgroundColor:[G,B,GN,'#8E44AD'],
+      borderWidth:2,borderColor:'white'
     }]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { labels: { font: { size: 9 }, color: '#333', boxWidth: 10 }, position: 'right' },
-      tooltip: { callbacks: { label: (c) => c.dataset.label + ' (V:' + c.raw.x + ' D:' + c.raw.y + ')' } }
-    },
-    scales: {
-      x: { min: 0, max: 10, title: { display: true, text: 'Velocidad de entrega →', font: { size: 10 }, color: GRAY }, ticks: { font: { size: 9 }, color: GRAY } },
-      y: { min: 0, max: 10, title: { display: true, text: 'Nivel de lujo/diseño →', font: { size: 10 }, color: GRAY }, ticks: { font: { size: 9 }, color: GRAY } }
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'bottom',labels:{font:{size:9},color:'#333',boxWidth:10}}}
+  }
+});
+
+// C7: Hurricane damage
+new Chart(document.getElementById('c_hurr'),{
+  type:'bar',
+  data:{
+    labels:[
+      'Modular post-HUD code (Charley 2004)',
+      'FORTIFIED Home (Sally 2020)',
+      'Código vigente (María 2017)',
+      'Sin código (María 2017)',
+      'Convencional (Andrew 1992)'
+    ],
+    datasets:[{
+      label:'% con daño serio',
+      data:[0,27,2,75,60],
+      backgroundColor:[GN,GN+'cc',GN+'88',R,R+'cc'],
+      borderRadius:4
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    indexAxis:'y',
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'% con daño serio'}}},
+    scales:{
+      x:{max:100,ticks:{callback:v=>v+'%',font:{size:9},color:GR}},
+      y:{ticks:{font:{size:9},color:'#333'}}
     }
   }
 });
 
-// Chart 5: Spread analysis
-new Chart(document.getElementById('spreadChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Dorado Beach', 'Condado', 'Rincón', 'San Juan Metro'],
-    datasets: [{
-      label: 'Costo modular instalado (min)',
-      data: [450, 400, 350, 300],
-      backgroundColor: 'rgba(30,111,187,0.6)',
-      borderRadius: 4,
-    }, {
-      label: 'Costo modular instalado (max)',
-      data: [600, 550, 500, 450],
-      backgroundColor: 'rgba(30,111,187,0.3)',
-      borderRadius: 4,
-    }, {
-      label: 'Precio de venta mercado',
-      data: [820, 790, 600, 509],
-      type: 'line',
-      borderColor: GOLD,
-      backgroundColor: 'transparent',
-      borderWidth: 3,
-      pointRadius: 6,
-      pointBackgroundColor: GOLD,
+// C8: Post-María boom
+new Chart(document.getElementById('c_postmaria'),{
+  type:'line',
+  data:{
+    labels:['2017','2018','2019','2020','2021','2022','2023','2024'],
+    datasets:[{
+      label:'Valor permisos ($M)',
+      data:[639,780,900,1050,1300,1600,1900,2160],
+      borderColor:G,backgroundColor:'rgba(201,168,76,0.09)',
+      borderWidth:2.5,tension:.4,fill:true,pointBackgroundColor:G,pointRadius:5
+    },{
+      label:'Empleos construcción (K)',
+      data:[20,22,24,26,28,32,36,39.2],
+      borderColor:GN,backgroundColor:'transparent',
+      borderWidth:2,tension:.4,fill:false,pointBackgroundColor:GN,pointRadius:4,
+      yAxisID:'y2'
     }]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { labels: { font: { size: 10 }, color: '#333' } } },
-    scales: {
-      x: { ticks: { font: { size: 10 }, color: GRAY } },
-      y: { ticks: { font: { size: 10 }, color: GRAY, callback: v => '$' + v }, min: 0, max: 950 }
-    }
-  }
-});
-
-// Chart 6: Cost breakdown
-new Chart(document.getElementById('costBreakdownChart'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Módulo (fábrica)', 'Flete marítimo + Ley Jones', 'Fundación + site work', 'Permisos + tasas', 'Instalación local'],
-    datasets: [{
-      data: [45, 18, 20, 7, 10],
-      backgroundColor: [NAVY, RED + 'CC', GOLD, BLUE, GREEN],
-      borderWidth: 2,
-      borderColor: 'white',
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'right', labels: { font: { size: 9 }, color: '#333', boxWidth: 12 } },
-      tooltip: { callbacks: { label: (c) => c.label + ': ' + c.raw + '%' } }
-    }
-  }
-});
-
-// Chart: Hurricane damage comparison
-new Chart(document.getElementById('hurricaneDamageChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Modular post-código\n(Charley 2004)', 'FORTIFIED Home\n(Sally 2020)', 'Código vigente\n(María 2017)', 'Sin código\n(María 2017)', 'Convencional\n(Andrew 1992)'],
-    datasets: [{
-      label: '% Con daño serio',
-      data: [0, 27, 2, 75, 60],
-      backgroundColor: [GREEN, GREEN + 'CC', GREEN + '99', RED, RED + 'CC'],
-      borderRadius: 5,
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    indexAxis: 'y',
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: { label: c => c.raw + '% con daño serio' } }
-    },
-    scales: {
-      x: { max: 100, ticks: { callback: v => v + '%', font: { size: 10 }, color: GRAY } },
-      y: { ticks: { font: { size: 9 }, color: '#333' } }
-    }
-  }
-});
-
-// Chart: Post-María construction boom
-new Chart(document.getElementById('postMariaChart'), {
-  type: 'line',
-  data: {
-    labels: ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
-    datasets: [{
-      label: 'Valor permisos ($M)',
-      data: [639, 780, 900, 1050, 1300, 1600, 1900, 2160],
-      borderColor: GOLD,
-      backgroundColor: 'rgba(201,168,76,0.1)',
-      borderWidth: 2.5,
-      tension: 0.4,
-      fill: true,
-      pointBackgroundColor: GOLD,
-      pointRadius: 5,
-    }, {
-      label: 'Empleo construcción (miles)',
-      data: [20, 22, 24, 26, 28, 32, 36, 39.2],
-      borderColor: GREEN,
-      backgroundColor: 'transparent',
-      borderWidth: 2,
-      tension: 0.4,
-      fill: false,
-      pointBackgroundColor: GREEN,
-      pointRadius: 4,
-      yAxisID: 'y2'
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { labels: { font: { size: 10 }, color: '#333' } } },
-    scales: {
-      x: { ticks: { font: { size: 9 }, color: GRAY } },
-      y: { ticks: { font: { size: 9 }, color: GRAY, callback: v => '$' + v + 'M' }, title: { display: true, text: 'Permisos ($M)', font: { size: 9 }, color: GRAY } },
-      y2: { position: 'right', ticks: { font: { size: 9 }, color: GREEN, callback: v => v + 'K' }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Empleos (K)', font: { size: 9 }, color: GREEN } }
-    }
-  }
-});
-
-// Chart 7: Buyer segments
-new Chart(document.getElementById('buyerSegmentChart'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Act 60 / Relocalizados', 'Inversores renta vacacional', 'Compradores locales luxury', 'Institucionales / family office'],
-    datasets: [{
-      data: [42, 28, 20, 10],
-      backgroundColor: [GOLD, BLUE, GREEN, '#8E44AD'],
-      borderWidth: 2,
-      borderColor: 'white',
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'bottom', labels: { font: { size: 9 }, color: '#333', boxWidth: 12 } },
-      tooltip: { callbacks: { label: (c) => c.label + ': ' + c.raw + '%' } }
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{size:9},color:'#333'}}},
+    scales:{
+      x:{ticks:{font:{size:9},color:GR}},
+      y:{ticks:{font:{size:9},color:GR,callback:v=>'$'+v+'M'}},
+      y2:{position:'right',ticks:{font:{size:9},color:GN,callback:v=>v+'K'},grid:{drawOnChartArea:false}}
     }
   }
 });
