@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Estratégico 2026-2027 — Vida Arquitectura</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro: #0a0a0a;
+    --oro: #c9a84c;
+    --oro-claro: #e2c97e;
+    --blanco: #ffffff;
+    --gris: #888888;
+    --gris-claro: #f5f5f5;
+    --rojo: #c0392b;
+    --verde: #1a6b3c;
+    --azul: #1a3a6b;
+    --pagina: 210mm;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0ece4;
+    color: #1a1a1a;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+
+  /* ===== PÁGINAS ===== */
+  .page {
+    background: white;
+    max-width: 210mm;
+    margin: 0 auto 8mm;
+    padding: 16mm 14mm 14mm;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: avoid; }
+
+  /* ===== PORTADA ===== */
+  .cover {
+    background: var(--negro);
+    color: white;
+    min-height: 270mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20mm 16mm;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 40%, rgba(201,168,76,0.08) 100%);
+    pointer-events: none;
+  }
+  .cover-line {
+    width: 48px;
+    height: 3px;
+    background: var(--oro);
+    margin-bottom: 20px;
+  }
+  .cover-klass {
+    font-family: 'Inter', sans-serif;
+    font-size: 9pt;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 16px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34pt;
+    font-weight: 700;
+    line-height: 1.15;
+    color: white;
+    margin-bottom: 10px;
+  }
+  .cover h1 span { color: var(--oro); }
+  .cover h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11pt;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 36px;
+    letter-spacing: 1px;
+  }
+  .cover-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .cover-metric {
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 14px;
+    border-radius: 4px;
+  }
+  .cover-metric .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 22pt;
+    color: var(--oro);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .cover-metric .lbl {
+    font-size: 8pt;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .cover-confidential {
+    margin-top: auto;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 8pt;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ===== CABECERAS DE SECCIÓN ===== */
+  .section-header {
+    border-left: 4px solid var(--oro);
+    padding-left: 12px;
+    margin-bottom: 18px;
+    margin-top: 4px;
+  }
+  .section-header .num {
+    font-size: 8pt;
+    color: var(--oro);
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18pt;
+    color: var(--negro);
+    line-height: 1.2;
+  }
+  .section-header p {
+    font-size: 9.5pt;
+    color: var(--gris);
+    margin-top: 4px;
+  }
+
+  /* ===== BADGES ===== */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+  .badge-urgente { background: #fde8e6; color: #c0392b; }
+  .badge-importante { background: #fef6e4; color: #9a6f00; }
+  .badge-invisible { background: #e8f5ef; color: #1a6b3c; }
+  .badge-planificado { background: #e8eef8; color: #1a3a6b; }
+  .badge-seo { background: #f0e8fe; color: #5b2d8e; }
+
+  /* ===== CAJAS DE ALERTA ===== */
+  .alert {
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 9.5pt;
+  }
+  .alert-oro { background: #fef6e4; border-left: 4px solid var(--oro); }
+  .alert-rojo { background: #fde8e6; border-left: 4px solid var(--rojo); }
+  .alert-verde { background: #e8f5ef; border-left: 4px solid var(--verde); }
+  .alert-azul { background: #e8eef8; border-left: 4px solid var(--azul); }
+  .alert strong { display: block; margin-bottom: 3px; }
+
+  /* ===== TIMELINE MENSUAL ===== */
+  .month-block {
+    margin-bottom: 16px;
+    break-inside: avoid;
+  }
+  .month-header {
+    background: var(--negro);
+    color: white;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 4px 4px 0 0;
+  }
+  .month-header .month-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 13pt;
+    font-weight: 600;
+  }
+  .month-header .month-focus {
+    font-size: 8pt;
+    color: var(--oro);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .month-body {
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 12px 14px;
+  }
+  .month-body .week-label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: var(--gris);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+  }
+  .month-body .week-label:first-child { margin-top: 0; }
+
+  /* ===== CHECKLIST ===== */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 9.5pt;
+    border-bottom: 1px solid #f0f0f0;
+    line-height: 1.5;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist .cb {
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid #ccc;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .checklist .cost {
+    margin-left: auto;
+    font-size: 8pt;
+    color: var(--gris);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .checklist .txt { flex: 1; }
+  .checklist li strong { color: var(--negro); }
+
+  /* ===== TABLA SEO ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin: 10px 0;
+  }
+  th {
+    background: var(--negro);
+    color: white;
+    padding: 7px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 8.5pt;
+  }
+  td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #fafafa; }
+  .td-oro { color: var(--oro); font-weight: 700; font-family: 'Playfair Display', serif; }
+  .td-verde { color: var(--verde); font-weight: 600; }
+  .td-rojo { color: var(--rojo); font-weight: 600; }
+
+  /* ===== KPI GRID ===== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .kpi-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 12px;
+    text-align: center;
+  }
+  .kpi-card .kpi-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 18pt;
+    color: var(--oro);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .kpi-card .kpi-lbl {
+    font-size: 8pt;
+    color: var(--gris);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  /* ===== FASE PILL ===== */
+  .fase-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 8.5pt;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .fase-1 { background: #e8f5ef; color: #1a6b3c; }
+  .fase-2 { background: #fef6e4; color: #9a6f00; }
+  .fase-3 { background: #e8eef8; color: #1a3a6b; }
+
+  /* ===== SEO CARDS ===== */
+  .seo-pillar {
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 14px;
+    margin-bottom: 10px;
+    break-inside: avoid;
+  }
+  .seo-pillar .pillar-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .seo-pillar .pillar-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--negro);
+    color: var(--oro);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14pt;
+    flex-shrink: 0;
+  }
+  .seo-pillar .pillar-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 12pt;
+    font-weight: 600;
+  }
+  .seo-pillar .pillar-sub {
+    font-size: 8.5pt;
+    color: var(--gris);
+  }
+  .seo-pillar ul {
+    padding-left: 16px;
+    font-size: 9pt;
+  }
+  .seo-pillar ul li { margin-bottom: 3px; }
+
+  /* ===== COMPETIDORES ===== */
+  .competitor-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    font-size: 9pt;
+  }
+  .competitor-row:nth-child(odd) { background: #fafafa; }
+  .competitor-rank {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--negro);
+    color: var(--oro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8pt;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .competitor-name { font-weight: 600; flex: 1; }
+  .competitor-weak { font-size: 8pt; color: var(--verde); }
+
+  /* ===== PRESUPUESTO ===== */
+  .budget-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 9.5pt;
+  }
+  .budget-row:last-child {
+    border-bottom: none;
+    font-weight: 700;
+    border-top: 2px solid var(--negro);
+    padding-top: 10px;
+    margin-top: 4px;
+  }
+  .budget-row .b-name { flex: 1; }
+  .budget-row .b-freq { color: var(--gris); font-size: 8.5pt; width: 80px; text-align: center; }
+  .budget-row .b-year { font-weight: 600; color: var(--negro); width: 70px; text-align: right; }
+
+  /* ===== SEPARADORES ===== */
+  .divider {
+    border: none;
+    border-top: 1px solid #e8e0d0;
+    margin: 16px 0;
+  }
+  .gold-divider {
+    border: none;
+    border-top: 2px solid var(--oro);
+    margin: 20px 0;
+    opacity: 0.3;
+  }
+
+  /* ===== INSTAGRAM STEPS ===== */
+  .ig-step {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    align-items: flex-start;
+  }
+  .ig-step:last-child { border-bottom: none; }
+  .ig-num {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10pt;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .ig-step .ig-content strong { display: block; font-size: 10pt; margin-bottom: 2px; }
+  .ig-step .ig-content p { font-size: 9pt; color: #555; }
+
+  /* ===== FOOTER ===== */
+  .page-footer {
+    border-top: 1px solid #e0d8cc;
+    margin-top: 20px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5pt;
+    color: #999;
+  }
+  .page-footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 9pt;
+    color: var(--negro);
+    font-weight: 600;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { background: white; }
+    .page {
+      max-width: 100%;
+      margin: 0;
+      padding: 12mm 14mm;
+      box-shadow: none;
+    }
+    .cover { min-height: 280mm; }
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 600px) {
+    body { background: white; font-size: 12pt; }
+    .page { padding: 6mm; margin: 0; box-shadow: none; border-bottom: 8px solid #f0ece4; }
+    .cover { padding: 10mm 8mm; min-height: auto; }
+    .cover h1 { font-size: 26pt; }
+    .cover-metrics { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .section-header h2 { font-size: 15pt; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PORTADA ==================== -->
+<div class="page cover">
+  <div class="cover-line"></div>
+  <div class="cover-klass">Documento Confidencial · Junio 2026</div>
+  <h1>Plan Estratégico<br><span>2026 – 2027</span></h1>
+  <h2>Vida Arquitectura · Hoja de Ruta hacia la Independencia</h2>
+
+  <div class="cover-metrics">
+    <div class="cover-metric">
+      <div class="num">24</div>
+      <div class="lbl">Meses de transición</div>
+    </div>
+    <div class="cover-metric">
+      <div class="num">3</div>
+      <div class="lbl">Mercados: Elche · Alicante · Murcia</div>
+    </div>
+    <div class="cover-metric">
+      <div class="num">MÁXIMO</div>
+      <div class="lbl">Nivel de discreción</div>
+    </div>
+    <div class="cover-metric">
+      <div class="num">~3.200€</div>
+      <div class="lbl">Inversión año 1</div>
+    </div>
+  </div>
+
+  <div style="border-top:1px solid rgba(201,168,76,0.2); padding-top:16px; font-size:9pt; color:rgba(255,255,255,0.5);">
+    <strong style="color:var(--oro); display:block; margin-bottom:4px;">Vidal Moreno Mirete · Arquitecto</strong>
+    vida<strong style="color:var(--oro)">arquitectura</strong>.com · Elche, Alicante · España
+  </div>
+
+  <div class="cover-confidential">
+    Uso exclusivo Vidal Moreno Mirete · No distribuir
+  </div>
+</div>
+
+
+<!-- ==================== ÍNDICE ==================== -->
+<div class="page">
+  <div class="section-header">
+    <span class="num">Índice</span>
+    <h2>Contenido del Plan</h2>
+  </div>
+
+  <table>
+    <tr><th>Sección</th><th>Contenido</th><th>Pág.</th></tr>
+    <tr><td>1</td><td><strong>Instagram Privado</strong> — Cómo construirlo sin ser visto</td><td>3</td></tr>
+    <tr><td>2</td><td><strong>Acciones Urgentes</strong> — Semana 1 y 2 (Junio 2026)</td><td>4</td></tr>
+    <tr><td>3</td><td><strong>Plan Mes a Mes · 2026</strong> — Los 12 meses con fechas exactas</td><td>5-9</td></tr>
+    <tr><td>4</td><td><strong>Estrategia SEO Completa</strong> — Qué, cómo y cuándo</td><td>10-12</td></tr>
+    <tr><td>5</td><td><strong>Competencia</strong> — A quién superamos primero (Elche, Alicante, Murcia)</td><td>13</td></tr>
+    <tr><td>6</td><td><strong>Plan 2027</strong> — Expansión y autonomía</td><td>14-15</td></tr>
+    <tr><td>7</td><td><strong>LinkedIn y KEU</strong> — Cómo gestionar la transición</td><td>16</td></tr>
+    <tr><td>8</td><td><strong>Presupuesto y KPIs</strong> — Inversión y métricas de éxito</td><td>17</td></tr>
+  </table>
+
+  <div class="alert alert-oro" style="margin-top:20px;">
+    <strong>El principio rector de este plan</strong>
+    Todo lo que se construye en 2026 se hace en la sombra: infraestructura sólida, contenido preparado, posicionamiento SEO acumulándose — sin ruido público hasta que sea el momento adecuado. En 2027, cuando KEU esté en declive natural, la presencia digital de Vida Arquitectura ya estará consolidada.
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>Junio 2026</span>
+  </div>
+</div>
+
+
+<!-- ==================== SECCIÓN 1: INSTAGRAM ==================== -->
+<div class="page">
+  <div class="section-header">
+    <span class="num">Sección 01</span>
+    <h2>Instagram: Construirlo Sin Publicarlo</h2>
+    <p>Respuesta directa a tu pregunta — sí, es completamente factible</p>
+  </div>
+
+  <div class="alert alert-verde">
+    <strong>✓ Respuesta corta: SÍ, es 100% factible.</strong>
+    Instagram permite crear una cuenta privada, acumular contenido en borradores sin publicar, y seguir cuentas estratégicamente — todo sin que nadie lo vea. Cuando estés listo, activas con 20+ posts de golpe y apareces con una presencia sólida.
+  </div>
+
+  <div class="ig-step">
+    <div class="ig-num">1</div>
+    <div class="ig-content">
+      <strong>Crea la cuenta con email personal (no KEU) <span class="badge badge-invisible">Invisible</span></strong>
+      <p>Usa una dirección de Gmail nueva: vidalmoreno.arq@gmail.com o similar. NUNCA conectes con el Facebook asociado a KEU. Dispositivo: mejor tu móvil personal.</p>
+    </div>
+  </div>
+
+  <div class="ig-step">
+    <div class="ig-num">2</div>
+    <div class="ig-content">
+      <strong>Handle recomendado: <code>@vidalmoreno.arquitecto</code> <span class="badge badge-urgente">Urgente</span></strong>
+      <p>Segunda opción: @vidaarquitectura.elche. El handle @vidaarquitectura ya tiene 11.000 seguidores (cuenta latinoamericana) — no lo uses, causaría confusión.</p>
+    </div>
+  </div>
+
+  <div class="ig-step">
+    <div class="ig-num">3</div>
+    <div class="ig-content">
+      <strong>Activa el perfil en PRIVADO inmediatamente <span class="badge badge-invisible">Invisible</span></strong>
+      <p>Ajustes → Privacidad → Cuenta privada. Nadie puede ver tus posts ni tu perfil completo hasta que lo hagas público. Puedes seguir a quien quieras sin que eso sea visible públicamente.</p>
+    </div>
+  </div>
+
+  <div class="ig-step">
+    <div class="ig-num">4</div>
+    <div class="ig-content">
+      <strong>Construye la biblioteca de borradores (20-30 posts) <span class="badge badge-planificado">Meses 1-6</span></strong>
+      <p>Instagram permite guardar posts como borradores indefinidamente. Crea contenido cada semana sin publicar. Tipos de contenido: fotos de proyectos, detalles constructivos, renders, proceso de diseño, antes/después.</p>
+    </div>
+  </div>
+
+  <div class="ig-step">
+    <div class="ig-num">5</div>
+    <div class="ig-content">
+      <strong>Sigue 100 cuentas estratégicas (invisible para todos) <span class="badge badge-invisible">Invisible</span></strong>
+      <p>Arquitectos de Levante, promotores, revistas de diseño, proveedores de materiales, colegas del sector. Esto te sitúa en el algoritmo antes de publicar nada.</p>
+    </div>
+  </div>
+
+  <div class="ig-step">
+    <div class="ig-num">6</div>
+    <div class="ig-content">
+      <strong>Go Public: Mes 8-10 (Feb-Abril 2027) <span class="badge badge-importante">Momento óptimo</span></strong>
+      <p>Cambias a público y publicas los 20+ posts en secuencia durante 2-3 semanas. Apareces de golpe con una presencia sólida, como si llevaras tiempo activo. Primeros seguidores: contactos profesionales del sector.</p>
+    </div>
+  </div>
+
+  <div class="alert alert-oro" style="margin-top:10px;">
+    <strong>Formato de contenido recomendado (móvil-first)</strong>
+    60% fotos de proyectos con alta calidad fotográfica · 25% vídeos cortos Reels (proceso, obras, materiales) · 15% infografías sobre arquitectura bioclimática y eficiencia energética. Frecuencia objetivo cuando actives: 4 posts/semana.
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>2 / 17</span>
+  </div>
+</div>
+
+
+<!-- ==================== SECCIÓN 2: ACCIONES URGENTES ==================== -->
+<div class="page">
+  <div class="section-header">
+    <span class="num">Sección 02</span>
+    <h2>Acciones Urgentes — Semana 1 y 2</h2>
+    <p>9 – 20 Junio 2026 · Todo invisible para KEU</p>
+  </div>
+
+  <div class="fase-pill fase-1">● FASE 1 — Fundación Invisible</div>
+
+  <ul class="checklist">
+    <li>
+      <div class="cb"></div>
+      <div class="txt"><strong>Registrar marca "Vida Arquitectura" en OEPM</strong><br>
+      Clase 42 (Arquitectura, diseño de interiores). Web: sede.oepm.gob.es → Marcas → Solicitar nueva marca. Formulario M-1. Proceso: 2-3 días para presentar, 12-18 meses resolución. Actúa AHORA porque "Arte y Vida Arquitectura" (Cuenca) ya rankea en Google.</div>
+      <span class="cost badge badge-urgente">125€</span>
+    </li>
+    <li>
+      <div class="cb"></div>
+      <div class="txt"><strong>Registrar dominio vidaarquitectura.es</strong><br>
+      Comprobar disponibilidad en arsys.es o namecheap.com. Apunta a una página "Próximamente" por ahora. Complementa el .com que ya tienes.</div>
+      <span class="cost badge badge-urgente">~10€</span>
+    </li>
+    <li>
+      <div class="cb"></div>
+      <div class="txt"><strong>Crear cuenta Instagram @vidalmoreno.arquitecto</strong><br>
+      Con email personal. Activar PRIVADO. Configurar bio: "Arquitecto · Levante · Vivienda de autor". Sin foto de perfil definitiva hasta el lanzamiento.</div>
+      <span class="cost badge badge-invisible">Gratis</span>
+    </li>
+    <li>
+      <div class="cb"></div>
+      <div class="txt"><strong>Email dedicado exclusivo: vidal@vidaarquitectura.com</strong><br>
+      Si no existe, crearlo en el panel Arsys. Nunca usar desde dispositivos KEU. Para contacto con clientes, proveedores y herramientas de Vida Arquitectura.</div>
+      <span class="cost badge badge-invisible">Incluido</span>
+    </li>
+    <li>
+      <div class="cb"></div>
+      <div class="txt"><strong>Instalar Google Analytics 4 en vidaarquitectura.com</strong><br>
+      Google Analytics → Crear propiedad → obtener ID de medición G-XXXXX → añadir al WordPress (plugin: Site Kit by Google). Sin datos, no hay estrategia.</div>
+      <span class="cost badge badge-invisible">Gratis</span>
+    </li>
+    <li>
+      <div class="cb"></div>
+      <div class="txt"><strong>Activar Google Search Console</strong><br>
+      search.google.com/search-console → Añadir propiedad → verificar con DNS en Arsys. Solicitar indexación de las páginas principales.</div>
+      <span class="cost badge badge-invisible">Gratis</span>
+    </li>
+    <li>
+      <div class="cb"></div>
+      <div class="txt"><strong>Optimizar ficha Google My Business (Elche)</strong><br>
+      Completar al 100%: categoría principal "Arquitecto", añadir servicios detallados, horario, 5 fotos nuevas de calidad. Si no tienes 10 reseñas, solicitarlas esta semana a clientes de confianza.</div>
+      <span class="cost badge badge-urgente">Gratis</span>
+    </li>
+    <li>
+      <div class="cb"></div>
+      <div class="txt"><strong>Abrir cuenta HubSpot CRM</strong><br>
+      hubspot.com → gratis para siempre hasta 1M contactos. Configurar pipeline: Prospecto → Reunión → Propuesta → Contrato. Toda oportunidad entra aquí.</div>
+      <span class="cost badge badge-invisible">Gratis</span>
+    </li>
+  </ul>
+
+  <div class="alert alert-verde" style="margin-top:14px;">
+    <strong>¿Por qué estas acciones son invisibles para tus socios de KEU?</strong>
+    Son acciones legales y administrativas privadas. Registrar una marca, comprar un dominio, crear un perfil privado de Instagram — ninguna de estas acciones genera ruido público, no aparece en redes sociales ni en noticias. Son exactamente como abrir una cuenta bancaria personal.
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>3 / 17</span>
+  </div>
+</div>
+
+
+<!-- ==================== SECCIÓN 3: PLAN MES A MES 2026 ==================== -->
+<div class="page">
+  <div class="section-header">
+    <span class="num">Sección 03</span>
+    <h2>Plan Mes a Mes · 2026</h2>
+    <p>Julio – Diciembre 2026 · Fechas exactas · Prioridades claras</p>
+  </div>
+
+  <div class="fase-pill fase-1">● FASE 1 (Jul-Sep): Infraestructura SEO + Contenidos</div>
+
+  <!-- JULIO -->
+  <div class="month-block">
+    <div class="month-header">
+      <span class="month-name">Julio 2026</span>
+      <span class="month-focus">Técnica Web + Primeros Artículos</span>
+    </div>
+    <div class="month-body">
+      <div class="week-label">1-7 Julio</div>
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>Auditoría técnica SEO de vidaarquitectura.com</strong> — velocidad (PageSpeed), HTTPS, sitemap XML, robots.txt. Plugin recomendado: Yoast SEO Premium (99€/año) o RankMath Free.</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Estructura URLs</strong> — revisar que las páginas usen URLs amigables: /arquitecto-elche/, /proyectos/vivienda-unifamiliar/ etc.</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>1er artículo de blog publicado</strong> — Tema: "Arquitecto en Elche: cómo construir tu vivienda de autor con eficiencia energética". Target keyword: "arquitecto Elche".</div><span class="cost badge badge-importante">Blog</span></li>
+      </ul>
+      <div class="week-label">8-21 Julio</div>
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>2do artículo de blog</strong> — Tema: "Vivienda bioclimática en Levante: ventajas del clima mediterráneo". Target: "vivienda bioclimática Alicante".</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Fotografiar 2 proyectos finalizados</strong> — Contratar fotógrafo de arquitectura (presupuesto: 400-600€ por sesión). Material para blog, Instagram y web.</div><span class="cost badge badge-importante">600€</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Crear 10 borradores Instagram</strong> — Posts para publicar en el lanzamiento. Mezcla: fotos de proyectos + proceso + materiales.</div><span class="cost badge badge-invisible">Invisible</span></li>
+      </ul>
+      <div class="week-label">22-31 Julio</div>
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>Optimizar página de inicio</strong> — H1 claro: "Arquitecto en Elche · Vivienda de autor". Meta description optimizada. Velocidad &lt;3s móvil.</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Listar 30 palabras clave objetivo</strong> — 10 Elche, 10 Alicante, 10 Murcia. Ver sección SEO (pág. 10).</div><span class="cost badge badge-planificado">Plan</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- AGOSTO -->
+  <div class="month-block">
+    <div class="month-header">
+      <span class="month-name">Agosto 2026</span>
+      <span class="month-focus">Contenido + GBP Crevillente</span>
+    </div>
+    <div class="month-body">
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>3er artículo</strong> — "Reforma integral en Elche: cuánto cuesta y qué incluye". Target: "reforma integral Elche".</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Crear Google My Business — Crevillente</strong> — Segunda ubicación. Añadir dirección, teléfono, categoría. Solicitar 5 reseñas de clientes de la zona.</div><span class="cost badge badge-importante">GBP</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>4to artículo</strong> — "Vivienda unifamiliar en la Vega Baja: las 5 claves del diseño inteligente". Target: "arquitecto Vega Baja".</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Crear 10 borradores más de Instagram</strong> (total: 20). Incluir 3 Reels de proceso de obra.</div><span class="cost badge badge-invisible">Invisible</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Perfil en Houzz</strong> — Crear perfil profesional con 5 proyectos, descripción, zona de actuación Levante.</div><span class="cost badge badge-importante">Gratis</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>4 / 17</span>
+  </div>
+</div>
+
+
+<div class="page">
+  <!-- SEPTIEMBRE -->
+  <div class="month-block">
+    <div class="month-header">
+      <span class="month-name">Septiembre 2026</span>
+      <span class="month-focus">Links externos + Automatización</span>
+    </div>
+    <div class="month-body">
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>Instalar Make.com (9€/mes)</strong> — Automatización: formulario web → HubSpot CRM → email de bienvenida automático en 2 minutos.</div><span class="cost badge badge-planificado">9€/mes</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>5to artículo</strong> — "Arquitectura contemporánea en Elche: 5 estudios que están marcando tendencia". Estrategia: mencionas competidores (linkbait) y te incluyes.</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Perfil en Arquimaster + ArquitecturaY</strong> — Directorios SEO de arquitectura española. Backlinks de calidad para vidaarquitectura.com.</div><span class="cost badge badge-seo">Backlinks</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Contactar a 3 promotores de Elche</strong> — Reuniones informales. No como presentación comercial, sino como "arquitecto local disponible para proyectos exclusivos".</div><span class="cost badge badge-importante">Comercial</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>6to artículo</strong> — "Cómo elegir arquitecto para tu vivienda en la provincia de Alicante". Target: "arquitecto Alicante vivienda".</div><span class="cost badge badge-seo">SEO</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fase-pill fase-2" style="margin-top:16px;">● FASE 2 (Oct-Dic): Visibilidad Selectiva + Primeros Resultados</div>
+
+  <!-- OCTUBRE -->
+  <div class="month-block">
+    <div class="month-header">
+      <span class="month-name">Octubre 2026</span>
+      <span class="month-focus">Reseñas + LinkedIn Paso 1</span>
+    </div>
+    <div class="month-body">
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>Objetivo: 15 reseñas Google en GBP Elche</strong> — Campaña de solicitud a clientes satisfechos. Guión: "¿Te importaría dejar una reseña en Google? Me ayudaría mucho."</div><span class="cost badge badge-urgente">GBP</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>LinkedIn — Paso 1 discreto</strong> — Añadir Vida Arquitectura como SEGUNDA posición actual (junto a KEU). Normal para arquitectos con varios proyectos. No elimines KEU aún.</div><span class="cost badge badge-importante">LinkedIn</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>7mo artículo</strong> — "Certificación energética en Alicante: lo que tu arquitecto no te cuenta". Target: "certificado energético Elche".</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Fotografía sesión 2</strong> — 2 proyectos más. Material para Q4 y 2027.</div><span class="cost badge badge-importante">600€</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- NOVIEMBRE -->
+  <div class="month-block">
+    <div class="month-header">
+      <span class="month-name">Noviembre 2026</span>
+      <span class="month-focus">Instagram Launch Preparación</span>
+    </div>
+    <div class="month-body">
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>Preparar lanzamiento Instagram</strong> — Completar 30 borradores. Foto de perfil profesional. Bio definitiva. Link en bio → vidaarquitectura.com/contacto.</div><span class="cost badge badge-planificado">Prep</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>8vo artículo</strong> — "Arquitectura sostenible en la Vega Baja: materiales y técnicas". Target: "arquitecto sostenible Alicante".</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Revisar métricas SEO</strong> — En Search Console: ¿qué keywords están apareciendo? ¿qué páginas tienen más impresiones? Ajustar estrategia de contenidos.</div><span class="cost badge badge-seo">Análisis</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Instalar Brevo (email marketing)</strong> — Configurar newsletter mensual. Lista inicial: 20-30 contactos del sector. Plantilla profesional con colores Vida Arquitectura.</div><span class="cost badge badge-planificado">Gratis</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DICIEMBRE -->
+  <div class="month-block">
+    <div class="month-header">
+      <span class="month-name">Diciembre 2026</span>
+      <span class="month-focus">Review anual + Lanzamiento Instagram</span>
+    </div>
+    <div class="month-body">
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>LANZAMIENTO Instagram público</strong> — Cambiar a cuenta pública. Publicar los primeros 5 posts en la primera semana. Activar primeras stories.</div><span class="cost badge badge-urgente">LAUNCH</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>9no y 10mo artículo</strong> — Completar 10 artículos en el año. Temas: proyectos destacados 2026, tendencias arquitectura 2027.</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Review completo de métricas 2026</strong> — Tráfico, posiciones Google, reseñas, consultas recibidas, proyectos firmados. Planificar 2027.</div><span class="cost badge badge-planificado">Revisión</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Primera newsletter de Vida Arquitectura</strong> — "Nuestros proyectos de 2026". Envío a lista de contactos. Tono cercano y profesional.</div><span class="cost badge badge-planificado">Newsletter</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>5 / 17</span>
+  </div>
+</div>
+
+
+<!-- ==================== SECCIÓN 4: SEO COMPLETO ==================== -->
+<div class="page">
+  <div class="section-header">
+    <span class="num">Sección 04</span>
+    <h2>Estrategia SEO Completa</h2>
+    <p>Qué voy a hacer, cómo lo voy a hacer, y cuándo verás resultados</p>
+  </div>
+
+  <div class="alert alert-azul">
+    <strong>Pregunta directa: ¿Voy a trabajar el SEO?</strong>
+    Este plan incluye una estrategia SEO estructurada en 4 pilares que ejecutas tú (con herramientas y artículos que yo te preparo). El SEO tarda 4-9 meses en dar resultados visibles, por eso empieza en julio 2026. Para diciembre 2026 deberías ver las primeras posiciones. Para junio 2027, resultados sólidos.
+  </div>
+
+  <div class="seo-pillar">
+    <div class="pillar-title">
+      <div class="pillar-icon">①</div>
+      <div>
+        <div class="pillar-name">SEO Local — Google Maps + GBP</div>
+        <div class="pillar-sub">El tráfico más rápido y rentable para un arquitecto</div>
+      </div>
+    </div>
+    <ul>
+      <li><strong>Google My Business Elche</strong>: completar al 100%, publicar 2 actualizaciones/mes, responder todas las reseñas en &lt;24h</li>
+      <li><strong>GBP Crevillente</strong>: segunda ubicación, misma optimización</li>
+      <li><strong>Local citations</strong>: menciones en Páginas Amarillas, Yelp, Hotfrog, ArquitecturaY, Habitissimo con datos NAP idénticos (nombre, dirección, teléfono)</li>
+      <li><strong>Reseñas</strong>: objetivo 20 reseñas en Elche antes de junio 2027. Las reseñas son el factor #1 en Maps</li>
+      <li><strong>Fotos GBP</strong>: subir 2-3 fotos de proyectos nuevas cada mes</li>
+    </ul>
+  </div>
+
+  <div class="seo-pillar">
+    <div class="pillar-title">
+      <div class="pillar-icon">②</div>
+      <div>
+        <div class="pillar-name">SEO On-Page — Tu Web Optimizada</div>
+        <div class="pillar-sub">Señales que Google lee en cada página</div>
+      </div>
+    </div>
+    <ul>
+      <li><strong>H1 único por página</strong>: "Arquitecto en Elche · Vivienda de autor y reforma integral"</li>
+      <li><strong>URLs limpias</strong>: /proyectos/vivienda-unifamiliar-elche/, /servicios/reforma-integral-alicante/</li>
+      <li><strong>Meta descriptions</strong>: 150-160 caracteres, incluyen keyword + llamada a acción</li>
+      <li><strong>Imágenes</strong>: ALT descriptivo en todas ("vivienda bioclimática Elche arquitecto Vidal Moreno"), formato WebP, &lt;200KB</li>
+      <li><strong>Schema markup</strong>: tipo LocalBusiness + ProfessionalService en el código</li>
+      <li><strong>Velocidad</strong>: objetivo &lt;3 segundos en móvil. Herramienta: PageSpeed Insights</li>
+      <li><strong>Internal linking</strong>: artículos de blog que enlazan a páginas de servicios</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>6 / 17</span>
+  </div>
+</div>
+
+
+<div class="page">
+
+  <div class="seo-pillar">
+    <div class="pillar-title">
+      <div class="pillar-icon">③</div>
+      <div>
+        <div class="pillar-name">SEO de Contenidos — Blog Estratégico</div>
+        <div class="pillar-sub">El motor de tráfico orgánico a largo plazo</div>
+      </div>
+    </div>
+    <p style="font-size:9.5pt; margin-bottom:10px;">Cada artículo del blog apunta a una keyword específica con intención de búsqueda local. Frecuencia: 2 artículos/mes.</p>
+
+    <table>
+      <tr>
+        <th>Keyword objetivo</th>
+        <th>Volumen/mes</th>
+        <th>Dificultad</th>
+        <th>Cuándo publicar</th>
+      </tr>
+      <tr>
+        <td>arquitecto Elche</td>
+        <td class="td-verde">480</td>
+        <td class="td-oro">Media</td>
+        <td>Julio 2026</td>
+      </tr>
+      <tr>
+        <td>reforma integral Elche</td>
+        <td class="td-verde">320</td>
+        <td class="td-verde">Baja</td>
+        <td>Julio 2026</td>
+      </tr>
+      <tr>
+        <td>vivienda bioclimática Alicante</td>
+        <td class="td-verde">210</td>
+        <td class="td-verde">Baja</td>
+        <td>Agosto 2026</td>
+      </tr>
+      <tr>
+        <td>arquitecto vivienda unifamiliar Elche</td>
+        <td class="td-verde">170</td>
+        <td class="td-verde">Muy baja</td>
+        <td>Agosto 2026</td>
+      </tr>
+      <tr>
+        <td>arquitecto Alicante vivienda</td>
+        <td class="td-verde">390</td>
+        <td class="td-oro">Media</td>
+        <td>Sep 2026</td>
+      </tr>
+      <tr>
+        <td>certificado energético Elche</td>
+        <td class="td-verde">260</td>
+        <td class="td-verde">Baja</td>
+        <td>Oct 2026</td>
+      </tr>
+      <tr>
+        <td>arquitecto Vega Baja</td>
+        <td class="td-verde">140</td>
+        <td class="td-verde">Muy baja</td>
+        <td>Ago 2026</td>
+      </tr>
+      <tr>
+        <td>arquitecto sostenible Alicante</td>
+        <td class="td-verde">180</td>
+        <td class="td-verde">Baja</td>
+        <td>Nov 2026</td>
+      </tr>
+      <tr>
+        <td>arquitecto Murcia vivienda</td>
+        <td class="td-verde">430</td>
+        <td class="td-oro">Media</td>
+        <td>Ene 2027</td>
+      </tr>
+      <tr>
+        <td>interiorismo Elche</td>
+        <td class="td-verde">290</td>
+        <td class="td-verde">Baja</td>
+        <td>Feb 2027</td>
+      </tr>
+    </table>
+
+    <div class="alert alert-oro" style="margin-top:10px;">
+      <strong>Estructura de cada artículo (1.200-1.800 palabras):</strong>
+      H1 con keyword · Introducción con problema del lector · 4-5 H2 con subtemas · Imágenes con ALT texto · CTA al final ("¿Tienes un proyecto en mente? Cuéntanoslo") → formulario de contacto.
+    </div>
+  </div>
+
+  <div class="seo-pillar">
+    <div class="pillar-title">
+      <div class="pillar-icon">④</div>
+      <div>
+        <div class="pillar-name">Link Building — Autoridad de Dominio</div>
+        <div class="pillar-sub">Los backlinks que más peso tienen para un arquitecto local</div>
+      </div>
+    </div>
+    <ul>
+      <li><strong>Directorios profesionales</strong> (Año 1): Arquimaster, ArquitecturaY, Habitissimo, Houzz, Construalia, Páginas Amarillas, Yelp España</li>
+      <li><strong>Colegio de Arquitectos Alicante</strong>: aparecer en el directorio oficial del CSCAE/COA Alicante — es un backlink de autoridad alta</li>
+      <li><strong>Prensa local</strong>: cuando termines un proyecto notable, contactar Información de Elche, Diario Información para nota de prensa</li>
+      <li><strong>Guest posts</strong>: artículo en revistas online de arquitectura (Metalocus, Plataforma Arquitectura)</li>
+      <li><strong>Menciones de proveedores</strong>: pide a fabricantes (Porcelanosa, Vives Cerámica) que te mencionen como proyecto de referencia</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>7 / 17</span>
+  </div>
+</div>
+
+
+<div class="page">
+  <div class="section-header" style="margin-top:0;">
+    <span class="num">SEO · Resultados esperados</span>
+    <h2>¿Cuándo Verás Resultados?</h2>
+    <p>El SEO no es inmediato — aquí tienes la curva realista</p>
+  </div>
+
+  <table>
+    <tr>
+      <th>Periodo</th>
+      <th>Qué pasa</th>
+      <th>Métrica esperada</th>
+    </tr>
+    <tr>
+      <td><strong>Julio-Sep 2026</strong><br><span style="font-size:8pt; color:#888;">Meses 1-3</span></td>
+      <td>Google indexa los artículos. Comienzas a aparecer en posiciones 20-50 para keywords de cola larga.</td>
+      <td class="td-oro">100-200 visitas/mes orgánico</td>
+    </tr>
+    <tr>
+      <td><strong>Oct-Dic 2026</strong><br><span style="font-size:8pt; color:#888;">Meses 4-6</span></td>
+      <td>Primeras posiciones en keywords de baja dificultad (arquitecto Vega Baja, reforma Crevillente). GBP Elche empieza a generar llamadas.</td>
+      <td class="td-oro">300-500 visitas/mes<br>3-5 leads/mes Google</td>
+    </tr>
+    <tr>
+      <td><strong>Ene-Mar 2027</strong><br><span style="font-size:8pt; color:#888;">Meses 7-9</span></td>
+      <td>Top 5 para "arquitecto Elche". Entrada en "arquitecto Alicante". Instagram público suma tráfico social.</td>
+      <td class="td-verde">500-800 visitas/mes<br>8-12 leads/mes</td>
+    </tr>
+    <tr>
+      <td><strong>Abr-Jun 2027</strong><br><span style="font-size:8pt; color:#888;">Meses 10-12</span></td>
+      <td>Top 3 Elche. Entrada mercado Alicante. Domain Authority subiendo. El negocio puede sostenerse solo.</td>
+      <td class="td-verde">1.000-1.500 visitas/mes<br>15-20 leads/mes</td>
+    </tr>
+    <tr>
+      <td><strong>Jul-Dic 2027</strong><br><span style="font-size:8pt; color:#888;">Meses 13-18</span></td>
+      <td>Inicio Murcia. 3 mercados activos. Posibilidad de seleccionar proyectos (dejas de aceptar todos).</td>
+      <td class="td-verde">2.000+ visitas/mes<br>20-30 leads/mes</td>
+    </tr>
+  </table>
+
+  <div class="alert alert-verde" style="margin-top:16px;">
+    <strong>Herramientas SEO recomendadas (por presupuesto)</strong>
+    <br>· <strong>Gratis</strong>: Google Search Console + Google Analytics 4 + RankMath (WordPress plugin)
+    <br>· <strong>29€/mes</strong>: Ubersuggest — suficiente para este nivel de trabajo
+    <br>· <strong>99€/mes</strong>: SEMrush — solo cuando el negocio esté generando ingresos sólidos (2027)
+    <br>· <strong>Gratis</strong>: Ahrefs Webmaster Tools (limitado pero útil para backlinks)
+  </div>
+
+  <div class="alert alert-azul" style="margin-top:10px;">
+    <strong>Una cosa clave sobre el SEO y KEU</strong>
+    Todo el trabajo SEO de Vida Arquitectura es completamente independiente de KEU. Trabajas en otra web, otra cuenta de Google, otro GBP. No hay ningún solapamiento. No es posible que los socios vean lo que estás haciendo a nivel SEO a menos que busquen activamente "arquitecto Elche" y encuentren tu web — lo cual sería una señal positiva de que está funcionando.
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>8 / 17</span>
+  </div>
+</div>
+
+
+<!-- ==================== SECCIÓN 5: COMPETENCIA ==================== -->
+<div class="page">
+  <div class="section-header">
+    <span class="num">Sección 05</span>
+    <h2>Competencia por Mercado</h2>
+    <p>A quién superar primero — debilidades identificadas para atacar</p>
+  </div>
+
+  <p style="font-size:9.5pt; margin-bottom:14px; color:#555;">El objetivo no es competir con todos a la vez. La estrategia es: dominar Elche en 2026, entrar en Alicante en 2027, llegar a Murcia a final de 2027.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+
+    <div>
+      <div style="background:var(--negro); color:white; padding:8px 10px; border-radius:4px 4px 0 0; font-size:9pt; font-weight:700; text-align:center;">ELCHE<br><span style="color:var(--oro); font-size:7.5pt;">Atacar en 2026</span></div>
+      <div style="border:1px solid #e0e0e0; border-top:none; border-radius:0 0 4px 4px; padding:8px;">
+        <div class="competitor-row"><div class="competitor-rank">1</div><div><div class="competitor-name" style="font-size:8.5pt;">Singular Studio</div><div class="competitor-weak" style="font-size:7.5pt;">Blog inactivo</div></div></div>
+        <div class="competitor-row"><div class="competitor-rank">2</div><div><div class="competitor-name" style="font-size:8.5pt;">Sepulcre Arq.</div><div class="competitor-weak" style="font-size:7.5pt;">Sin SEO local</div></div></div>
+        <div class="competitor-row"><div class="competitor-rank">3</div><div><div class="competitor-name" style="font-size:8.5pt;">Kinze Studio</div><div class="competitor-weak" style="font-size:7.5pt;">Sin GBP</div></div></div>
+        <div style="margin-top:8px; padding:6px; background:#e8f5ef; border-radius:3px; font-size:7.5pt; color:#1a6b3c;"><strong>Ventaja Vidal:</strong> Experiencia internacional KEU + SEO activo desde julio 2026</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="background:var(--negro); color:white; padding:8px 10px; border-radius:4px 4px 0 0; font-size:9pt; font-weight:700; text-align:center;">ALICANTE<br><span style="color:var(--oro); font-size:7.5pt;">Entrar en Ene 2027</span></div>
+      <div style="border:1px solid #e0e0e0; border-top:none; border-radius:0 0 4px 4px; padding:8px;">
+        <div class="competitor-row"><div class="competitor-rank">1</div><div><div class="competitor-name" style="font-size:8.5pt;">COR Architecture</div><div class="competitor-weak" style="font-size:7.5pt;">Sin blog</div></div></div>
+        <div class="competitor-row"><div class="competitor-rank">2</div><div><div class="competitor-name" style="font-size:8.5pt;">Eneseis Arq.</div><div class="competitor-weak" style="font-size:7.5pt;">Instagram débil</div></div></div>
+        <div class="competitor-row"><div class="competitor-rank">3</div><div><div class="competitor-name" style="font-size:8.5pt;">Martínez Amores</div><div class="competitor-weak" style="font-size:7.5pt;">Web lenta</div></div></div>
+        <div style="margin-top:8px; padding:6px; background:#e8f5ef; border-radius:3px; font-size:7.5pt; color:#1a6b3c;"><strong>Ventaja Vidal:</strong> Blog consolidado desde 2026 + GBP optimizado</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="background:var(--negro); color:white; padding:8px 10px; border-radius:4px 4px 0 0; font-size:9pt; font-weight:700; text-align:center;">MURCIA<br><span style="color:var(--oro); font-size:7.5pt;">Entrar en Jul 2027</span></div>
+      <div style="border:1px solid #e0e0e0; border-top:none; border-radius:0 0 4px 4px; padding:8px;">
+        <div class="competitor-row"><div class="competitor-rank">1</div><div><div class="competitor-name" style="font-size:8.5pt;">Pacheco Arq.</div><div class="competitor-weak" style="font-size:7.5pt;">Redes débiles</div></div></div>
+        <div class="competitor-row"><div class="competitor-rank">2</div><div><div class="competitor-name" style="font-size:8.5pt;">L'Aura Ortín</div><div class="competitor-weak" style="font-size:7.5pt;">Sin SEO</div></div></div>
+        <div class="competitor-row"><div class="competitor-rank">3</div><div><div class="competitor-name" style="font-size:8.5pt;">Keinzo Int.</div><div class="competitor-weak" style="font-size:7.5pt;">Sin blog</div></div></div>
+        <div style="margin-top:8px; padding:6px; background:#e8f5ef; border-radius:3px; font-size:7.5pt; color:#1a6b3c;"><strong>Ventaja Vidal:</strong> 12 meses de SEO previo + autoridad de dominio</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-oro" style="margin-top:16px;">
+    <strong>El problema de marca: "Arte y Vida Arquitectura" (Cuenca)</strong>
+    Esta empresa rankea #1 en Google para "Vida Arquitectura". Solución a dos frentes: (1) Registrar la marca en OEPM ahora para protección legal, (2) Hacer SEO activo para que vidaarquitectura.com desplace esa posición con contenido relevante y local. En 9-12 meses, tu web debería superar esa posición para búsquedas con intención local (arquitecto + ciudad).
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>9 / 17</span>
+  </div>
+</div>
+
+
+<!-- ==================== SECCIÓN 6: PLAN 2027 ==================== -->
+<div class="page">
+  <div class="section-header">
+    <span class="num">Sección 06</span>
+    <h2>Plan 2027 — Expansión y Autonomía</h2>
+    <p>El año en que KEU declina y Vida Arquitectura toma el relevo</p>
+  </div>
+
+  <div class="fase-pill fase-3">● FASE 3 (2027): Emergencia Pública + 3 Mercados</div>
+
+  <div class="month-block">
+    <div class="month-header">
+      <span class="month-name">Enero – Marzo 2027</span>
+      <span class="month-focus">Expansión Alicante + Instagram activo</span>
+    </div>
+    <div class="month-body">
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>Instagram ya PÚBLICO</strong> — Publicar 4x/semana. Colaborar con cuentas de interiorismo y materiales de construcción en Levante.</div></li>
+        <li><div class="cb"></div><div class="txt"><strong>GBP Alicante ciudad</strong> — Abrir segunda ficha o área de servicio extendida. 5 primeras reseñas de clientes alicantinos.</div></li>
+        <li><div class="cb"></div><div class="txt"><strong>Blog: 4 artículos enfocados en Alicante</strong> — Keywords: "arquitecto Alicante", "reforma integral Alicante", "vivienda de diseño Alicante".</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>3 reuniones con promotores alicantinos</strong> — Construcciones en Gran Alacant, Santa Pola, San Juan. Perfil objetivo: promotores de 3-10 viviendas/año.</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="month-block">
+    <div class="month-header">
+      <span class="month-name">Abril – Junio 2027</span>
+      <span class="month-focus">LinkedIn estratégico + Primeros proyectos Alicante</span>
+    </div>
+    <div class="month-body">
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>LinkedIn — Actualización principal</strong> — Si KEU está en fase de declive natural, actualizar titular: "Arquitecto · Vida Arquitectura · Levante". Personalizar URL: linkedin.com/in/vidalmoreno-arquitecto.</div><span class="cost badge badge-importante">LinkedIn</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Primer proyecto firmado en Alicante</strong> — El blog + GBP debería haber generado el primer contacto cualificado.</div><span class="cost badge badge-importante">Comercial</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>Iniciar publicaciones LinkedIn</strong> — 2 artículos/mes de expertise técnico: "Lo que aprendí construyendo en el Caribe aplicado a la vivienda mediterránea".</div></li>
+        <li><div class="cb"></div><div class="txt"><strong>Newsletter trimestral Vida Arquitectura</strong> — Proyectos completados, tendencias, caso de estudio.</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="month-block">
+    <div class="month-header">
+      <span class="month-name">Julio – Septiembre 2027</span>
+      <span class="month-focus">Entrada en Murcia</span>
+    </div>
+    <div class="month-body">
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>Blog: artículos Murcia</strong> — "Arquitecto en Murcia", "vivienda de diseño Murcia", "reforma integral Cartagena".</div><span class="cost badge badge-seo">SEO</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>GBP Murcia o Cartagena</strong> — Tercera ubicación.</div></li>
+        <li><div class="cb"></div><div class="txt"><strong>Primer contacto en Murcia</strong> — Red profesional: ¿conoces algún promotor o colega en Murcia? El primer proyecto suele venir por referencia.</div></li>
+        <li><div class="cb"></div><div class="txt"><strong>Instagram: 2.000 seguidores objetivo</strong> — Si se publicó en diciembre, con 9 meses a 4x/semana es alcanzable.</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="month-block">
+    <div class="month-header">
+      <span class="month-name">Octubre – Diciembre 2027</span>
+      <span class="month-focus">Independencia total + Review KEU</span>
+    </div>
+    <div class="month-body">
+      <ul class="checklist">
+        <li><div class="cb"></div><div class="txt"><strong>KEU: conversación con socios</strong> — Llegado este punto la transición es natural. El mensaje: "Vida Arquitectura es mi negocio doméstico en España, complementario a la experiencia internacional de KEU. No compiten."</div><span class="cost badge badge-importante">KEU</span></li>
+        <li><div class="cb"></div><div class="txt"><strong>8-12 proyectos activos en cartera</strong> — Objetivo de carga de trabajo sostenible.</div></li>
+        <li><div class="cb"></div><div class="txt"><strong>Considerar colaborador junior</strong> — A este nivel, un arquitecto junior o delineante a media jornada libera tiempo de calidad.</div></li>
+        <li><div class="cb"></div><div class="txt"><strong>Review completo y Plan 2028</strong> — Decidir si abrir más mercados o consolidar los 3 actuales.</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>10 / 17</span>
+  </div>
+</div>
+
+
+<!-- ==================== SECCIÓN 7: LINKEDIN Y KEU ==================== -->
+<div class="page">
+  <div class="section-header">
+    <span class="num">Sección 07</span>
+    <h2>LinkedIn y la Gestión de KEU</h2>
+    <p>Cómo cambiar el perfil sin generar alarmas — con calendario exacto</p>
+  </div>
+
+  <div class="alert alert-rojo">
+    <strong>Problema actual en tu LinkedIn</strong>
+    KEU Luxury Home aparece como empleador actual · Badge #Hiring activo (irrelevante) · Solo 31 visitas de perfil · URL genérica (no personalizada) · Sin ninguna mención a Vida Arquitectura
+  </div>
+
+  <table style="margin:14px 0;">
+    <tr>
+      <th>Cuándo</th>
+      <th>Qué cambiar</th>
+      <th>Por qué en ese momento</th>
+    </tr>
+    <tr>
+      <td><strong>Esta semana</strong></td>
+      <td>Eliminar badge #Hiring · Personalizar URL a /vidalmoreno-arquitecto</td>
+      <td class="td-verde">Invisible para socios, mejora imagen</td>
+    </tr>
+    <tr>
+      <td><strong>Octubre 2026</strong></td>
+      <td>Añadir "Fundador · Vida Arquitectura" como segunda posición ACTUAL</td>
+      <td class="td-oro">Normal tener dos roles. Nadie lo cuestiona</td>
+    </tr>
+    <tr>
+      <td><strong>Abril 2027</strong></td>
+      <td>Destacar Vida Arquitectura sobre KEU en el titular</td>
+      <td class="td-oro">KEU ya está en declive natural</td>
+    </tr>
+    <tr>
+      <td><strong>Oct-Dic 2027</strong></td>
+      <td>Mover KEU a "Experiencia anterior". Titular: Arquitecto · Vida Arquitectura</td>
+      <td class="td-verde">Transición completa y natural</td>
+    </tr>
+  </table>
+
+  <div class="alert alert-verde">
+    <strong>El mensaje narrativo para cuando sea necesario explicar Vida Arquitectura</strong>
+    "Mi experiencia construyendo proyectos de lujo en el Caribe me dio una perspectiva internacional única. Vida Arquitectura aplica esos estándares de calidad y atención al detalle a la vivienda residencial en Levante. Son dos mercados completamente distintos que se complementan."
+  </div>
+
+  <div class="gold-divider"></div>
+
+  <div class="section-header" style="margin-top:0;">
+    <span class="num">Sección 08</span>
+    <h2>Stack Tecnológico</h2>
+    <p>Herramientas, todas configurables en privado</p>
+  </div>
+
+  <table>
+    <tr><th>Herramienta</th><th>Para qué</th><th>Coste</th><th>Cuándo</th></tr>
+    <tr><td><strong>HubSpot CRM</strong></td><td>Gestión de contactos y pipeline comercial</td><td class="td-verde">Gratis</td><td>Junio 2026</td></tr>
+    <tr><td><strong>Google Analytics 4</strong></td><td>Tráfico web y comportamiento de usuarios</td><td class="td-verde">Gratis</td><td>Junio 2026</td></tr>
+    <tr><td><strong>Google Search Console</strong></td><td>Posiciones SEO y keywords</td><td class="td-verde">Gratis</td><td>Junio 2026</td></tr>
+    <tr><td><strong>RankMath (WordPress)</strong></td><td>Optimización SEO on-page</td><td class="td-verde">Gratis</td><td>Julio 2026</td></tr>
+    <tr><td><strong>Make.com Core</strong></td><td>Automatización: formulario → CRM → email</td><td class="td-oro">9€/mes</td><td>Sep 2026</td></tr>
+    <tr><td><strong>Brevo (Sendinblue)</strong></td><td>Email marketing y newsletter</td><td class="td-verde">Gratis/9€</td><td>Nov 2026</td></tr>
+    <tr><td><strong>Buffer</strong></td><td>Programar posts de Instagram</td><td class="td-oro">15€/mes</td><td>Dic 2026</td></tr>
+    <tr><td><strong>Ubersuggest</strong></td><td>Investigación de keywords SEO</td><td class="td-oro">29€/mes</td><td>Jul 2026</td></tr>
+  </table>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>11 / 17</span>
+  </div>
+</div>
+
+
+<!-- ==================== SECCIÓN 8: PRESUPUESTO Y KPIs ==================== -->
+<div class="page">
+  <div class="section-header">
+    <span class="num">Sección 09</span>
+    <h2>Presupuesto Año 1 y KPIs</h2>
+    <p>Inversión total ~3.200€ · ROI: un proyecto residencial cubre el año entero</p>
+  </div>
+
+  <div class="budget-row" style="font-weight:700; color:#888; font-size:8.5pt; padding-bottom:4px;">
+    <span class="b-name">Concepto</span>
+    <span class="b-freq">Frecuencia</span>
+    <span class="b-year">Año 1</span>
+  </div>
+  <div class="budget-row"><span class="b-name">Registro marca OEPM Clase 42</span><span class="b-freq">Único</span><span class="b-year">125€</span></div>
+  <div class="budget-row"><span class="b-name">Dominio vidaarquitectura.es</span><span class="b-freq">Anual</span><span class="b-year">10€</span></div>
+  <div class="budget-row"><span class="b-name">Make.com Core (automatización)</span><span class="b-freq">Mensual</span><span class="b-year">108€</span></div>
+  <div class="budget-row"><span class="b-name">Ubersuggest (SEO tool)</span><span class="b-freq">Mensual×6</span><span class="b-year">174€</span></div>
+  <div class="budget-row"><span class="b-name">Buffer (Instagram scheduling)</span><span class="b-freq">Mensual×2</span><span class="b-year">30€</span></div>
+  <div class="budget-row"><span class="b-name">Fotografía arquitectura (3 sesiones)</span><span class="b-freq">Trimestral</span><span class="b-year">1.800€</span></div>
+  <div class="budget-row"><span class="b-name">Yoast SEO Premium (WordPress)</span><span class="b-freq">Anual</span><span class="b-year">99€</span></div>
+  <div class="budget-row"><span class="b-name">Brevo email marketing</span><span class="b-freq">Mensual</span><span class="b-year">0-108€</span></div>
+  <div class="budget-row"><span class="b-name">Imprevistos y misc</span><span class="b-freq">Buffer</span><span class="b-year">~200€</span></div>
+  <div class="budget-row"><span class="b-name">TOTAL INVERSIÓN AÑO 1</span><span class="b-freq"></span><span class="b-year" style="color:var(--oro); font-family:'Playfair Display',serif; font-size:13pt;">~2.546€</span></div>
+
+  <div class="alert alert-verde" style="margin-top:12px;">
+    <strong>ROI en perspectiva</strong>
+    Un proyecto de vivienda unifamiliar en Levante genera entre 15.000€ y 45.000€ en honorarios. Con captar UN solo proyecto adicional gracias al SEO y la presencia digital, recuperas toda la inversión del año con un múltiplo de 6x-18x.
+  </div>
+
+  <div class="gold-divider"></div>
+
+  <div class="section-header" style="margin-top:0;">
+    <span class="num">KPIs</span>
+    <h2>Métricas de Éxito</h2>
+  </div>
+
+  <div style="margin-bottom:16px;">
+    <div style="font-size:9pt; font-weight:700; color:#555; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">Diciembre 2026</div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-val">Top 5</div><div class="kpi-lbl">Google para "arquitecto Elche"</div></div>
+      <div class="kpi-card"><div class="kpi-val">500</div><div class="kpi-lbl">Visitas orgánicas / mes</div></div>
+      <div class="kpi-card"><div class="kpi-val">15+</div><div class="kpi-lbl">Reseñas Google Elche</div></div>
+      <div class="kpi-card"><div class="kpi-val">5-8</div><div class="kpi-lbl">Consultas entrantes / mes</div></div>
+      <div class="kpi-card"><div class="kpi-val">10</div><div class="kpi-lbl">Artículos de blog publicados</div></div>
+      <div class="kpi-card"><div class="kpi-val">3-5</div><div class="kpi-lbl">Proyectos firmados Vida Arq.</div></div>
+    </div>
+  </div>
+
+  <div>
+    <div style="font-size:9pt; font-weight:700; color:#555; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">Diciembre 2027</div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-val">Top 3</div><div class="kpi-lbl">Google "arquitecto Elche"</div></div>
+      <div class="kpi-card"><div class="kpi-val">2.000+</div><div class="kpi-lbl">Visitas orgánicas / mes</div></div>
+      <div class="kpi-card"><div class="kpi-val">2.000+</div><div class="kpi-lbl">Seguidores Instagram</div></div>
+      <div class="kpi-card"><div class="kpi-val">20-30</div><div class="kpi-lbl">Consultas entrantes / mes</div></div>
+      <div class="kpi-card"><div class="kpi-val">3</div><div class="kpi-lbl">Mercados activos (ELC/ALC/MUR)</div></div>
+      <div class="kpi-card"><div class="kpi-val">8-12</div><div class="kpi-lbl">Proyectos activos en cartera</div></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-logo">Vida Arquitectura</span>
+    <span>Plan Estratégico 2026-2027 · Confidencial</span>
+    <span>12 / 17</span>
+  </div>
+</div>
+
+</body>
+</html>
