@@ -1,0 +1,2733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe Estratégico Definitivo — Vida Arquitectura 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --negro: #0a0a0a;
+  --blanco: #ffffff;
+  --dorado: #c9a84c;
+  --dorado-claro: #e8c96a;
+  --dorado-oscuro: #9a7a30;
+  --gris-oscuro: #1a1a1a;
+  --gris-medio: #2d2d2d;
+  --gris-claro: #3d3d3d;
+  --gris-texto: #a0a0a0;
+  --gris-borde: #2a2a2a;
+  --rojo-alerta: #c0392b;
+  --verde-ok: #27ae60;
+  --azul-info: #2980b9;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--negro);
+  color: var(--blanco);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.2; }
+a { color: var(--dorado); text-decoration: none; transition: color 0.3s; }
+a:hover { color: var(--dorado-claro); }
+
+/* ─── NAV ─── */
+.top-nav {
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(10,10,10,0.97);
+  border-bottom: 1px solid var(--gris-borde);
+  backdrop-filter: blur(12px);
+  padding: 0 2rem;
+}
+.nav-inner {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--dorado); letter-spacing: 0.15em; text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+.nav-links a {
+  color: var(--gris-texto); font-size: 0.72rem; font-weight: 500;
+  padding: 0.3rem 0.55rem; border-radius: 4px;
+  transition: all 0.2s; letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.nav-links a:hover { color: var(--dorado); background: rgba(201,168,76,0.08); }
+
+/* ─── PORTADA ─── */
+.portada {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden;
+}
+.portada-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1800&q=80');
+  background-size: cover; background-position: center;
+  filter: brightness(0.25);
+}
+.portada-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.85) 70%, var(--negro) 100%);
+}
+.portada-content {
+  position: relative; z-index: 2;
+  max-width: 1400px; margin: 0 auto; width: 100%;
+  padding: 6rem 3rem 5rem;
+}
+.portada-tag {
+  display: inline-block;
+  border: 1px solid var(--dorado);
+  color: var(--dorado); font-size: 0.72rem;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  padding: 0.4rem 1rem; margin-bottom: 2rem;
+}
+.portada-title {
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 900; line-height: 1.0;
+  color: var(--blanco); margin-bottom: 0.5rem;
+}
+.portada-title span { color: var(--dorado); }
+.portada-subtitle {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-family: 'Playfair Display', serif; font-style: italic;
+  color: var(--gris-texto); margin-bottom: 2.5rem;
+}
+.portada-meta {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.portada-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+.portada-meta-item .label {
+  font-size: 0.65rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--dorado); font-weight: 600;
+}
+.portada-meta-item .value {
+  font-size: 0.95rem; color: var(--blanco); font-weight: 500;
+}
+.resumen-ejecutivo {
+  background: rgba(201,168,76,0.08);
+  border-left: 3px solid var(--dorado);
+  padding: 1.5rem 2rem; max-width: 860px;
+  margin-top: 1rem;
+}
+.resumen-ejecutivo p {
+  font-size: 1.0rem; color: rgba(255,255,255,0.88); line-height: 1.8;
+}
+.portada-kpis {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--gris-borde);
+  margin-top: 3rem;
+  border: 1px solid var(--gris-borde);
+}
+.portada-kpi {
+  background: rgba(26,26,26,0.95);
+  padding: 1.5rem 2rem; text-align: center;
+}
+.portada-kpi .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 900; color: var(--dorado);
+  display: block;
+}
+.portada-kpi .desc {
+  font-size: 0.72rem; color: var(--gris-texto);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.3rem;
+}
+
+/* ─── SECTION WRAPPERS ─── */
+.section {
+  max-width: 1400px; margin: 0 auto;
+  padding: 5rem 3rem;
+}
+.section-divider {
+  border: none; border-top: 1px solid var(--gris-borde);
+  margin: 0 3rem;
+}
+.section-header {
+  display: flex; align-items: flex-start;
+  gap: 2rem; margin-bottom: 3.5rem;
+}
+.section-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem; font-weight: 900;
+  color: rgba(201,168,76,0.15);
+  line-height: 1; min-width: 80px;
+}
+.section-title-group { flex: 1; }
+.section-label {
+  font-size: 0.68rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--dorado);
+  font-weight: 600; margin-bottom: 0.5rem; display: block;
+}
+.section-title {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--blanco); margin-bottom: 0.5rem;
+}
+.section-desc {
+  color: var(--gris-texto); font-size: 1rem; max-width: 700px;
+}
+
+/* ─── CARDS GRID ─── */
+.cards-grid { display: grid; gap: 1.5rem; }
+.cards-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.cards-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.cards-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.card {
+  background: var(--gris-oscuro);
+  border: 1px solid var(--gris-borde);
+  padding: 2rem; border-radius: 2px;
+  transition: border-color 0.3s, transform 0.2s;
+}
+.card:hover {
+  border-color: rgba(201,168,76,0.4);
+  transform: translateY(-2px);
+}
+.card-gold { border-top: 2px solid var(--dorado); }
+.card-icon { margin-bottom: 1rem; }
+.card-icon svg { width: 32px; height: 32px; }
+.card-label {
+  font-size: 0.68rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--dorado);
+  font-weight: 600; margin-bottom: 0.5rem; display: block;
+}
+.card-title {
+  font-size: 1.15rem; font-family: 'Playfair Display', serif;
+  color: var(--blanco); margin-bottom: 0.75rem;
+}
+.card-text { color: var(--gris-texto); font-size: 0.9rem; line-height: 1.7; }
+
+/* ─── DAFO ─── */
+.dafo-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; background: var(--gris-borde);
+  border: 1px solid var(--gris-borde); margin-bottom: 3rem;
+}
+.dafo-cell {
+  padding: 2.5rem; position: relative;
+}
+.dafo-cell-d { background: rgba(26,26,26,0.95); }
+.dafo-cell-a { background: rgba(30,20,20,0.95); }
+.dafo-cell-f { background: rgba(20,26,20,0.95); }
+.dafo-cell-o { background: rgba(20,22,30,0.95); }
+.dafo-header {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+}
+.dafo-letter {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900;
+  flex-shrink: 0;
+}
+.dafo-letter-d { background: rgba(201,168,76,0.15); color: var(--dorado); border: 1px solid rgba(201,168,76,0.3); }
+.dafo-letter-a { background: rgba(192,57,43,0.15); color: #e74c3c; border: 1px solid rgba(192,57,43,0.3); }
+.dafo-letter-f { background: rgba(39,174,96,0.15); color: #2ecc71; border: 1px solid rgba(39,174,96,0.3); }
+.dafo-letter-o { background: rgba(41,128,185,0.15); color: #3498db; border: 1px solid rgba(41,128,185,0.3); }
+.dafo-subtitle { font-size: 1.1rem; font-family: 'Playfair Display', serif; color: var(--blanco); }
+.dafo-list { list-style: none; }
+.dafo-list li {
+  padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.88rem; color: rgba(255,255,255,0.8);
+  display: flex; align-items: flex-start; gap: 0.75rem;
+}
+.dafo-list li:last-child { border-bottom: none; }
+.dafo-list li::before {
+  content: '—'; color: var(--dorado); font-weight: 700;
+  flex-shrink: 0; margin-top: 0.1rem;
+}
+
+/* ─── TABLES ─── */
+.table-wrap { overflow-x: auto; margin: 2rem 0; }
+table {
+  width: 100%; border-collapse: collapse;
+  font-size: 0.88rem;
+}
+thead tr { background: rgba(201,168,76,0.12); border-bottom: 1px solid var(--dorado); }
+thead th {
+  padding: 1rem 1.2rem; text-align: left;
+  font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--dorado); font-weight: 600;
+}
+tbody tr { border-bottom: 1px solid var(--gris-borde); transition: background 0.2s; }
+tbody tr:hover { background: rgba(255,255,255,0.03); }
+tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+tbody td { padding: 0.9rem 1.2rem; color: rgba(255,255,255,0.85); vertical-align: top; }
+.td-gold { color: var(--dorado); font-weight: 600; }
+.td-green { color: #2ecc71; font-weight: 600; }
+.td-red { color: #e74c3c; }
+.td-blue { color: #3498db; }
+
+/* ─── BADGES ─── */
+.badge {
+  display: inline-block; padding: 0.2rem 0.65rem;
+  border-radius: 2px; font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.badge-gold { background: rgba(201,168,76,0.15); color: var(--dorado); border: 1px solid rgba(201,168,76,0.3); }
+.badge-red { background: rgba(192,57,43,0.15); color: #e74c3c; border: 1px solid rgba(192,57,43,0.3); }
+.badge-green { background: rgba(39,174,96,0.15); color: #2ecc71; border: 1px solid rgba(39,174,96,0.3); }
+.badge-blue { background: rgba(41,128,185,0.15); color: #3498db; border: 1px solid rgba(41,128,185,0.3); }
+.badge-gray { background: rgba(255,255,255,0.05); color: var(--gris-texto); border: 1px solid var(--gris-borde); }
+
+/* ─── PROGRESS BARS ─── */
+.progress-item { margin-bottom: 1.2rem; }
+.progress-label {
+  display: flex; justify-content: space-between;
+  font-size: 0.82rem; margin-bottom: 0.4rem;
+}
+.progress-label .name { color: var(--blanco); }
+.progress-label .val { color: var(--dorado); font-weight: 600; }
+.progress-bar {
+  height: 4px; background: rgba(255,255,255,0.08);
+  border-radius: 2px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; background: linear-gradient(90deg, var(--dorado-oscuro), var(--dorado-claro));
+  border-radius: 2px;
+}
+
+/* ─── TIMELINE ─── */
+.timeline-wrap {
+  position: relative; padding-top: 2rem; margin: 3rem 0;
+}
+.timeline-line {
+  position: absolute; top: 3.2rem; left: 0; right: 0;
+  height: 2px; background: linear-gradient(90deg, var(--gris-borde), var(--dorado), var(--gris-borde));
+}
+.timeline-phases {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2rem; position: relative;
+}
+.timeline-phase { text-align: center; }
+.timeline-dot {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--gris-oscuro); border: 2px solid var(--dorado);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem; position: relative; z-index: 2;
+  font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
+  color: var(--dorado);
+}
+.timeline-phase-title {
+  font-family: 'Playfair Display', serif; font-size: 1.2rem;
+  color: var(--dorado); margin-bottom: 0.5rem;
+}
+.timeline-phase-label {
+  font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.15em; color: var(--gris-texto); margin-bottom: 1rem;
+}
+.timeline-items { list-style: none; text-align: left; }
+.timeline-items li {
+  font-size: 0.85rem; color: rgba(255,255,255,0.8);
+  padding: 0.4rem 0; display: flex; align-items: flex-start; gap: 0.5rem;
+}
+.timeline-items li::before { content: '▸'; color: var(--dorado); flex-shrink: 0; }
+
+/* ─── KEYWORD CARDS ─── */
+.keyword-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.5rem 0; }
+.keyword-pill {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.45rem 0.9rem; border-radius: 2px;
+  font-size: 0.8rem; font-weight: 500;
+  transition: all 0.2s; cursor: default;
+}
+.kw-core { background: rgba(201,168,76,0.1); color: var(--dorado); border: 1px solid rgba(201,168,76,0.25); }
+.kw-service { background: rgba(41,128,185,0.1); color: #5dade2; border: 1px solid rgba(41,128,185,0.25); }
+.kw-local { background: rgba(39,174,96,0.1); color: #58d68d; border: 1px solid rgba(39,174,96,0.25); }
+.kw-longtail { background: rgba(142,68,173,0.1); color: #bb8fce; border: 1px solid rgba(142,68,173,0.25); }
+.kw-diff { font-size: 0.7rem; color: var(--gris-texto); }
+
+/* ─── ALERT BOX ─── */
+.alert-box {
+  border-left: 4px solid; padding: 1.2rem 1.5rem; margin: 2rem 0; border-radius: 0 2px 2px 0;
+}
+.alert-gold { border-color: var(--dorado); background: rgba(201,168,76,0.06); }
+.alert-red { border-color: #e74c3c; background: rgba(192,57,43,0.06); }
+.alert-green { border-color: #2ecc71; background: rgba(39,174,96,0.06); }
+.alert-blue { border-color: #3498db; background: rgba(41,128,185,0.06); }
+.alert-title {
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  font-weight: 700; margin-bottom: 0.5rem;
+}
+.alert-gold .alert-title { color: var(--dorado); }
+.alert-red .alert-title { color: #e74c3c; }
+.alert-green .alert-title { color: #2ecc71; }
+.alert-blue .alert-title { color: #3498db; }
+.alert-text { font-size: 0.9rem; color: rgba(255,255,255,0.82); line-height: 1.7; }
+
+/* ─── SECTION IMAGES ─── */
+.section-image {
+  width: 100%; height: 300px; object-fit: cover;
+  border: 1px solid var(--gris-borde); margin: 2.5rem 0;
+  display: block;
+}
+.image-grid-2 {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2.5rem 0;
+}
+.image-grid-2 img { width: 100%; height: 250px; object-fit: cover; border: 1px solid var(--gris-borde); }
+
+/* ─── STAT BLOCKS ─── */
+.stat-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 2rem 0; }
+.stat-block {
+  flex: 1; min-width: 160px;
+  background: var(--gris-oscuro); border: 1px solid var(--gris-borde);
+  padding: 1.5rem; text-align: center;
+}
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem; font-weight: 900; color: var(--dorado);
+  display: block; line-height: 1;
+}
+.stat-label {
+  font-size: 0.7rem; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--gris-texto); margin-top: 0.5rem;
+}
+
+/* ─── NUMBERED LIST ─── */
+.numbered-list { list-style: none; counter-reset: nl; }
+.numbered-list li {
+  counter-increment: nl;
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  padding: 1.2rem 0; border-bottom: 1px solid var(--gris-borde);
+}
+.numbered-list li:last-child { border-bottom: none; }
+.numbered-list li::before {
+  content: counter(nl, decimal-leading-zero);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; color: rgba(201,168,76,0.4);
+  font-weight: 900; min-width: 36px; line-height: 1;
+}
+.nl-content { flex: 1; }
+.nl-title { font-weight: 600; color: var(--blanco); margin-bottom: 0.3rem; font-size: 0.95rem; }
+.nl-desc { color: var(--gris-texto); font-size: 0.85rem; line-height: 1.6; }
+
+/* ─── PLAN DE ACCION TIMELINE ─── */
+.action-phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 3rem 0; }
+.action-phase {
+  background: var(--gris-oscuro); border: 1px solid var(--gris-borde);
+  padding: 2rem; position: relative;
+}
+.action-phase::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.action-phase-30::before { background: var(--dorado-oscuro); }
+.action-phase-90::before { background: var(--dorado); }
+.action-phase-365::before { background: var(--dorado-claro); }
+.action-phase-title {
+  font-family: 'Playfair Display', serif; font-size: 1.3rem;
+  color: var(--dorado); margin-bottom: 0.3rem;
+}
+.action-phase-label {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--gris-texto); margin-bottom: 1.5rem;
+}
+.action-list { list-style: none; }
+.action-item {
+  padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.action-item:last-child { border-bottom: none; }
+.action-item-title { font-weight: 600; font-size: 0.88rem; color: var(--blanco); margin-bottom: 0.3rem; }
+.action-item-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--gris-oscuro); border-top: 1px solid var(--gris-borde);
+  padding: 4rem 3rem;
+}
+.footer-inner {
+  max-width: 1400px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem;
+}
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; color: var(--dorado); font-weight: 700;
+  letter-spacing: 0.1em; margin-bottom: 1rem;
+}
+.footer-desc { font-size: 0.85rem; color: var(--gris-texto); line-height: 1.7; }
+.footer-title {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--dorado); font-weight: 600; margin-bottom: 1rem;
+}
+.footer-list { list-style: none; }
+.footer-list li { padding: 0.3rem 0; font-size: 0.85rem; color: var(--gris-texto); }
+.footer-list li span { color: rgba(255,255,255,0.7); }
+.footer-bottom {
+  max-width: 1400px; margin: 2rem auto 0;
+  border-top: 1px solid var(--gris-borde); padding-top: 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.75rem; color: var(--gris-texto);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .cards-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .cards-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .portada-kpis { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .action-phases { grid-template-columns: 1fr; }
+  .timeline-phases { grid-template-columns: 1fr; }
+  .timeline-line { display: none; }
+}
+@media (max-width: 768px) {
+  .section { padding: 3rem 1.5rem; }
+  .cards-grid-2, .cards-grid-3, .cards-grid-4 { grid-template-columns: 1fr; }
+  .dafo-grid { grid-template-columns: 1fr; }
+  .portada-content { padding: 4rem 1.5rem 3rem; }
+  .image-grid-2 { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .stat-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <div class="nav-inner">
+    <div class="nav-brand">Vida Arquitectura</div>
+    <div class="nav-links">
+      <a href="#s1">Director</a>
+      <a href="#s2">Competencia</a>
+      <a href="#s3">SEO</a>
+      <a href="#s4">GBP</a>
+      <a href="#s5">CRO</a>
+      <a href="#s6">Contenido</a>
+      <a href="#s7">Marca</a>
+      <a href="#s8">IA &amp; Auto</a>
+      <a href="#s9">Plan 2031</a>
+      <a href="#s10">Acción</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PORTADA -->
+<section class="portada" id="portada">
+  <div class="portada-bg"></div>
+  <div class="portada-overlay"></div>
+  <div class="portada-content">
+    <div class="portada-tag">Informe Estratégico Definitivo · Confidencial</div>
+    <h1 class="portada-title">Vida<br><span>Arquitectura</span></h1>
+    <p class="portada-subtitle">Hoja de Ruta 2026–2031 · Del Mediterráneo al Mundo</p>
+    <div class="portada-meta">
+      <div class="portada-meta-item">
+        <span class="label">Empresa</span>
+        <span class="value">Vida Arquitectura</span>
+      </div>
+      <div class="portada-meta-item">
+        <span class="label">Fundador / CEO</span>
+        <span class="value">Vidal Moreno Mirete</span>
+      </div>
+      <div class="portada-meta-item">
+        <span class="label">Ubicación</span>
+        <span class="value">Elche · Crevillente · Costa Blanca</span>
+      </div>
+      <div class="portada-meta-item">
+        <span class="label">Fecha del Informe</span>
+        <span class="value">Junio 2026</span>
+      </div>
+      <div class="portada-meta-item">
+        <span class="label">Agentes Analizados</span>
+        <span class="value">8 Especialistas</span>
+      </div>
+    </div>
+    <div class="resumen-ejecutivo">
+      <p><strong style="color:var(--dorado)">Resumen Ejecutivo:</strong> Vida Arquitectura opera en el mejor momento del mercado inmobiliario alicantino en 15 años (+37% visados 2025, precio m² en máximo histórico), pero su visibilidad digital no refleja su capacidad real. Con tres diferenciadores únicos irrepetibles —proyectos ejecutados en el Caribe y Canadá, distribución exclusiva de KEU Luxury Home y equipo boutique llave en mano completo— la ventana de oportunidad para posicionarse como el estudio de referencia en arquitectura residencial premium de Alicante-Murcia es de 12 a 18 meses. Este informe contiene la hoja de ruta completa para capturar ese liderazgo.</p>
+    </div>
+    <div class="portada-kpis">
+      <div class="portada-kpi">
+        <span class="num">37%</span>
+        <div class="desc">Crecimiento visados obra nueva Alicante 2025</div>
+      </div>
+      <div class="portada-kpi">
+        <span class="num">3.436€</span>
+        <div class="desc">Precio medio m² Alicante (máximo histórico 2026)</div>
+      </div>
+      <div class="portada-kpi">
+        <span class="num">13</span>
+        <div class="desc">Proyectos portfolio Vida Arquitectura</div>
+      </div>
+      <div class="portada-kpi">
+        <span class="num">4.575%</span>
+        <div class="desc">ROI proyectado de la estrategia digital</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 1 — DIRECTOR ESTRATÉGICO
+════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <div class="section-title-group">
+      <span class="section-label">Director Estratégico</span>
+      <h2 class="section-title">Análisis Estratégico Global:<br>DAFO · Posicionamiento · Palancas ROI</h2>
+      <p class="section-desc">Síntesis directiva basada en datos de mercado reales (Alicante 2026), análisis de los 8 agentes especializados e investigación de competencia. Base para todas las decisiones estratégicas.</p>
+    </div>
+  </div>
+
+  <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1400&q=80" alt="Villa arquitectura premium" class="section-image" style="height:380px">
+
+  <!-- DAFO -->
+  <h3 style="font-size:1.5rem;color:var(--blanco);margin-bottom:1.5rem;font-family:'Playfair Display',serif">
+    Análisis DAFO — Vida Arquitectura 2026
+  </h3>
+  <div class="dafo-grid">
+    <div class="dafo-cell dafo-cell-d">
+      <div class="dafo-header">
+        <div class="dafo-letter dafo-letter-d">D</div>
+        <div class="dafo-subtitle">Debilidades</div>
+      </div>
+      <ul class="dafo-list">
+        <li>Visibilidad digital nula: web sin SEO técnico, sin páginas de servicio indexables, sin Schema markup</li>
+        <li>Google Business Profile no verificado o invisible — competidores en el Map Pack sin oposición</li>
+        <li>Vidal Moreno no existe como individuo en Google; sin LinkedIn verificado activo</li>
+        <li>Blog sin estrategia de keywords; contenido sin intención de búsqueda definida</li>
+        <li>Core Web Vitals deficientes en hosting Arsys sin CDN activo</li>
+        <li>KEU y Vida Arquitectura posicionados como silos desconectados; no hay sinergias de marca visibles</li>
+        <li>Dependencia del boca-oreja en un mercado donde el 74% de los clientes premium busca primero en Google</li>
+        <li>Inversión actual en marketing estimada en ~5.000€/año: insuficiente para la oportunidad existente</li>
+        <li>Sin embudo de captación ni sistema de nurturing de leads; formulario genérico sin cualificación</li>
+      </ul>
+    </div>
+    <div class="dafo-cell dafo-cell-a">
+      <div class="dafo-header">
+        <div class="dafo-letter dafo-letter-a">A</div>
+        <div class="dafo-subtitle">Amenazas</div>
+      </div>
+      <ul class="dafo-list">
+        <li>OOIIO Estudio (Madrid): estrategia SEO geográfica agresiva en Alicante sin presencia física — dominará SERPs antes de 2027</li>
+        <li>Tamat Estudio (Elda, ex-Zaha Hadid): credibilidad de marca internacional sólida, publicaciones NYT</li>
+        <li>Pacheco Arquitectos (Murcia): 400+ proyectos, RIBA member, posicionamiento lujo explícito</li>
+        <li>Ventana SEO de 12-18 meses: si no se actúa ahora, el coste de posicionarse será 3-4× mayor en 2027</li>
+        <li>Posible corrección del ciclo inmobiliario español en 2027-2028 (riesgo sistémico moderado)</li>
+        <li>Aumento de costes de construcción reduce márgenes en proyectos de obra convencional</li>
+        <li>Grandes estudios de Madrid y Valencia con recursos superiores entrando en el nicho lujo Costa Blanca</li>
+        <li>Competencia de plataformas de arquitecto online (Habitissimo, Homify) en segmento medio</li>
+      </ul>
+    </div>
+    <div class="dafo-cell dafo-cell-f">
+      <div class="dafo-header">
+        <div class="dafo-letter dafo-letter-f">F</div>
+        <div class="dafo-subtitle">Fortalezas</div>
+      </div>
+      <ul class="dafo-list">
+        <li>Único estudio en Alicante-Murcia con proyectos reales ejecutados en Puerto Rico, Miami y Canadá (no visitas — construcción completada)</li>
+        <li>Distribuidor exclusivo KEU Luxury Home en la zona: producto modular premium con estándares náuticos, certificado para huracanes Cat-5, exportado a 6+ países</li>
+        <li>Equipo boutique multidisciplinar completo: 2 arquitectos + 2 arquitectos técnicos + ingeniero industrial = llave en mano verdadero, sin subcontratar</li>
+        <li>Portfolio de 13 proyectos sólidos incluyendo resort internacional (Culebra, Puerto Rico)</li>
+        <li>Web trilingüe (español/inglés/chino): preparada para cliente internacional desde el día 1</li>
+        <li>Óscar Hernández: Arquitecto Paisajista en el equipo — diferenciador rarísimo en estudios boutique</li>
+        <li>11K seguidores Instagram @vidaarquitectura: base de audiencia cualificada construida</li>
+        <li>Elche + Crevillente: posición geográfica estratégica entre dos grandes mercados (Alicante + Murcia)</li>
+      </ul>
+    </div>
+    <div class="dafo-cell dafo-cell-o">
+      <div class="dafo-header">
+        <div class="dafo-letter dafo-letter-o">O</div>
+        <div class="dafo-subtitle">Oportunidades</div>
+      </div>
+      <ul class="dafo-list">
+        <li>Mercado en máximo histórico: 11.919 visados obra nueva Alicante en 2025 (+37%), precio m² a 3.436€ (+13.3% interanual)</li>
+        <li>Zonas lujo Costa Blanca (Cabo de las Huertas, Jávea) a 5.700€/m²: segmento premium sin saturar</li>
+        <li>Inversor internacional en auge: holandeses (+26.3% compras Jávea), alemanes, franceses, canadienses buscando arquitecto de confianza bilingüe</li>
+        <li>Mercado Murcia (~1.700€/m²) infra-explotado: tickets bajos pero gran volumen, escalón para subir al lujo</li>
+        <li>GAP exclusivo identificado: nadie combina simultáneamente experiencia constructiva Caribe + KEU modular premium + trilingüe + boutique local</li>
+        <li>Demanda creciente de arquitectura biofílica y "lujo discreto" — el exacto territorio donde opera Vida Arquitectura</li>
+        <li>YouTube infrautilizado por competidores locales: ventana de 18 meses para dominar contenido de arquitectura en Alicante</li>
+        <li>Expansión KEU: mercados alemán, francés y Portugal Algarve con alta demanda de segunda residencia premium y ningún distribuidor de calidad equivalente</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- POSICIONAMIENTO -->
+  <div style="margin-top:3.5rem">
+    <h3 style="font-size:1.5rem;color:var(--blanco);margin-bottom:1rem;font-family:'Playfair Display',serif">
+      Posicionamiento Estratégico a 5 Años
+    </h3>
+    <div class="alert-box alert-gold">
+      <div class="alert-title">Declaración de Posicionamiento</div>
+      <div class="alert-text" style="font-size:1.05rem;font-style:italic">
+        "Vida Arquitectura es el estudio boutique de referencia en arquitectura residencial de alto valor en Levante. El único que combina el rigor constructivo forjado en el Caribe con el criterio mediterráneo. Para clientes que entienden que su casa no es una inversión financiera: es la inversión más personal que harán en su vida."
+      </div>
+    </div>
+    <div class="cards-grid cards-grid-3" style="margin-top:2rem">
+      <div class="card card-gold">
+        <span class="card-label">Pilar 1</span>
+        <div class="card-title">Autoridad Internacional Local</div>
+        <p class="card-text">No somos el estudio más grande. Somos el que ha construido en los contextos más exigentes del mundo (Caribe, huracanes, normativa americana) y volvió a Elche a aplicar ese criterio. Eso no se fabrica: se vive.</p>
+      </div>
+      <div class="card card-gold">
+        <span class="card-label">Pilar 2</span>
+        <div class="card-title">Producto Modular Premium Exclusivo</div>
+        <p class="card-text">KEU Luxury Home no es una alternativa económica. Es una alternativa superior: tiempo de obra predecible, calidades náuticas, instalación sin sorpresas. En un mercado donde los retrasos de obra son la norma, esto es una promesa radical.</p>
+      </div>
+      <div class="card card-gold">
+        <span class="card-label">Pilar 3</span>
+        <div class="card-title">Equipo Completo Sin Subcontratas</div>
+        <p class="card-text">5 personas. 2 arquitectos, 2 arquitectos técnicos, 1 ingeniero industrial. El cliente habla con el mismo equipo desde el primer boceto hasta la entrega de llaves. Eso se llama llave en mano real, no marketing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 PALANCAS ROI -->
+  <div style="margin-top:3.5rem">
+    <h3 style="font-size:1.5rem;color:var(--blanco);margin-bottom:0.5rem;font-family:'Playfair Display',serif">
+      Las 3 Palancas de Mayor ROI
+    </h3>
+    <p style="color:var(--gris-texto);font-size:0.9rem;margin-bottom:2rem">Ordenadas por impacto en facturación a 12 meses / inversión requerida</p>
+    <ol class="numbered-list">
+      <li>
+        <div class="nl-content">
+          <div class="nl-title">SEO Local + Google Business Profile — ROI Estimado: 45:1 a 12 meses</div>
+          <div class="nl-desc">La demanda existe y no está siendo capturada. "Arquitecto Elche", "arquitecto obra nueva Alicante", "vivienda modular lujo Alicante": búsquedas activas con intención de compra alta, y Vida Arquitectura no aparece en ninguna de ellas. Cada posición 1 en Google para estas keywords representa entre 3 y 6 consultas cualificadas al mes. A una tasa de cierre del 20-30% y honorarios medios de 35.000€, el ROI de 45:1 es conservador. Inversión: 8.000-12.000€/año en SEO técnico + contenido. Retorno esperado a 12 meses: 420.000€ en honorarios captados por SEO.</div>
+        </div>
+      </li>
+      <li>
+        <div class="nl-content">
+          <div class="nl-title">Posicionamiento Marca Personal Vidal Moreno — ROI Estimado: 30:1 a 18 meses</div>
+          <div class="nl-desc">Los clientes de 400.000€+ no contratan un estudio: contratan a una persona. Vidal no existe como individuo en Google. Su historia —de Elche al Caribe y de vuelta— es exactamente el tipo de narrativa que convierte en LinkedIn, YouTube e Instagram. Inversión principal: tiempo y estrategia de contenido. Stack de automatización (51€/mes) permite que 2 minutos de audio se conviertan en pieza publicable. 3 vídeos de YouTube bien posicionados equivalen a 20-30 minutos con el cliente potencial antes de la primera llamada. Benchmark: Fran Silvestre (Valencia) → 4.1M seguidores partiendo de exactamente el mismo posicionamiento residencial premium.</div>
+        </div>
+      </li>
+      <li>
+        <div class="nl-content">
+          <div class="nl-title">Expansión KEU Luxury Home Internacional — ROI Estimado: Multiplicador de negocio ×3 a 5 años</div>
+          <div class="nl-desc">KEU es el activo estratégico más infrautilizado de Vida Arquitectura. Con estándares de construcción náutica, resistencia a huracanes Cat-5, y presencia confirmada en 6 países, KEU tiene todos los ingredientes para ser la línea de negocio que desacople a Vida Arquitectura del ciclo inmobiliario español. La hoja de ruta: consolidar Alicante-Murcia en 2026 (5-8 unidades), entrar en Alemania-Francia en 2027 con distribuidor local, joint venture con promotora Costa Blanca en 2029. Proyección: 50K€ (2026) → 1M€+ (2031) solo en línea KEU.</div>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- MERCADO DATOS ACTUALIZADOS -->
+  <div style="margin-top:3.5rem">
+    <h3 style="font-size:1.5rem;color:var(--blanco);margin-bottom:1.5rem;font-family:'Playfair Display',serif">
+      Datos de Mercado Actualizados — Alicante 2026
+    </h3>
+    <div class="stat-row">
+      <div class="stat-block">
+        <span class="stat-number">11.919</span>
+        <div class="stat-label">Visados obra nueva Alicante 2025</div>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number">+37%</span>
+        <div class="stat-label">Crecimiento interanual visados</div>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number">3.436€</span>
+        <div class="stat-label">Precio m² Alicante (2026)</div>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number">5.700€</span>
+        <div class="stat-label">Precio m² Cabo de las Huertas</div>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number">203m²</span>
+        <div class="stat-label">Superficie media vivienda unifamiliar visada</div>
+      </div>
+    </div>
+    <div class="alert-box alert-red" style="margin-top:1.5rem">
+      <div class="alert-title">⚠ Alerta Estratégica Principal</div>
+      <div class="alert-text">La ventana de oportunidad SEO es de 12-18 meses. Tamat, OOIIO y Pacheco tienen ventaja de dominio. Si Vida Arquitectura no actúa ahora, en 2027 el coste de posicionarse será 3-4 veces mayor. El mercado tiene viento de cola histórico (11.919 visados unifamiliares en Alicante en 2025, precio m² en máximo histórico). <strong>Actuar ahora.</strong></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 2 — ANÁLISIS DE COMPETENCIA
+════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <div class="section-title-group">
+      <span class="section-label">Agente 2 — Análisis de Competencia</span>
+      <h2 class="section-title">Mapa Competitivo:<br>13 Estudios Analizados</h2>
+      <p class="section-desc">Análisis exhaustivo del ecosistema competidor en Alicante, Murcia y el ámbito nacional. Identificación del GAP de mercado exclusivo y estrategia asimétrica de diferenciación.</p>
+    </div>
+  </div>
+
+  <div class="image-grid-2">
+    <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" alt="Arquitectura moderna premium">
+    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80" alt="Villa lujo exterior">
+  </div>
+
+  <!-- TOP 5 PELIGROSOS -->
+  <h3 style="font-size:1.3rem;color:var(--dorado);margin-bottom:1.5rem;letter-spacing:0.05em;text-transform:uppercase;font-size:0.8rem">Los 5 Competidores Más Peligrosos</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Estudio</th>
+          <th>Ubicación</th>
+          <th>Fortaleza Principal</th>
+          <th>Debilidad Explotable</th>
+          <th>Nivel Amenaza</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-gold">01</td>
+          <td><strong>Pacheco Arquitectos</strong></td>
+          <td>Murcia</td>
+          <td>RIBA member, 400+ proyectos, proyectos Arabia Saudí y UK, posicionamiento lujo explícito en web</td>
+          <td>Sin presencia física en Alicante. Sin producto modular. Sin experiencia Caribe.</td>
+          <td><span class="badge badge-red">Crítico</span></td>
+        </tr>
+        <tr>
+          <td class="td-gold">02</td>
+          <td><strong>WOHA Arquitectura</strong></td>
+          <td>Elche / Alicante</td>
+          <td>Antonio Maciá — 9 proyectos en ArchDaily, cátedra UA. Autoridad académica sólida.</td>
+          <td>Sin experiencia internacional constructiva. Sin producto propio. Perfil académico, no comercial.</td>
+          <td><span class="badge badge-red">Alto</span></td>
+        </tr>
+        <tr>
+          <td class="td-gold">03</td>
+          <td><strong>Tamat Estudio</strong></td>
+          <td>Elda (Alicante)</td>
+          <td>Tomás Amat ex-Zaha Hadid Architects. Publicación NYT. Marca personal con credibilidad máxima.</td>
+          <td>Precio premium inaccesible para el segmento 250-500K€. Foco en proyectos singulares, no residencial serie.</td>
+          <td><span class="badge badge-red">Alto</span></td>
+        </tr>
+        <tr>
+          <td class="td-gold">04</td>
+          <td><strong>L'Aura Ortín</strong></td>
+          <td>Murcia</td>
+          <td>13K Instagram. "Architecture for Happiness". Neuroarquitectura como diferenciador. Muy fuerte en redes.</td>
+          <td>Sin presencia física en Alicante. Sin proyectos internacionales publicados. Sin producto modular.</td>
+          <td><span class="badge badge-gold">Moderado</span></td>
+        </tr>
+        <tr>
+          <td class="td-gold">05</td>
+          <td><strong>OOIIO Estudio</strong></td>
+          <td>Madrid (actúa en Alicante)</td>
+          <td>SEO geográfico muy agresivo en Alicante sin presencia física. Dominará SERPs en 12 meses si no hay oposición.</td>
+          <td>Sin presencia local real. Sin proyectos ejecutados en la zona. Sin conocimiento del cliente local.</td>
+          <td><span class="badge badge-red">Crítico SEO</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- OTROS COMPETIDORES -->
+  <h3 style="font-size:0.8rem;color:var(--dorado);margin:2.5rem 0 1.5rem;letter-spacing:0.05em;text-transform:uppercase">Mapa Completo — 13 Competidores Analizados</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Estudio</th><th>Ubicación</th><th>Fortaleza</th><th>Segmento</th><th>Riesgo</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>AMO Arquitectura</strong></td>
+          <td>Elche</td>
+          <td>Houzz 5/5, 1.752 seg. Instagram, premio COACV. Muy fuerte en confianza local.</td>
+          <td>Residencial medio-alto</td>
+          <td><span class="badge badge-gold">Moderado</span></td>
+        </tr>
+        <tr>
+          <td><strong>Studio Base</strong></td>
+          <td>Elche</td>
+          <td>Activo en Google Map Pack Elche. Buena presencia local.</td>
+          <td>Reformas + obra nueva</td>
+          <td><span class="badge badge-gold">Moderado</span></td>
+        </tr>
+        <tr>
+          <td><strong>Sepulcre Arquitecturas</strong></td>
+          <td>Elche</td>
+          <td>Activo en Google Map Pack Elche. Reseñas positivas.</td>
+          <td>Residencial</td>
+          <td><span class="badge badge-gold">Moderado</span></td>
+        </tr>
+        <tr>
+          <td><strong>Fran Silvestre Arquitectos</strong></td>
+          <td>Valencia</td>
+          <td>4.1M seguidores. Benchmark de marca personal arquitecto en España.</td>
+          <td>Lujo premium</td>
+          <td><span class="badge badge-gray">Bajo directo</span></td>
+        </tr>
+        <tr>
+          <td><strong>Lucas Fox Alicante</strong></td>
+          <td>Alicante</td>
+          <td>Red inmobiliaria internacional. Posible socio estratégico, no competidor directo.</td>
+          <td>Lujo internacional</td>
+          <td><span class="badge badge-green">Aliado potencial</span></td>
+        </tr>
+        <tr>
+          <td><strong>Engel &amp; Völkers Alicante</strong></td>
+          <td>Alicante</td>
+          <td>Red inmobiliaria alemana premium. Cliente alemán-nórdico.</td>
+          <td>Residencial lujo</td>
+          <td><span class="badge badge-green">Aliado potencial</span></td>
+        </tr>
+        <tr>
+          <td><strong>Knight Frank Alicante</strong></td>
+          <td>Alicante / Murcia</td>
+          <td>Red internacional UHNWI. Fuente de clientes Tier 3.</td>
+          <td>Ultra lujo</td>
+          <td><span class="badge badge-green">Aliado potencial</span></td>
+        </tr>
+        <tr>
+          <td><strong>Estudios locales Crevillente</strong></td>
+          <td>Crevillente</td>
+          <td>Sin competidor relevante identificado para keyword "arquitecto Crevillente"</td>
+          <td>Residencial</td>
+          <td><span class="badge badge-green">Monopolizable</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- GAP DE MERCADO -->
+  <div style="margin-top:3rem">
+    <h3 style="font-size:1.5rem;color:var(--blanco);margin-bottom:1.2rem;font-family:'Playfair Display',serif">El GAP de Mercado Exclusivo</h3>
+    <div class="alert-box alert-green">
+      <div class="alert-title">Territorio Vacío Identificado</div>
+      <div class="alert-text" style="font-size:1rem">
+        Ningún estudio en Alicante-Murcia combina simultáneamente: <strong>experiencia constructiva internacional activa</strong> (Miami/Puerto Rico/Canadá — proyectos ejecutados, no visitas) + <strong>producto modular premium exclusivo</strong> (KEU — estándares náuticos, huracán Cat-5) + <strong>presencia trilingüe</strong> (español/inglés/chino para cliente asiático) + <strong>equipo boutique completo</strong> (llave en mano real sin subcontratas). Este territorio está vacío. Y puede permanecer vacío durante 24-36 meses si Vida Arquitectura actúa con velocidad.
+      </div>
+    </div>
+    <div class="cards-grid cards-grid-3" style="margin-top:2rem">
+      <div class="card">
+        <span class="card-label">Estrategia Asimétrica</span>
+        <div class="card-title">No competir en volumen</div>
+        <p class="card-text">No intentar ganar a WOHA en ArchDaily ni a Pacheco en número de proyectos. Posicionarse como "el arquitecto que habla el idioma del cliente internacional". El Caribe como palanca de credibilidad única que nadie puede copiar.</p>
+      </div>
+      <div class="card">
+        <span class="card-label">Argumento KEU</span>
+        <div class="card-title">Reducción de riesgo para el cliente</div>
+        <p class="card-text">En un mercado donde los retrasos y sobrecostes de obra son la norma, KEU representa una promesa radical: tiempo controlado, calidades predecibles, precio sin sorpresas. Contra la incertidumbre de la obra convencional, KEU es un argumento que vende solo.</p>
+      </div>
+      <div class="card">
+        <span class="card-label">Contenido Exclusivo</span>
+        <div class="card-title">Solo Vidal puede escribirlo</div>
+        <p class="card-text">Nadie más puede escribir sobre "cómo se construye resistiendo huracanes en Puerto Rico" o "qué aprende un arquitecto mediterráneo trabajando en el Caribe". Este contenido es imposible de replicar por la competencia y tiene altísima autoridad en Google.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 3 — SEO LOCAL
+════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <div class="section-title-group">
+      <span class="section-label">Agente 3 — SEO Local</span>
+      <h2 class="section-title">Auditoría SEO Completa:<br>25 Keywords · Arquitectura Web · Timeline</h2>
+      <p class="section-desc">Diagnóstico técnico de vidaarquitectura.com, 25 keywords prioritarias organizadas por intención y un plan de acción con hitos medibles a 30, 90, 180 y 365 días.</p>
+    </div>
+  </div>
+
+  <!-- ERRORES CRÍTICOS -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Errores SEO Graves — Diagnóstico Actual</h3>
+  <div class="cards-grid cards-grid-3" style="margin-bottom:3rem">
+    <div class="card" style="border-left:3px solid #e74c3c">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      <span class="card-label" style="color:#e74c3c">Error Crítico 1</span>
+      <div class="card-title">Cero páginas de servicio</div>
+      <p class="card-text">No existe ninguna página indexable para los servicios principales: obra nueva, reformas, interiorismo, KEU. Google no puede relacionar el dominio con ninguna intención de búsqueda transaccional.</p>
+    </div>
+    <div class="card" style="border-left:3px solid #e74c3c">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span class="card-label" style="color:#e74c3c">Error Crítico 2</span>
+      <div class="card-title">Sin páginas locales geolocalizadas</div>
+      <p class="card-text">Ninguna URL contiene términos geográficos. "Arquitecto Elche", "arquitecto Alicante", "arquitecto Crevillente" no están en ninguna página del sitio. Google no sabe dónde opera el estudio.</p>
+    </div>
+    <div class="card" style="border-left:3px solid #e74c3c">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span class="card-label" style="color:#e74c3c">Error Crítico 3</span>
+      <div class="card-title">Sin Schema markup</div>
+      <p class="card-text">Falta Schema LocalBusiness + Architect estructurado. Google no puede extraer datos de contacto, dirección ni tipo de negocio para el Rich Snippet y el Map Pack local.</p>
+    </div>
+    <div class="card" style="border-left:3px solid #e74c3c">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      <span class="card-label" style="color:#e74c3c">Error Crítico 4</span>
+      <div class="card-title">Blog sin estrategia de keywords</div>
+      <p class="card-text">El blog existe pero no ataca ninguna keyword con intención de búsqueda definida. Los artículos no están optimizados y no generan tráfico orgánico capaz de convertir.</p>
+    </div>
+    <div class="card" style="border-left:3px solid #e74c3c">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <span class="card-label" style="color:#e74c3c">Error Crítico 5</span>
+      <div class="card-title">Core Web Vitals deficientes</div>
+      <p class="card-text">Hosting Arsys sin CDN activo. LCP (Largest Contentful Paint) y CLS probablemente por encima de los umbrales de Google. Factor de ranking técnico que penaliza posiciones en móvil.</p>
+    </div>
+    <div class="card card-gold">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <span class="card-label">Oportunidad Inmediata</span>
+      <div class="card-title">"Arquitecto Crevillente" — Monopolizable</div>
+      <p class="card-text">Dificultad de keyword muy baja. Sin competidor relevante identificado. Una sola página optimizada con 800 palabras puede alcanzar Top 3 en 30-45 días. Primera victoria rápida y de alto impacto.</p>
+    </div>
+  </div>
+
+  <!-- KEYWORDS -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:0.75rem">25 Keywords Prioritarias por Grupo</h3>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem">
+    <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--gris-texto)"><span style="width:12px;height:12px;background:rgba(201,168,76,0.3);border:1px solid var(--dorado);display:inline-block"></span> Core (alta intención)</span>
+    <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--gris-texto)"><span style="width:12px;height:12px;background:rgba(41,128,185,0.3);border:1px solid #3498db;display:inline-block"></span> Servicios</span>
+    <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--gris-texto)"><span style="width:12px;height:12px;background:rgba(39,174,96,0.3);border:1px solid #2ecc71;display:inline-block"></span> Locales</span>
+    <span style="display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--gris-texto)"><span style="width:12px;height:12px;background:rgba(142,68,173,0.3);border:1px solid #bb8fce;display:inline-block"></span> Long tail alta conversión</span>
+  </div>
+  <div class="keyword-grid">
+    <span class="keyword-pill kw-core">arquitecto Alicante</span>
+    <span class="keyword-pill kw-core">arquitecto Elche</span>
+    <span class="keyword-pill kw-core">estudio arquitectura Alicante</span>
+    <span class="keyword-pill kw-core">arquitecto vivienda unifamiliar Alicante</span>
+    <span class="keyword-pill kw-core">reforma integral Alicante</span>
+    <span class="keyword-pill kw-service">arquitecto obra nueva Elche</span>
+    <span class="keyword-pill kw-service">proyecto vivienda unifamiliar Alicante</span>
+    <span class="keyword-pill kw-service">casa modular lujo Alicante</span>
+    <span class="keyword-pill kw-service">arquitecto reformas Elche</span>
+    <span class="keyword-pill kw-service">presupuesto arquitecto Alicante</span>
+    <span class="keyword-pill kw-service">interiorismo diseño interior Alicante</span>
+    <span class="keyword-pill kw-service">arquitecto llave en mano Alicante</span>
+    <span class="keyword-pill kw-local">arquitecto Crevillente <span class="kw-diff">★ baja dificultad</span></span>
+    <span class="keyword-pill kw-local">arquitecto Costa Blanca</span>
+    <span class="keyword-pill kw-local">arquitecto Torrevieja</span>
+    <span class="keyword-pill kw-local">arquitecto Murcia vivienda unifamiliar</span>
+    <span class="keyword-pill kw-local">arquitecto Elche obra nueva</span>
+    <span class="keyword-pill kw-local">arquitecto Guardamar del Segura</span>
+    <span class="keyword-pill kw-local">arquitecto Santa Pola</span>
+    <span class="keyword-pill kw-longtail">arquitecto casa unifamiliar moderna Elche</span>
+    <span class="keyword-pill kw-longtail">vivienda modular premium KEU Alicante</span>
+    <span class="keyword-pill kw-longtail">cuánto cuesta construir casa unifamiliar Alicante 2026</span>
+    <span class="keyword-pill kw-longtail">casa modular lujo Costa Blanca</span>
+    <span class="keyword-pill kw-longtail">arquitecto vivienda lujo Alicante presupuesto</span>
+    <span class="keyword-pill kw-longtail">reforma integral vivienda unifamiliar Alicante precio</span>
+  </div>
+
+  <!-- PÁGINAS A CREAR -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Arquitectura Web — Páginas Nuevas a Crear</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>URL</th><th>Keyword Principal</th><th>Tipo</th><th>Prioridad</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-gold">/arquitecto-elche/</td><td>arquitecto Elche</td><td>Página geográfica local</td><td><span class="badge badge-red">Urgente</span></td></tr>
+          <tr><td class="td-gold">/arquitecto-alicante/</td><td>arquitecto Alicante</td><td>Página geográfica local</td><td><span class="badge badge-red">Urgente</span></td></tr>
+          <tr><td class="td-gold">/arquitecto-crevillente/</td><td>arquitecto Crevillente</td><td>Geográfica — monopolizable</td><td><span class="badge badge-red">Urgente</span></td></tr>
+          <tr><td class="td-gold">/arquitecto-obra-nueva-elche/</td><td>arquitecto obra nueva Elche</td><td>Página de servicio</td><td><span class="badge badge-red">Alta</span></td></tr>
+          <tr><td class="td-gold">/reformas-integrales-alicante/</td><td>reforma integral Alicante</td><td>Página de servicio</td><td><span class="badge badge-red">Alta</span></td></tr>
+          <tr><td class="td-gold">/vivienda-modular-lujo-keu-alicante/</td><td>casa modular lujo Alicante</td><td>Producto KEU</td><td><span class="badge badge-gold">Media-alta</span></td></tr>
+          <tr><td class="td-gold">/interiorismo-diseno-interior-alicante/</td><td>interiorismo Alicante</td><td>Página de servicio</td><td><span class="badge badge-gold">Media</span></td></tr>
+          <tr><td class="td-gold">/arquitecto-costa-blanca/</td><td>arquitecto Costa Blanca</td><td>Geográfica regional</td><td><span class="badge badge-gold">Media</span></td></tr>
+          <tr><td class="td-gold">/arquitecto-murcia/</td><td>arquitecto Murcia vivienda</td><td>Geográfica expansión</td><td><span class="badge badge-gold">Media</span></td></tr>
+          <tr><td class="td-gold">/proyecto-arquitectura-residencial/</td><td>proyecto vivienda unifamiliar</td><td>Servicio principal</td><td><span class="badge badge-blue">Planificada</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TIMELINE SEO -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:2.5rem">Timeline SEO — Hitos y Resultados Esperados</h3>
+    <div class="timeline-wrap">
+      <div class="timeline-line"></div>
+      <div class="timeline-phases">
+        <div class="timeline-phase">
+          <div class="timeline-dot">30d</div>
+          <div class="timeline-phase-title">Fundamentos Técnicos</div>
+          <div class="timeline-phase-label">Días 1-30</div>
+          <ul class="timeline-items">
+            <li>Schema LocalBusiness + Architect instalado</li>
+            <li>Google Business Profile verificado y optimizado</li>
+            <li>3 páginas geográficas publicadas (Elche, Alicante, Crevillente)</li>
+            <li>CDN o caché activado en Arsys</li>
+            <li>Google Search Console configurado y verificado</li>
+          </ul>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot">90d</div>
+          <div class="timeline-phase-title">Primeras Posiciones</div>
+          <div class="timeline-phase-label">Días 31-90</div>
+          <ul class="timeline-items">
+            <li>Top 3 "arquitecto Crevillente" (monopolizable)</li>
+            <li>Top 5-10 "arquitecto obra nueva Elche"</li>
+            <li>Top 5-10 "arquitecto Elche"</li>
+            <li>Top 3 Map Pack Google Elche</li>
+            <li>4 páginas de servicio publicadas y optimizadas</li>
+          </ul>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot">6m</div>
+          <div class="timeline-phase-title">Tráfico Cualificado</div>
+          <div class="timeline-phase-label">Meses 3-6</div>
+          <ul class="timeline-items">
+            <li>Top 3 "arquitecto Elche" consolidado</li>
+            <li>800-1.500 visitas/mes orgánicas</li>
+            <li>6-10 consultas cualificadas/mes vía SEO</li>
+            <li>Blog con 12 artículos keyword-targeted publicados</li>
+            <li>Primeros proyectos cerrados atribuibles a SEO</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:2rem;background:var(--gris-oscuro);border:1px solid var(--gris-borde);padding:2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+      <div>
+        <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--dorado);margin-bottom:1rem">A 12 Meses</div>
+        <ul class="timeline-items" style="list-style:none">
+          <li style="padding:0.3rem 0;font-size:0.88rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> Top 3 "arquitecto Alicante"</li>
+          <li style="padding:0.3rem 0;font-size:0.88rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> 2.500-4.000 visitas orgánicas/mes</li>
+          <li style="padding:0.3rem 0;font-size:0.88rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> 15-25 consultas cualificadas/mes</li>
+          <li style="padding:0.3rem 0;font-size:0.88rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> 4-6 proyectos captados atribuibles a SEO</li>
+          <li style="padding:0.3rem 0;font-size:0.88rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> Facturación adicional estimada: 140.000-210.000€</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--dorado);margin-bottom:1rem">Indicadores de Progreso</div>
+        <div class="progress-item">
+          <div class="progress-label"><span class="name">Páginas de servicio indexadas</span><span class="val">0/10 → 10/10</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span class="name">Posición "arquitecto Elche"</span><span class="val">Sin ranking → Top 3</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:5%"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span class="name">Visitas orgánicas/mes</span><span class="val">~100 → 4.000</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:3%"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span class="name">Schema implementado</span><span class="val">0% → 100%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 4 — GOOGLE BUSINESS PROFILE
+════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <div class="section-title-group">
+      <span class="section-label">Agente 4 — Google Business Profile</span>
+      <h2 class="section-title">Optimización GBP:<br>2 Fichas · Posts Listos · Sistema Reseñas</h2>
+      <p class="section-desc">Diagnóstico del estado actual en Google Maps, plan de optimización completo para las dos fichas de Elche y Crevillente, sistema de captación de reseñas y posts GBP listos para publicar.</p>
+    </div>
+  </div>
+
+  <div class="alert-box alert-red">
+    <div class="alert-title">Diagnóstico Actual</div>
+    <div class="alert-text">Fichas no verificadas o invisibles en Google Maps. Competidores Studio Base y Sepulcre Arquitecturas están activos en el Map Pack de Elche, captando clientes que buscan "arquitecto Elche" en este momento. Vida Arquitectura no aparece. Cada día sin fichas verificadas es facturación que va a la competencia.</div>
+  </div>
+
+  <!-- DOS FICHAS -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin:2.5rem 0 1.5rem">Las Dos Fichas Optimizadas</h3>
+  <div class="cards-grid cards-grid-2">
+    <div class="card card-gold">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.2rem">
+        <div>
+          <span class="card-label">Ficha Principal</span>
+          <div class="card-title">Vida Arquitectura · Elche</div>
+        </div>
+        <span class="badge badge-red">Prioridad 1</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem">
+        <div>
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--dorado);margin-bottom:0.3rem">Categoría Principal</div>
+          <div style="font-size:0.88rem;color:var(--blanco)">Arquitecto</div>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--dorado);margin-bottom:0.3rem">Categorías Secundarias</div>
+          <div style="font-size:0.88rem;color:var(--blanco)">Empresa de reformas, Diseñador de interiores, Constructor de viviendas</div>
+        </div>
+      </div>
+      <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--dorado);margin-bottom:0.5rem">Descripción (750 caracteres)</div>
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.7;background:rgba(255,255,255,0.03);padding:1rem;border:1px solid var(--gris-borde);font-style:italic">"Estudio de arquitectura boutique en Elche especializado en viviendas unifamiliares de autor, reformas integrales y proyectos de interiorismo en Alicante y Costa Blanca. Equipo de 5 especialistas: arquitectos, arquitectos técnicos e ingeniero industrial para un servicio llave en mano sin subcontratas. Distribuidores exclusivos de KEU Luxury Home, vivienda modular premium resistente a condiciones extremas. Experiencia internacional en Puerto Rico, Miami y Canadá. Atendemos en español, inglés y chino. Zona de actuación: Alicante, Elche, Murcia, Costa Blanca."</p>
+    </div>
+    <div class="card card-gold">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.2rem">
+        <div>
+          <span class="card-label">Ficha Secundaria</span>
+          <div class="card-title">Vida Arquitectura · Crevillente</div>
+        </div>
+        <span class="badge badge-gold">Prioridad 2</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem">
+        <div>
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--dorado);margin-bottom:0.3rem">Keyword Monopolizable</div>
+          <div style="font-size:0.88rem;color:var(--blanco)">"Arquitecto Crevillente" — sin competidor relevante</div>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--dorado);margin-bottom:0.3rem">Objetivo</div>
+          <div style="font-size:0.88rem;color:var(--blanco)">Top 3 Map Pack "arquitecto Crevillente" en 45 días</div>
+        </div>
+      </div>
+      <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--dorado);margin-bottom:0.5rem">Descripción (750 caracteres)</div>
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.7;background:rgba(255,255,255,0.03);padding:1rem;border:1px solid var(--gris-borde);font-style:italic">"Arquitectos en Crevillente con amplia experiencia en viviendas unifamiliares de obra nueva, reformas integrales e interiorismo de alto nivel. Parte del equipo Vida Arquitectura de Elche, ofrecemos servicio completo llave en mano con equipo propio sin subcontratas. Somos distribuidores KEU Luxury Home para toda la provincia de Alicante. Proyectos realizados en Alicante, Elche, Crevillente, Murcia y Costa Blanca. Primer contacto gratuito. Llámenos o escríbanos."</p>
+    </div>
+  </div>
+
+  <!-- 7 FACTORES RANKING -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">7 Factores de Ranking Local — Pesos y Acciones</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Factor</th><th>Peso Algoritmo</th><th>Estado Actual</th><th>Acción Requerida</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-gold">1</td><td><strong>Categoría correcta</strong></td><td class="td-red">Crítico</td><td><span class="badge badge-red">Sin verificar</span></td><td>Categoría principal: "Arquitecto". Verificar inmediatamente.</td></tr>
+          <tr><td class="td-gold">2</td><td><strong>Reseñas Google</strong></td><td class="td-gold">17-20%</td><td><span class="badge badge-red">0 reseñas visibles</span></td><td>Meta: 20+ reseñas en 3 meses. Plantillas WhatsApp listas.</td></tr>
+          <tr><td class="td-gold">3</td><td><strong>Consistencia NAP</strong></td><td class="td-gold">Alta</td><td><span class="badge badge-red">Inconsistente</span></td><td>Nombre, dirección y teléfono idénticos en web, GBP y directorios.</td></tr>
+          <tr><td class="td-gold">4</td><td><strong>Proximidad física</strong></td><td class="td-gold">Alta</td><td><span class="badge badge-green">Favorable</span></td><td>Elche + Crevillente: 2 fichas cubre mayor radio geográfico.</td></tr>
+          <tr><td class="td-gold">5</td><td><strong>Actividad del perfil</strong></td><td class="td-gold">Media-alta</td><td><span class="badge badge-red">Sin actividad</span></td><td>1 post GBP/semana. 4 posts redactados y listos.</td></tr>
+          <tr><td class="td-gold">6</td><td><strong>Autoridad web</strong></td><td class="td-gold">Media</td><td><span class="badge badge-red">Baja</span></td><td>SEO on-page + Schema + backlinks directorios sectoriales.</td></tr>
+          <tr><td class="td-gold">7</td><td><strong>Citas en directorios</strong></td><td class="td-gold">Media</td><td><span class="badge badge-red">Sin citas</span></td><td>COACV, Houzz, Habitissimo, Arquitecto.es, ArquitectosBuscados.es</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SISTEMA RESEÑAS -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Sistema de Captación de Reseñas — Meta: 20+ en 3 Meses</h3>
+    <div class="cards-grid cards-grid-3">
+      <div class="card">
+        <span class="card-label">Plantilla WhatsApp — Clientes</span>
+        <div class="card-title">Mensaje post-entrega de proyecto</div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.03);padding:1rem;border:1px solid var(--gris-borde);font-style:italic;line-height:1.7;margin-top:0.75rem">"Hola [Nombre], ha sido un placer acompañaros en este proyecto. Si tenéis un momento, vuestra opinión en Google nos ayuda a llegar a más familias que buscan lo mismo que vosotros buscabais. Es muy rápido: [enlace directo]. Muchas gracias."</p>
+      </div>
+      <div class="card">
+        <span class="card-label">Plantilla WhatsApp — Colaboradores</span>
+        <div class="card-title">Mensaje a constructores y proveedores</div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.75);background:rgba(255,255,255,0.03);padding:1rem;border:1px solid var(--gris-borde);font-style:italic;line-height:1.7;margin-top:0.75rem">"Hola [Nombre], llevamos trabajando juntos [tiempo] y el resultado siempre es excelente. ¿Podrías dejar una reseña en Google contando tu experiencia colaborando con nosotros? Nos ayuda mucho. Te mando el enlace directo: [enlace]."</p>
+      </div>
+      <div class="card card-gold">
+        <span class="card-label">Objetivo y Timeline</span>
+        <div class="card-title">Plan de 20 reseñas en 90 días</div>
+        <ul style="list-style:none;margin-top:0.75rem">
+          <li style="padding:0.4rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)">Semana 1-2: 8-10 clientes anteriores contactados</li>
+          <li style="padding:0.4rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)">Semana 3-4: 5-7 colaboradores/proveedores</li>
+          <li style="padding:0.4rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)">Mes 2-3: Flujo automático post-entrega de proyecto</li>
+          <li style="padding:0.4rem 0;font-size:0.85rem;color:var(--dorado);font-weight:600">Meta: 20+ reseñas ≥ 4.8 estrellas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- POSTS GBP -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">4 Posts GBP — Listos para Publicar</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Título del Post</th><th>Tipo</th><th>Objetivo</th><th>CTA</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-gold">1</td>
+            <td><strong>Construimos tu vivienda unifamiliar en Elche. Equipo completo, sin subcontratas.</strong></td>
+            <td>Oferta de servicio</td>
+            <td>Captación obra nueva</td>
+            <td>Solicita consulta gratuita</td>
+          </tr>
+          <tr>
+            <td class="td-gold">2</td>
+            <td><strong>KEU Luxury Home: la vivienda modular premium que llega en semanas, no en años</strong></td>
+            <td>Producto</td>
+            <td>Awareness KEU</td>
+            <td>Ver modelos disponibles</td>
+          </tr>
+          <tr>
+            <td class="td-gold">3</td>
+            <td><strong>¿Reforma integral en Alicante? Así es nuestro proceso de 3 pasos sin sorpresas</strong></td>
+            <td>Educacional</td>
+            <td>Captación reformas</td>
+            <td>Descarga guía gratuita</td>
+          </tr>
+          <tr>
+            <td class="td-gold">4</td>
+            <td><strong>Nuevo proyecto entregado en Costa Blanca — Villa con 4 dormitorios y piscina infinity</strong></td>
+            <td>Actualización</td>
+            <td>Prueba social</td>
+            <td>Ver el proyecto completo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 5 Q&As -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">5 Q&amp;As — Listas para Publicar en GBP</h3>
+    <div class="cards-grid cards-grid-2" style="gap:1rem">
+      <div class="card" style="padding:1.5rem">
+        <div style="font-size:0.75rem;color:var(--dorado);font-weight:600;margin-bottom:0.5rem">P: ¿Cuánto cuesta contratar un arquitecto en Elche?</div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.6">R: Los honorarios de arquitecto en Elche varían según el proyecto. Para viviendas unifamiliares de obra nueva, nuestros honorarios se sitúan habitualmente entre el 8% y el 12% del presupuesto de construcción. La consulta inicial es siempre gratuita.</p>
+      </div>
+      <div class="card" style="padding:1.5rem">
+        <div style="font-size:0.75rem;color:var(--dorado);font-weight:600;margin-bottom:0.5rem">P: ¿En qué zonas trabaja Vida Arquitectura?</div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.6">R: Operamos principalmente en Elche, Alicante, Crevillente, Murcia y toda la Costa Blanca. También tenemos experiencia en proyectos internacionales en Puerto Rico, Miami y Canadá.</p>
+      </div>
+      <div class="card" style="padding:1.5rem">
+        <div style="font-size:0.75rem;color:var(--dorado);font-weight:600;margin-bottom:0.5rem">P: ¿Qué es KEU Luxury Home?</div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.6">R: KEU es una vivienda modular premium con acabados de calidad náutica, resistente a condiciones extremas y con instalación en semanas. Somos distribuidores exclusivos en Alicante y Murcia.</p>
+      </div>
+      <div class="card" style="padding:1.5rem">
+        <div style="font-size:0.75rem;color:var(--dorado);font-weight:600;margin-bottom:0.5rem">P: ¿Cuánto tiempo tarda un proyecto de obra nueva?</div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.6">R: Un proyecto de vivienda unifamiliar estándar en Elche requiere 4-6 meses de proyecto técnico y licencias, y 12-18 meses de obra. Con KEU Luxury Home, el tiempo total puede reducirse a 3-4 meses desde el pedido.</p>
+      </div>
+      <div class="card" style="padding:1.5rem">
+        <div style="font-size:0.75rem;color:var(--dorado);font-weight:600;margin-bottom:0.5rem">P: ¿Hacen interiorismo además de arquitectura?</div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.6">R: Sí. Ofrecemos servicio integral de arquitectura e interiorismo, incluyendo diseño de espacios, selección de materiales, mobiliario y dirección de obra. Todo desde el mismo equipo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 5 — CRO Y CONVERSIÓN
+════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="section-number">05</div>
+    <div class="section-title-group">
+      <span class="section-label">Agente 5 — CRO y Conversión</span>
+      <h2 class="section-title">Optimización de Conversión:<br>Customer Journey · Copys · Formulario Cualificado</h2>
+      <p class="section-desc">Mapa del recorrido del cliente en 7 fases, 5 cambios de impacto inmediato, formulario cualificado de 10 campos, secuencia de nurturing y copywriting definitivo.</p>
+    </div>
+  </div>
+
+  <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80" alt="Oficina de arquitectura moderna" class="section-image">
+
+  <!-- CUSTOMER JOURNEY -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Customer Journey — 7 Fases del Cliente Premium</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Fase</th><th>Qué piensa el cliente</th><th>Dónde está</th><th>Qué necesita de nosotros</th><th>Touchpoint clave</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-gold">1</td>
+          <td><strong>Latencia</strong></td>
+          <td>"Algún día construiré mi casa"</td>
+          <td>Instagram, Pinterest, YouTube</td>
+          <td>Inspiración. Que existan.</td>
+          <td>@vidaarquitectura Instagram</td>
+        </tr>
+        <tr>
+          <td class="td-gold">2</td>
+          <td><strong>Consciencia</strong></td>
+          <td>"Tengo el terreno / el presupuesto / el momento"</td>
+          <td>Google búsqueda informacional</td>
+          <td>Información real sobre el proceso y los costes.</td>
+          <td>Blog SEO: "cuánto cuesta construir casa en Alicante"</td>
+        </tr>
+        <tr>
+          <td class="td-gold">3</td>
+          <td><strong>Consideración</strong></td>
+          <td>"Necesito encontrar el arquitecto adecuado"</td>
+          <td>Google búsqueda transaccional</td>
+          <td>Demostración de capacidad. Portfolio. Equipo.</td>
+          <td>Página web + Google My Business</td>
+        </tr>
+        <tr>
+          <td class="td-gold">4</td>
+          <td><strong>Intención</strong></td>
+          <td>"Este estudio me parece serio. Voy a mirar más."</td>
+          <td>Web de Vida Arquitectura</td>
+          <td>Confianza. Proceso claro. Reducción de ansiedad.</td>
+          <td>Hero + Página de contacto rediseñada</td>
+        </tr>
+        <tr>
+          <td class="td-gold">5</td>
+          <td><strong>Primera Consulta</strong></td>
+          <td>"¿Me contestarán? ¿Qué pasará si llamo?"</td>
+          <td>Formulario web / WhatsApp</td>
+          <td>Respuesta rápida (&lt;2h), profesional, sin presión.</td>
+          <td>Formulario cualificado + email automático + WhatsApp Vidal</td>
+        </tr>
+        <tr>
+          <td class="td-gold">6</td>
+          <td><strong>Propuesta</strong></td>
+          <td>"¿Entienden mi proyecto? ¿Confío en ellos?"</td>
+          <td>Reunión presencial o videollamada</td>
+          <td>Escucha activa. Propuesta personalizada. No plantillas.</td>
+          <td>Reunión + propuesta PDF premium</td>
+        </tr>
+        <tr>
+          <td class="td-gold">7</td>
+          <td><strong>Firma</strong></td>
+          <td>"¿Es el mejor momento? ¿Tengo el presupuesto?"</td>
+          <td>Email + llamada de seguimiento</td>
+          <td>Seguridad. Claridad de proceso. Sin urgencias fabricadas.</td>
+          <td>Secuencia nurturing 3 emails + llamada de seguimiento</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 5 CAMBIOS IMPACTO INMEDIATO -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">5 Cambios de Impacto Inmediato</h3>
+    <div class="cards-grid cards-grid-2" style="gap:1.5rem">
+      <div class="card card-gold">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <span class="card-label">Cambio 1</span>
+          <span class="badge badge-red">Urgente</span>
+        </div>
+        <div class="card-title">Hero con propuesta de valor + CTA</div>
+        <p class="card-text">El hero actual no comunica quién es Vida Arquitectura ni qué hace diferente. La propuesta de valor en 28 palabras y el CTA "Cuéntanos tu proyecto" deben ser el primer elemento visible. Impacto estimado: +40% tasa de contacto desde homepage.</p>
+      </div>
+      <div class="card card-gold">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <span class="card-label">Cambio 2</span>
+          <span class="badge badge-red">Urgente</span>
+        </div>
+        <div class="card-title">Proyectos como casos de éxito narrados</div>
+        <p class="card-text">Las imágenes del portfolio no convierten sin historia. Cada proyecto necesita: cliente ideal (anónimo), reto planteado, solución de Vida Arquitectura, resultado medible. Formato: 400 palabras + 8 imágenes. Impacto: +60% tiempo en página.</p>
+      </div>
+      <div class="card card-gold">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <span class="card-label">Cambio 3</span>
+          <span class="badge badge-red">Urgente</span>
+        </div>
+        <div class="card-title">Página de contacto con reducción de ansiedad</div>
+        <p class="card-text">El formulario actual es genérico. La nueva página debe incluir: qué pasa después de enviar el formulario (proceso en 3 pasos), tiempo de respuesta garantizado (&lt;24h), foto del equipo, número de teléfono visible, y mensaje de confianza.</p>
+      </div>
+      <div class="card card-gold">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <span class="card-label">Cambio 4</span>
+          <span class="badge badge-gold">Alta prioridad</span>
+        </div>
+        <div class="card-title">2 páginas de servicio SEO con CTA</div>
+        <p class="card-text">/arquitecto-obra-nueva-elche/ y /reformas-integrales-alicante/ con keyword en H1, texto de 800 palabras, schema, imágenes del portfolio y formulario de contacto inline. Doble función: SEO + conversión directa.</p>
+      </div>
+      <div class="card card-gold">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <span class="card-label">Cambio 5</span>
+          <span class="badge badge-gold">Alta prioridad</span>
+        </div>
+        <div class="card-title">Google My Business optimizado</div>
+        <p class="card-text">Verificar fichas, completar descripción 750 caracteres, publicar 4 posts preparados, activar sistema de reseñas. El Map Pack puede generar leads en días, no semanas, desde la verificación.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- COPYS -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Copywriting Definitivo — Listo para Implementar</h3>
+    <div class="cards-grid cards-grid-3" style="gap:1.2rem">
+      <div class="card" style="border-top:2px solid var(--dorado)">
+        <span class="card-label">Headline Recomendado (Hero)</span>
+        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin:0.75rem 0;line-height:1.3;font-style:italic">"Tu casa debería contar quién eres.<br>Nosotros nos encargamos de que lo haga."</div>
+        <p class="card-text">Variante A. Conecta con la identidad del cliente de alto valor. Evita palabras de precio o velocidad. Recomendado para el hero principal.</p>
+      </div>
+      <div class="card">
+        <span class="card-label">Headline Alternativo</span>
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--blanco);margin:0.75rem 0;line-height:1.3;font-style:italic">"Del primer boceto a la entrega de llaves. Sin sorpresas. Sin subcontratas."</div>
+        <p class="card-text">Variante B. Ataca directamente el miedo más frecuente: retrasos y cambios de precio. Ideal para página de servicios.</p>
+      </div>
+      <div class="card">
+        <span class="card-label">Headline para KEU</span>
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--blanco);margin:0.75rem 0;line-height:1.3;font-style:italic">"La casa que querías. En el tiempo que esperas. Con la calidad que mereces."</div>
+        <p class="card-text">Variante C específica para landing de KEU. Tríada de beneficios: diseño, plazo, calidad. Directamente opuesta a la obra convencional.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;background:var(--gris-oscuro);border:1px solid var(--gris-borde);padding:2rem">
+      <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--dorado);margin-bottom:1rem">Propuesta de Valor en 28 palabras</div>
+      <p style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--blanco);font-style:italic;line-height:1.6">"Estudio boutique con experiencia en Puerto Rico, Costa Blanca y Canadá. Equipo completo propio. Desde el proyecto hasta la llave, sin intermediarios."</p>
+      <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+        <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);padding:0.6rem 1.2rem;font-size:0.82rem;color:var(--dorado)">✓ CTA principal: "Cuéntanos tu proyecto"</div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid var(--gris-borde);padding:0.6rem 1.2rem;font-size:0.82rem;color:var(--gris-texto)">Alt. "Ver proyectos realizados"</div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid var(--gris-borde);padding:0.6rem 1.2rem;font-size:0.82rem;color:var(--gris-texto)">Alt. "Primera consulta gratuita"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECUENCIA NURTURING -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Secuencia de Nurturing — 3 Emails Post-Formulario</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Email</th><th>Timing</th><th>Asunto</th><th>Objetivo</th><th>Contenido Central</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-gold">E1 Bienvenida</td>
+            <td>Inmediato (auto)</td>
+            <td>"Tu proyecto ha llegado. Esto es lo que pasa ahora."</td>
+            <td>Reducir ansiedad, confirmar recepción</td>
+            <td>Proceso en 3 pasos ilustrado + tiempo de respuesta + foto del equipo + enlace a portfolio</td>
+          </tr>
+          <tr>
+            <td class="td-gold">E2 Educación</td>
+            <td>+48 horas</td>
+            <td>"Lo que nadie te cuenta sobre construir en Alicante (y cómo evitarlo)"</td>
+            <td>Posicionar autoridad, generar confianza</td>
+            <td>3 errores frecuentes en proyectos + cómo Vida Arquitectura los previene + casos reales del portfolio</td>
+          </tr>
+          <tr>
+            <td class="td-gold">E3 Prueba Social</td>
+            <td>+7 días</td>
+            <td>"Villa A&amp;E: de terreno vacío a llave en mano en 22 meses"</td>
+            <td>Conversión — invitación a reunión</td>
+            <td>Caso de éxito completo (antes/durante/después) + CTA fuerte a agendar reunión gratuita</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FORMULARIO CUALIFICADO -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Formulario Cualificado — 10 Campos con Lógica Condicional</h3>
+    <div class="cards-grid cards-grid-2" style="gap:1.5rem">
+      <div>
+        <div style="background:var(--gris-oscuro);border:1px solid var(--gris-borde);padding:2rem">
+          <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--dorado);margin-bottom:1.2rem">Campos del Formulario</div>
+          <ol style="list-style:none;counter-reset:fc">
+            <li style="counter-increment:fc;display:flex;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)"><span style="color:var(--dorado);min-width:20px;font-weight:700">1.</span>Tipo de proyecto (obra nueva / reforma / interiorismo / KEU)</li>
+            <li style="counter-increment:fc;display:flex;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)"><span style="color:var(--dorado);min-width:20px;font-weight:700">2.</span>¿Dispone de terreno? (sí / no / buscando)</li>
+            <li style="counter-increment:fc;display:flex;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)"><span style="color:var(--dorado);min-width:20px;font-weight:700">3.</span>Ubicación del proyecto (municipio)</li>
+            <li style="counter-increment:fc;display:flex;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)"><span style="color:var(--dorado);min-width:20px;font-weight:700">4.</span>Plazo estimado de inicio (inmediato / 6 meses / 1 año / explorando)</li>
+            <li style="counter-increment:fc;display:flex;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)"><span style="color:var(--dorado);min-width:20px;font-weight:700">5.</span>Presupuesto orientativo (150-250K / 250-500K / 500K+ / no definido)</li>
+            <li style="counter-increment:fc;display:flex;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)"><span style="color:var(--dorado);min-width:20px;font-weight:700">6.</span>Nombre y apellidos</li>
+            <li style="counter-increment:fc;display:flex;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)"><span style="color:var(--dorado);min-width:20px;font-weight:700">7.</span>Email</li>
+            <li style="counter-increment:fc;display:flex;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)"><span style="color:var(--dorado);min-width:20px;font-weight:700">8.</span>Teléfono (opcional)</li>
+            <li style="counter-increment:fc;display:flex;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)"><span style="color:var(--dorado);min-width:20px;font-weight:700">9.</span>¿Cómo nos ha encontrado? (Google / Instagram / recomendación / otro)</li>
+            <li style="counter-increment:fc;display:flex;gap:0.75rem;padding:0.5rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8)"><span style="color:var(--dorado);min-width:20px;font-weight:700">10.</span>Cuéntanos tu proyecto (campo libre, 500 caracteres)</li>
+          </ol>
+        </div>
+      </div>
+      <div>
+        <div class="card card-gold" style="margin-bottom:1rem">
+          <span class="card-label">Score de Lead Automático</span>
+          <div class="card-title">Cualificación con Make.com</div>
+          <p class="card-text">El sistema puntúa automáticamente cada lead: presupuesto 500K+ (+3pts), plazo inmediato (+2pts), terreno disponible (+2pts), fuente Google (+1pt). Score ≥8: alerta WhatsApp a Vidal en tiempo real. Score &lt;6: secuencia nurturing automática.</p>
+        </div>
+        <div class="card">
+          <span class="card-label">A/B Tests — 90 Días</span>
+          <div class="card-title">3 Tests Planificados</div>
+          <ul style="list-style:none;margin-top:0.75rem">
+            <li style="padding:0.4rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)"><strong style="color:var(--dorado)">Test 1:</strong> Hero "Tu casa debería..." vs "Del boceto a la llave..."</li>
+            <li style="padding:0.4rem 0;border-bottom:1px solid var(--gris-borde);font-size:0.85rem;color:rgba(255,255,255,0.8)"><strong style="color:var(--dorado)">Test 2:</strong> CTA "Cuéntanos tu proyecto" vs "Primera consulta gratuita"</li>
+            <li style="padding:0.4rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8)"><strong style="color:var(--dorado)">Test 3:</strong> Formulario 10 campos vs formulario 5 campos simplificado</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 6 — CONTENT MARKETING
+════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section class="section" id="s6">
+  <div class="section-header">
+    <div class="section-number">06</div>
+    <div class="section-title-group">
+      <span class="section-label">Agente 6 — Content Marketing</span>
+      <h2 class="section-title">Estrategia de Contenido:<br>5 Pilares · 48 Piezas · Guía de Voz</h2>
+      <p class="section-desc">Calendario editorial completo de 12 meses (julio 2026 — junio 2027), estrategia por plataforma (Instagram, YouTube, LinkedIn) y guía definitiva de voz y tono de la marca.</p>
+    </div>
+  </div>
+
+  <div class="image-grid-2">
+    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80" alt="Interior diseño premium">
+    <img src="https://images.unsplash.com/photo-1565182999561-18d7dc61c393?w=800&q=80" alt="Materiales arquitectura noble">
+  </div>
+
+  <!-- 5 PILARES -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Los 5 Pilares de Contenido</h3>
+  <div class="cards-grid cards-grid-3" style="gap:1.2rem;margin-bottom:3rem">
+    <div class="card" style="border-top:2px solid var(--dorado)">
+      <div style="font-size:2rem;margin-bottom:0.75rem">01</div>
+      <span class="card-label">Pilar 1</span>
+      <div class="card-title">El Proceso de Diseñar tu Casa</div>
+      <p class="card-text">Educación transaccional. Responde las preguntas que el cliente hace en Google antes de contratar: plazos, costes, permisos, diferencias entre obra nueva y reforma. Alto volumen, alta intención de compra.</p>
+      <div style="margin-top:1rem;font-size:0.75rem;color:var(--dorado)">Formatos: Blog largo + Carrusel Instagram + Email nurturing</div>
+    </div>
+    <div class="card" style="border-top:2px solid var(--dorado)">
+      <div style="font-size:2rem;margin-bottom:0.75rem">02</div>
+      <span class="card-label">Pilar 2</span>
+      <div class="card-title">Portfolio Profundo / Detrás del Proyecto</div>
+      <p class="card-text">Mayor conversión directa. Casos de estudio con narrativa: cliente, reto, solución, resultado. Antes/después con historia. El cliente se proyecta en el proyecto. Fideliza y referencia.</p>
+      <div style="margin-top:1rem;font-size:0.75rem;color:var(--dorado)">Formatos: Caso de estudio web + Reel tour + YouTube vídeo completo</div>
+    </div>
+    <div class="card" style="border-top:2px solid var(--dorado)">
+      <div style="font-size:2rem;margin-bottom:0.75rem">03</div>
+      <span class="card-label">Pilar 3</span>
+      <div class="card-title">Vivir Bien / La Casa que Quieres Vivir</div>
+      <p class="card-text">Aspiracional lifestyle. Inspiración sin precio explícito. La casa como extensión de la identidad. Diseño biofílico, materiales nobles, luz y espacio habitable. Atrae a la fase de latencia del customer journey.</p>
+      <div style="margin-top:1rem;font-size:0.75rem;color:var(--dorado)">Formatos: Instagram Reels + Pinterest + Carrusel materiales</div>
+    </div>
+    <div class="card" style="border-top:2px solid var(--dorado)">
+      <div style="font-size:2rem;margin-bottom:0.75rem">04</div>
+      <span class="card-label">Pilar 4</span>
+      <div class="card-title">Arquitectura sin Fronteras</div>
+      <p class="card-text">Internacional + KEU. Proyectos en Puerto Rico, Miami, Canadá. KEU en diferentes países. "Lo que aprendemos construyendo en el Caribe". Activa el diferenciador más poderoso y atrae al cliente internacional residente en España.</p>
+      <div style="margin-top:1rem;font-size:0.75rem;color:var(--dorado)">Formatos: Blog + LinkedIn + YouTube documental mini</div>
+    </div>
+    <div class="card" style="border-top:2px solid var(--dorado)">
+      <div style="font-size:2rem;margin-bottom:0.75rem">05</div>
+      <span class="card-label">Pilar 5</span>
+      <div class="card-title">Perspectiva del Arquitecto</div>
+      <p class="card-text">Autoridad personal de Vidal. Opinión profesional sobre el mercado, materiales, tendencias, errores frecuentes. Humaniza la marca. Convierte a Vidal en referencia de criterio arquitectónico en la zona.</p>
+      <div style="margin-top:1rem;font-size:0.75rem;color:var(--dorado)">Formatos: LinkedIn newsletter "El Criterio" + Instagram personal + Podcast</div>
+    </div>
+  </div>
+
+  <!-- CALENDARIO EDITORIAL -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Calendario Editorial — 48 Piezas en 12 Meses</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Trimestre</th><th>Mes</th><th>Pieza / Título</th><th>Keyword</th><th>Pilar</th><th>Formato</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-gold" rowspan="4">Q3 2026</td><td>Julio</td><td>Cuánto cuesta construir una casa unifamiliar en Alicante en 2026</td><td>cuánto cuesta construir casa Alicante</td><td><span class="badge badge-gold">P1</span></td><td>Blog 1.500p</td></tr>
+        <tr><td>Julio</td><td>Villa A&E: del terreno en bruto a la entrega de llaves</td><td>—</td><td><span class="badge badge-blue">P2</span></td><td>Caso estudio</td></tr>
+        <tr><td>Agosto</td><td>Por qué el acero Corten envejece mejor en clima mediterráneo</td><td>materiales arquitectura Alicante</td><td><span class="badge badge-gray">P3</span></td><td>Blog + Reels</td></tr>
+        <tr><td>Agosto</td><td>Lo que aprendí construyendo en Puerto Rico (y no olvidaré)</td><td>arquitecto internacional Alicante</td><td><span class="badge badge-red">P4</span></td><td>Blog personal</td></tr>
+        <tr><td class="td-gold" rowspan="4">Q3-Q4</td><td>Septiembre</td><td>Reforma integral vs obra nueva: cuándo tiene sentido cada opción</td><td>reforma integral vs obra nueva Alicante</td><td><span class="badge badge-gold">P1</span></td><td>Blog comparativa</td></tr>
+        <tr><td>Septiembre</td><td>Culebra Resort: arquitectura en una isla sin electricidad ni agua corriente</td><td>arquitecto Puerto Rico</td><td><span class="badge badge-red">P4</span></td><td>YouTube Documental</td></tr>
+        <tr><td>Octubre</td><td>KEU Luxury Home: la revolución silenciosa de la vivienda modular premium</td><td>vivienda modular lujo Alicante</td><td><span class="badge badge-red">P4</span></td><td>Blog + LinkedIn</td></tr>
+        <tr><td>Octubre</td><td>El error más caro que cometen los clientes al elegir arquitecto</td><td>cómo elegir arquitecto Alicante</td><td><span class="badge badge-gold">P5</span></td><td>Blog + Carrusel</td></tr>
+        <tr><td class="td-gold" rowspan="4">Q4 2026</td><td>Noviembre</td><td>Lolo's House: interiorismo mediterráneo con influencias caribeñas</td><td>interiorismo Alicante</td><td><span class="badge badge-blue">P2</span></td><td>Caso estudio</td></tr>
+        <tr><td>Noviembre</td><td>Guía de licencias de obra en Alicante 2026</td><td>licencias obra Alicante 2026</td><td><span class="badge badge-gold">P1</span></td><td>Guía descargable</td></tr>
+        <tr><td>Diciembre</td><td>La casa de 2026 que me hubiera gustado diseñar</td><td>—</td><td><span class="badge badge-gold">P5</span></td><td>LinkedIn Newsletter</td></tr>
+        <tr><td>Diciembre</td><td>Arquitectura y bienestar: cómo la luz cambia cómo vives tu casa</td><td>diseño biofílico vivienda</td><td><span class="badge badge-gray">P3</span></td><td>Blog + Reels</td></tr>
+        <tr><td class="td-gold" rowspan="4">Q1 2027</td><td>Enero</td><td>Tendencias arquitectura residencial Costa Blanca 2027</td><td>tendencias arquitectura Alicante 2027</td><td><span class="badge badge-gold">P1</span></td><td>Blog especial</td></tr>
+        <tr><td>Enero</td><td>Villa Alenda Golf: arquitectura de autor en un entorno privilegiado</td><td>—</td><td><span class="badge badge-blue">P2</span></td><td>Caso estudio</td></tr>
+        <tr><td>Febrero</td><td>Cómo elegir los materiales para tu vivienda sin arrepentirte</td><td>materiales vivienda unifamiliar</td><td><span class="badge badge-gray">P3</span></td><td>Guía + Carrusel</td></tr>
+        <tr><td>Marzo</td><td>El equipo detrás de Vida Arquitectura: 5 especialistas, 1 visión</td><td>equipo arquitectos Elche</td><td><span class="badge badge-gold">P5</span></td><td>Blog + YouTube</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:0.8rem;color:var(--gris-texto);margin-top:0.5rem">* Calendario completo de 48 piezas disponible en el anexo digital. Tabla muestra selección representativa de los 4 primeros trimestres.</p>
+
+  <!-- ESTRATEGIA POR PLATAFORMA -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Estrategia por Plataforma</h3>
+    <div class="cards-grid cards-grid-3" style="gap:1.5rem">
+      <div class="card card-gold">
+        <span class="card-label">Instagram</span>
+        <div class="card-title">@vidaarquitectura + @vidalmoreno.arquitecto</div>
+        <div style="margin:1rem 0">
+          <div style="font-size:0.72rem;color:var(--dorado);margin-bottom:0.5rem">Frecuencia:</div>
+          <div style="font-size:0.85rem;color:rgba(255,255,255,0.8)">Estudio: 4-5 posts/semana | Vidal personal: 2-3 posts/semana</div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--dorado);margin-bottom:0.5rem">5 Formatos que más convierten:</div>
+        <ul style="list-style:none">
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">1. Carrusel Antes/Después (mayor engagement)</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">2. Reel Tour Proyecto (mayor alcance)</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">3. Carrusel Proceso en 8 pasos</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">4. Reel Detalle constructivo</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">5. Post Testimonio visual cliente</li>
+        </ul>
+      </div>
+      <div class="card card-gold">
+        <span class="card-label">YouTube</span>
+        <div class="card-title">Canal de Vida Arquitectura</div>
+        <div style="margin:1rem 0;background:rgba(201,168,76,0.06);padding:0.75rem;border-left:2px solid var(--dorado)">
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.8);line-height:1.6">Clientes de 400K€ pasan 20-30 min investigando al arquitecto antes de la primera llamada. YouTube es donde se forja la decisión real.</div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--dorado);margin-bottom:0.5rem">6 Primeros Vídeos:</div>
+        <ul style="list-style:none">
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">V1: Tour Villa A&E — proceso completo</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">V2: Construir en Puerto Rico — lo que nadie te dice</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">V3: KEU Luxury Home — cómo funciona</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">V4: Cuánto cuesta construir en Alicante 2026</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">V5: Proceso de arquitectura llave en mano</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">V6: El equipo de Vida Arquitectura</li>
+        </ul>
+      </div>
+      <div class="card card-gold">
+        <span class="card-label">LinkedIn</span>
+        <div class="card-title">Vidal Moreno + Newsletter "El Criterio"</div>
+        <div style="margin:1rem 0">
+          <div style="font-size:0.72rem;color:var(--dorado);margin-bottom:0.5rem">Frecuencia:</div>
+          <div style="font-size:0.85rem;color:rgba(255,255,255,0.8)">3 posts/semana + 1 newsletter mensual</div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--dorado);margin-bottom:0.5rem">5 Primeros Posts:</div>
+        <ul style="list-style:none">
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">P1: "Lo que el Caribe me enseñó sobre construir"</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">P2: "El mercado de lujo en Costa Blanca 2026 — mi análisis"</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">P3: "Por qué el arquitecto más importante no es el más famoso"</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">P4: "KEU Luxury Home: así funciona nuestro modelo modular"</li>
+          <li style="padding:0.25rem 0;font-size:0.82rem;color:rgba(255,255,255,0.75)">P5: "El error que cometen los clientes con el interiorismo"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUÍA DE VOZ -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Guía de Voz y Tono — Reglas de Comunicación</h3>
+    <div class="cards-grid cards-grid-2" style="gap:1.5rem">
+      <div class="card" style="border-top:2px solid #2ecc71">
+        <span class="card-label" style="color:#2ecc71">10 Palabras a USAR</span>
+        <div class="keyword-grid" style="margin-top:0.75rem">
+          <span class="keyword-pill kw-local" style="cursor:default">criterio</span>
+          <span class="keyword-pill kw-local" style="cursor:default">proceso</span>
+          <span class="keyword-pill kw-local" style="cursor:default">singular</span>
+          <span class="keyword-pill kw-local" style="cursor:default">materiales nobles</span>
+          <span class="keyword-pill kw-local" style="cursor:default">espacio habitable</span>
+          <span class="keyword-pill kw-local" style="cursor:default">precisión</span>
+          <span class="keyword-pill kw-local" style="cursor:default">construido</span>
+          <span class="keyword-pill kw-local" style="cursor:default">narrativa</span>
+          <span class="keyword-pill kw-local" style="cursor:default">identidad</span>
+          <span class="keyword-pill kw-local" style="cursor:default">permanencia</span>
+        </div>
+        <div style="margin-top:1.2rem;background:rgba(39,174,96,0.06);padding:0.75rem;border-left:2px solid #2ecc71">
+          <div style="font-size:0.75rem;color:#2ecc71;margin-bottom:0.3rem">Ejemplo correcto:</div>
+          <p style="font-size:0.82rem;color:rgba(255,255,255,0.75);font-style:italic">"Diseñamos espacios que hablan de quien los habita. Con criterio, materiales nobles y un proceso sin sorpresas."</p>
+        </div>
+      </div>
+      <div class="card" style="border-top:2px solid #e74c3c">
+        <span class="card-label" style="color:#e74c3c">10 Palabras PROHIBIDAS</span>
+        <div class="keyword-grid" style="margin-top:0.75rem">
+          <span class="keyword-pill" style="background:rgba(192,57,43,0.1);color:#e74c3c;border:1px solid rgba(192,57,43,0.25);cursor:default">calidad</span>
+          <span class="keyword-pill" style="background:rgba(192,57,43,0.1);color:#e74c3c;border:1px solid rgba(192,57,43,0.25);cursor:default">asequible</span>
+          <span class="keyword-pill" style="background:rgba(192,57,43,0.1);color:#e74c3c;border:1px solid rgba(192,57,43,0.25);cursor:default">rápido</span>
+          <span class="keyword-pill" style="background:rgba(192,57,43,0.1);color:#e74c3c;border:1px solid rgba(192,57,43,0.25);cursor:default">oferta</span>
+          <span class="keyword-pill" style="background:rgba(192,57,43,0.1);color:#e74c3c;border:1px solid rgba(192,57,43,0.25);cursor:default">estándar</span>
+          <span class="keyword-pill" style="background:rgba(192,57,43,0.1);color:#e74c3c;border:1px solid rgba(192,57,43,0.25);cursor:default">económico</span>
+          <span class="keyword-pill" style="background:rgba(192,57,43,0.1);color:#e74c3c;border:1px solid rgba(192,57,43,0.25);cursor:default">barato</span>
+          <span class="keyword-pill" style="background:rgba(192,57,43,0.1);color:#e74c3c;border:1px solid rgba(192,57,43,0.25);cursor:default">promoción</span>
+          <span class="keyword-pill" style="background:rgba(192,57,43,0.1);color:#e74c3c;border:1px solid rgba(192,57,43,0.25);cursor:default">descuento</span>
+          <span class="keyword-pill" style="background:rgba(192,57,43,0.1);color:#e74c3c;border:1px solid rgba(192,57,43,0.25);cursor:default">básico</span>
+        </div>
+        <div style="margin-top:1.2rem;background:rgba(192,57,43,0.06);padding:0.75rem;border-left:2px solid #e74c3c">
+          <div style="font-size:0.75rem;color:#e74c3c;margin-bottom:0.3rem">Ejemplo incorrecto (no usar nunca):</div>
+          <p style="font-size:0.82rem;color:rgba(255,255,255,0.75);font-style:italic">"Ofrecemos servicios de arquitectura de calidad a precios asequibles con rapidez."</p>
+        </div>
+      </div>
+    </div>
+    <div class="alert-box alert-gold" style="margin-top:1.5rem">
+      <div class="alert-title">Regla de Oro del Tono</div>
+      <div class="alert-text">Vida Arquitectura habla como un sommelier describe un vino, no como un vendedor describe un producto. Con convicción y criterio, sin agresividad comercial. El cliente de alto valor huye de quien le vende; se acerca a quien le educa.</div>
+    </div>
+  </div>
+
+  <!-- 20 HASHTAGS -->
+  <div style="margin-top:2.5rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--blanco);margin-bottom:1rem">20 Hashtags Estratégicos Instagram</h3>
+    <div class="keyword-grid">
+      <span class="keyword-pill kw-core">#vidaarquitectura</span>
+      <span class="keyword-pill kw-core">#arquitectoAlicante</span>
+      <span class="keyword-pill kw-core">#arquitectoElche</span>
+      <span class="keyword-pill kw-service">#viviendaunifamiliar</span>
+      <span class="keyword-pill kw-service">#obranueva</span>
+      <span class="keyword-pill kw-service">#reformaintegral</span>
+      <span class="keyword-pill kw-service">#interiorismo</span>
+      <span class="keyword-pill kw-local">#CostablancaLiving</span>
+      <span class="keyword-pill kw-local">#arquitecturaMediterranea</span>
+      <span class="keyword-pill kw-local">#ElcheArquitectura</span>
+      <span class="keyword-pill kw-longtail">#KEULuxuryHome</span>
+      <span class="keyword-pill kw-longtail">#casaModular</span>
+      <span class="keyword-pill kw-longtail">#arquitecturaLujo</span>
+      <span class="keyword-pill kw-longtail">#villadesign</span>
+      <span class="keyword-pill kw-longtail">#disenointerior</span>
+      <span class="keyword-pill kw-service">#ArquitecturaEspana</span>
+      <span class="keyword-pill kw-service">#casaconestilo</span>
+      <span class="keyword-pill kw-local">#CostaBlancareal</span>
+      <span class="keyword-pill kw-local">#arquitecturaboutique</span>
+      <span class="keyword-pill kw-longtail">#luxuryhomespain</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 7 — MARCA PERSONAL VIDAL MORENO
+════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section class="section" id="s7">
+  <div class="section-header">
+    <div class="section-number">07</div>
+    <div class="section-title-group">
+      <span class="section-label">Agente 7 — Marca Personal</span>
+      <h2 class="section-title">Marca Personal Vidal Moreno:<br>Del Arquitecto al Referente</h2>
+      <p class="section-desc">Estrategia de construcción de autoridad personal, arquitectura de las 3 marcas, plan de contenido 90 días y hoja de ruta para aparecer en medios y publicaciones de arquitectura.</p>
+    </div>
+  </div>
+
+  <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1400&q=80" alt="Arquitecto trabajando en proyecto" class="section-image">
+
+  <!-- DIAGNÓSTICO -->
+  <div class="alert-box alert-red">
+    <div class="alert-title">Diagnóstico Actual — Problema Crítico</div>
+    <div class="alert-text">Vidal Moreno no existe en Google como individuo. Sin LinkedIn verificado. KEU y Vida Arquitectura en silos desconectados sin sinergias de marca. Instagram del estudio presente (11K seg.) pero sin identidad personal diferenciada del fundador. Los clientes de alto valor contratan personas, no empresas. Esta es la brecha más urgente a cerrar.</div>
+  </div>
+
+  <!-- POSICIONAMIENTO PERSONAL -->
+  <div style="margin:2.5rem 0">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Posicionamiento Personal Definitivo</h3>
+    <div style="background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(201,168,76,0.02));border:1px solid rgba(201,168,76,0.25);padding:2.5rem;text-align:center">
+      <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.25em;color:var(--dorado);margin-bottom:1rem">Declaración de Posicionamiento Personal</div>
+      <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--blanco);line-height:1.2;margin-bottom:0.5rem">"Arquitecto de residencias singulares.</div>
+      <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--dorado);line-height:1.2">Del Mediterráneo al Caribe."</div>
+      <div style="margin-top:1.5rem;font-size:0.9rem;color:var(--gris-texto);max-width:600px;margin-left:auto;margin-right:auto">Este posicionamiento activa simultáneamente el diferenciador geográfico (local + internacional), la especialización en residencial premium y la narrativa personal que ningún competidor puede replicar.</div>
+    </div>
+  </div>
+
+  <!-- HISTORIA DE ORIGEN -->
+  <div style="margin-bottom:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.2rem">Historia de Origen — Redactada para Web, LinkedIn y YouTube</h3>
+    <div style="background:var(--gris-oscuro);border:1px solid var(--gris-borde);padding:2rem">
+      <p style="font-size:0.92rem;color:rgba(255,255,255,0.82);line-height:1.9;font-style:italic">
+        "Crecí entre los naranjos y el sol de Elche. Aprendí arquitectura en las aulas, pero la entendí de verdad cuando me puse a construir bajo un huracán en el Caribe. Puerto Rico, Miami, Canadá: proyectos que no te dejan margen para la duda ni el error. Que te obligan a entender cada material, cada junta, cada decisión estructural como si tu reputación —y la vida de alguien— dependiera de ello.
+        <br><br>
+        Volví al Mediterráneo con ese criterio. Con la convicción de que una casa no es un producto: es el lugar donde una familia decide quién quiere ser. Y eso merece el mismo rigor que construir frente al Atlántico.
+        <br><br>
+        Hoy, con Vida Arquitectura, hacemos eso: residencias singulares para personas que saben lo que quieren. Sin subcontratas, sin atajos, sin sorpresas. Con un equipo completo, criterio propio y la experiencia de haber construido donde pocos se atreven."
+      </p>
+      <div style="margin-top:1.2rem;display:flex;gap:0.75rem;flex-wrap:wrap">
+        <span class="badge badge-gold">Usar en: Sección "Nosotros" de la web</span>
+        <span class="badge badge-blue">LinkedIn "Acerca de"</span>
+        <span class="badge badge-gray">Intro vídeo YouTube</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 MARCAS -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Arquitectura de las 3 Marcas</h3>
+  <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin:2rem 0;padding:2rem;background:var(--gris-oscuro);border:1px solid var(--gris-borde)">
+    <div style="text-align:center;flex:1;min-width:180px">
+      <div style="width:64px;height:64px;border-radius:50%;border:2px solid var(--dorado);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--dorado);font-weight:900">V</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--blanco);margin-bottom:0.5rem">Vidal Moreno</div>
+      <div style="font-size:0.75rem;color:var(--gris-texto)">Persona · Criterio · Autoridad<br>No hace CTAs de venta</div>
+    </div>
+    <div style="font-size:2rem;color:rgba(201,168,76,0.3)">→</div>
+    <div style="text-align:center;flex:1;min-width:180px">
+      <div style="width:64px;height:64px;border-radius:50%;border:2px solid var(--dorado);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:'Playfair Display',serif;font-size:0.85rem;color:var(--dorado);font-weight:700">VIDA</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--blanco);margin-bottom:0.5rem">Vida Arquitectura</div>
+      <div style="font-size:0.75rem;color:var(--gris-texto)">Servicio · Local premium<br>Captación + conversión</div>
+    </div>
+    <div style="font-size:2rem;color:rgba(201,168,76,0.3)">→</div>
+    <div style="text-align:center;flex:1;min-width:180px">
+      <div style="width:64px;height:64px;border-radius:50%;border:2px solid var(--dorado);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:'Playfair Display',serif;font-size:0.75rem;color:var(--dorado);font-weight:700">KEU</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--blanco);margin-bottom:0.5rem">KEU Luxury Home</div>
+      <div style="font-size:0.75rem;color:var(--gris-texto)">Producto · Internacional<br>Escalabilidad + expansión</div>
+    </div>
+  </div>
+  <div class="alert-box alert-gold">
+    <div class="alert-title">Regla de Oro de las 3 Marcas</div>
+    <div class="alert-text">Nunca confundir canales, nunca hacer CTA de venta en el perfil personal de Vidal. La marca personal construye autoridad; Vida Arquitectura convierte; KEU escala. Cada canal tiene su función y su audiencia.</div>
+  </div>
+
+  <!-- BENCHMARK -->
+  <div style="margin:2.5rem 0">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Benchmark de Referencia</h3>
+    <div class="card card-gold" style="max-width:700px">
+      <span class="card-label">Inspiración Estratégica</span>
+      <div class="card-title">Fran Silvestre Arquitectos — Valencia</div>
+      <p class="card-text" style="margin-bottom:1rem">4.1 millones de seguidores. Partió de exactamente el mismo posicionamiento: arquitecto de residencias de alto nivel en el Mediterráneo. Sin proyectos internacionales espectaculares al inicio. Solo criterio, narrativa visual y consistencia de publicación. En 5 años, primer estudio de arquitectura residencial en habla hispana en redes.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;font-size:0.82rem">
+        <div><span style="color:var(--dorado)">Lo que hizo bien:</span><br><span style="color:rgba(255,255,255,0.75)">Mostrar el proceso antes que el resultado. Narrativa de detalle. Equipo como protagonistas.</span></div>
+        <div><span style="color:var(--dorado)">Lo que puede hacer Vidal mejor:</span><br><span style="color:rgba(255,255,255,0.75)">La historia internacional real del Caribe. KEU como producto propio escalable. Trilingüe para audiencia global.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLAN 90 DÍAS -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Plan de Contenido Personal — 90 Días</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Semana</th><th>Instagram (@vidalmoreno.arquitecto)</th><th>LinkedIn</th><th>YouTube</th></tr></thead>
+      <tbody>
+        <tr><td class="td-gold">1-2</td><td>Perfil optimizado + 3 posts de presentación personal</td><td>Perfil completo + historia de origen publicada</td><td>—</td></tr>
+        <tr><td class="td-gold">3-4</td><td>"Lo que aprendí en Puerto Rico" — carrusel 8 slides</td><td>"El error de construir sin entender el lugar" — post viral</td><td>—</td></tr>
+        <tr><td class="td-gold">5-6</td><td>Detalle material — "Por qué elegimos este hormigón" (Reel)</td><td>"El mercado de arquitectura en Alicante 2026 — mi análisis"</td><td>V1: Tour Villa A&E (guión completo listo)</td></tr>
+        <tr><td class="td-gold">7-8</td><td>Proceso boceto a 3D — proceso de diseño (carrusel)</td><td>Newsletter "El Criterio" — número 1</td><td>—</td></tr>
+        <tr><td class="td-gold">9-10</td><td>KEU en contexto real — unboxing de módulo (Reel)</td><td>"Por qué el arquitecto más importante no es el más famoso"</td><td>V2: Construir en Puerto Rico</td></tr>
+        <tr><td class="td-gold">11-12</td><td>Testimonio cliente — formato narrativo visual</td><td>Newsletter "El Criterio" — número 2 + invitación follower</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CONSTRUCCIÓN AUTORIDAD -->
+  <div style="margin-top:3rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Construcción de Autoridad — Medios y Publicaciones</h3>
+    <div class="cards-grid cards-grid-2" style="gap:1.5rem">
+      <div class="card">
+        <span class="card-label">Publicaciones de Arquitectura</span>
+        <div class="card-title">Estrategia de Envío a Medios</div>
+        <ul class="timeline-items" style="list-style:none;margin-top:0.75rem">
+          <li style="padding:0.3rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> ArchDaily (submissions@archdaily.com) — Culebra Resort</li>
+          <li style="padding:0.3rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> On Diseño — Villa Alenda Golf o Villa A&E</li>
+          <li style="padding:0.3rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> Arquitectura Viva — KEU como tendencia modular premium</li>
+          <li style="padding:0.3rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> AD España — Pitch: "Arquitecto Alicante construye en el Caribe"</li>
+          <li style="padding:0.3rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> Dezeen — Proyectos internacionales con fotografía editorial</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="card-label">Prensa Local + Networking</span>
+        <div class="card-title">Presencia en el Territorio</div>
+        <ul class="timeline-items" style="list-style:none;margin-top:0.75rem">
+          <li style="padding:0.3rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> Información de Alicante — entrevista con ángulo mercado lujo</li>
+          <li style="padding:0.3rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> La Verdad Murcia — apertura mercado Murcia con KEU</li>
+          <li style="padding:0.3rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> Lucas Fox + Engel &amp; Völkers — acuerdo de referidos recíprocos</li>
+          <li style="padding:0.3rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> Knight Frank Alicante — red de clientes UHNWI internacionales</li>
+          <li style="padding:0.3rem 0;font-size:0.85rem;color:rgba(255,255,255,0.8);display:flex;gap:0.5rem"><span style="color:var(--dorado)">▸</span> COACV (Colegio Arquitectos Comunitat Valenciana) — visibilidad colegial</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 8 — IA Y AUTOMATIZACIÓN
+════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section class="section" id="s8">
+  <div class="section-header">
+    <div class="section-number">08</div>
+    <div class="section-title-group">
+      <span class="section-label">Agente 8 — IA y Automatización</span>
+      <h2 class="section-title">Stack Tecnológico:<br>51€/mes · ROI 4.575% · 5 Automatizaciones</h2>
+      <p class="section-desc">Stack de herramientas IA seleccionadas por coste-eficiencia, 5 flujos de automatización completos y roadmap de implementación en 4 semanas sin conocimientos técnicos.</p>
+    </div>
+  </div>
+
+  <!-- STACK -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Stack Tecnológico Recomendado — 51€/mes</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Herramienta</th><th>Función</th><th>Coste/mes</th><th>ROI Clave</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Claude API</strong> (Anthropic)</td>
+          <td>Generación de artículos, copys, emails de nurturing desde transcripciones de audio de Vidal</td>
+          <td class="td-gold">25€</td>
+          <td>1 artículo cada 7 min de trabajo humano</td>
+        </tr>
+        <tr>
+          <td><strong>Make.com Core</strong></td>
+          <td>Automatización central: conecta formularios, CRM, email, WhatsApp y redes sociales</td>
+          <td class="td-gold">9€</td>
+          <td>5 flujos automáticos que funcionan 24/7</td>
+        </tr>
+        <tr>
+          <td><strong>HubSpot CRM</strong></td>
+          <td>Gestión de leads, pipeline de propuestas, historial de comunicaciones con clientes</td>
+          <td class="td-gold">0€</td>
+          <td>Visibilidad total del pipeline de proyectos</td>
+        </tr>
+        <tr>
+          <td><strong>Brevo</strong></td>
+          <td>Envío de emails de nurturing, secuencias automáticas, gestión de listas segmentadas</td>
+          <td class="td-gold">0-9€</td>
+          <td>3 emails de nurturing automáticos post-formulario</td>
+        </tr>
+        <tr>
+          <td><strong>WPForms Pro</strong></td>
+          <td>Formulario cualificado WordPress con lógica condicional, integración Make + HubSpot</td>
+          <td class="td-gold">7€</td>
+          <td>Score lead automático · Alertas en tiempo real</td>
+        </tr>
+        <tr>
+          <td><strong>CallMeBot WhatsApp</strong></td>
+          <td>Notificación a Vidal vía WhatsApp cuando llega un lead con score ≥8 (lead caliente)</td>
+          <td class="td-gold">0€</td>
+          <td>Respuesta a lead caliente en &lt;15 minutos</td>
+        </tr>
+        <tr>
+          <td><strong>OpenAI Whisper</strong></td>
+          <td>Transcripción de audios de Vidal (2 min) a texto para alimentar el Content Machine</td>
+          <td class="td-gold">~1€</td>
+          <td>Input humano mínimo para producción de contenido</td>
+        </tr>
+        <tr style="background:rgba(201,168,76,0.06)">
+          <td colspan="2"><strong>TOTAL MENSUAL</strong></td>
+          <td class="td-gold"><strong>~51€/mes</strong></td>
+          <td class="td-gold"><strong>612€/año</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin:2rem 0;background:var(--gris-oscuro);border:1px solid var(--gris-borde);padding:2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem">
+    <div style="text-align:center">
+      <span style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--dorado);display:block">612€</span>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gris-texto)">Coste anual del stack</div>
+    </div>
+    <div style="text-align:center">
+      <span style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--dorado);display:block">28-42K€</span>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gris-texto)">Honorarios por 1 proyecto adicional</div>
+    </div>
+    <div style="text-align:center">
+      <span style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--dorado);display:block">4.575%</span>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gris-texto)">ROI proyectado del stack</div>
+    </div>
+  </div>
+
+  <!-- 5 AUTOMATIZACIONES -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin:2.5rem 0 1.5rem">Las 5 Automatizaciones Clave</h3>
+  <div class="cards-grid cards-grid-2" style="gap:1.5rem;margin-bottom:3rem">
+    <div class="card card-gold">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div style="width:40px;height:40px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--dorado)">1</div>
+        <span class="card-label">Automatización 1</span>
+      </div>
+      <div class="card-title">Content Machine</div>
+      <p class="card-text" style="margin-bottom:0.75rem">Vidal graba 2 minutos de audio con su móvil → Whisper transcribe → Claude genera artículo completo (900 palabras, SEO optimizado) → WordPress publica como borrador → Make distribuye a LinkedIn e Instagram. <strong style="color:var(--dorado)">Tiempo humano: 7 minutos por pieza de contenido.</strong></p>
+      <div style="font-size:0.75rem;color:var(--gris-texto)">Herramientas: Whisper + Claude API + Make + WP REST API</div>
+    </div>
+    <div class="card card-gold">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div style="width:40px;height:40px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--dorado)">2</div>
+        <span class="card-label">Automatización 2</span>
+      </div>
+      <div class="card-title">Lead Catcher</div>
+      <p class="card-text" style="margin-bottom:0.75rem">Formulario web enviado → Make calcula score (presupuesto, plazo, ubicación, fuente) → HubSpot CRM crea contacto → Brevo envía email de bienvenida personalizado → Si score ≥8: WhatsApp a Vidal en tiempo real con datos del lead. <strong style="color:var(--dorado)">Respuesta garantizada en &lt;15 min para leads calientes.</strong></p>
+      <div style="font-size:0.75rem;color:var(--gris-texto)">Herramientas: WPForms + Make + HubSpot + Brevo + CallMeBot</div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div style="width:40px;height:40px;background:rgba(255,255,255,0.05);border:1px solid var(--gris-borde);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--gris-texto)">3</div>
+        <span class="card-label">Automatización 3</span>
+      </div>
+      <div class="card-title">Social Distributor</div>
+      <p class="card-text">Artículo publicado en WordPress → Make extrae texto → Claude genera versión optimizada para Instagram (copy + hashtags) y para LinkedIn (tono profesional) → Publicación programada en ambas plataformas. Un contenido, 3 formatos, sin intervención manual.</p>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div style="width:40px;height:40px;background:rgba(255,255,255,0.05);border:1px solid var(--gris-borde);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--gris-texto)">4</div>
+        <span class="card-label">Automatización 4</span>
+      </div>
+      <div class="card-title">Proposal Tracker</div>
+      <p class="card-text">Cuando una propuesta lleva +7 días sin respuesta → HubSpot alerta → Make envía email de seguimiento personalizado generado por Claude → Vidal aprueba o descarta. Nunca se pierde un lead por olvido de seguimiento.</p>
+    </div>
+    <div class="card" style="grid-column:span 2">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div style="width:40px;height:40px;background:rgba(255,255,255,0.05);border:1px solid var(--gris-borde);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--gris-texto)">5</div>
+        <span class="card-label">Automatización 5</span>
+      </div>
+      <div class="card-title">Monday Report — Informe Semanal Automático</div>
+      <p class="card-text">Cada lunes a las 8h → Make consulta HubSpot, Google Analytics y GSC → Claude genera resumen ejecutivo en 5 líneas → Envío por email a Vidal: leads esta semana, posiciones SEO clave, artículos publicados, proyectos en pipeline. <strong style="color:var(--dorado)">Vidal tiene el pulso del negocio en 30 segundos cada lunes por la mañana.</strong></p>
+    </div>
+  </div>
+
+  <!-- ROADMAP 4 SEMANAS -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">Roadmap de Implementación — 4 Semanas</h3>
+  <div class="action-phases">
+    <div class="action-phase action-phase-30">
+      <div class="action-phase-title">Semana 1</div>
+      <div class="action-phase-label">HubSpot + Brevo + Lead Catcher</div>
+      <ul class="action-list">
+        <li class="action-item">
+          <div class="action-item-title">Instalar HubSpot CRM gratuito</div>
+          <div class="action-item-meta"><span class="badge badge-gold">3h</span><span class="badge badge-gray">Sin código</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">Configurar Brevo + 3 emails nurturing</div>
+          <div class="action-item-meta"><span class="badge badge-gold">4h</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">WPForms + Make: flujo Lead Catcher</div>
+          <div class="action-item-meta"><span class="badge badge-gold">5h</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">CallMeBot: alerta WhatsApp leads calientes</div>
+          <div class="action-item-meta"><span class="badge badge-gold">1h</span></div>
+        </li>
+      </ul>
+    </div>
+    <div class="action-phase action-phase-90">
+      <div class="action-phase-title">Semana 2</div>
+      <div class="action-phase-label">Content Machine</div>
+      <ul class="action-list">
+        <li class="action-item">
+          <div class="action-item-title">Configurar API Claude + Whisper</div>
+          <div class="action-item-meta"><span class="badge badge-gold">3h</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">Conectar WP REST API de Arsys</div>
+          <div class="action-item-meta"><span class="badge badge-gold">2h</span><span class="badge badge-gray">Application Passwords</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">Flujo Make: audio → artículo → WordPress</div>
+          <div class="action-item-meta"><span class="badge badge-gold">4h</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">Test con primer artículo real</div>
+          <div class="action-item-meta"><span class="badge badge-gold">1h</span></div>
+        </li>
+      </ul>
+    </div>
+    <div class="action-phase action-phase-365">
+      <div class="action-phase-title">Semana 3-4</div>
+      <div class="action-phase-label">Distribución Social + Monday Report</div>
+      <ul class="action-list">
+        <li class="action-item">
+          <div class="action-item-title">Social Distributor: WP → LinkedIn/IG</div>
+          <div class="action-item-meta"><span class="badge badge-gold">3h</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">Proposal Tracker: seguimiento automático</div>
+          <div class="action-item-meta"><span class="badge badge-gold">2h</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">Monday Report: dashboard semanal</div>
+          <div class="action-item-meta"><span class="badge badge-gold">3h</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">Total equipo: 23 horas. Sin técnicos externos.</div>
+          <div class="action-item-meta"><span class="badge badge-green">ROI inmediato</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 9 — PLAN DE NEGOCIO 2026-2031
+════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section class="section" id="s9">
+  <div class="section-header">
+    <div class="section-number">09</div>
+    <div class="section-title-group">
+      <span class="section-label">Plan de Negocio</span>
+      <h2 class="section-title">Hoja de Ruta Financiera<br>2026 — 2031</h2>
+      <p class="section-desc">Proyecciones financieras en 3 escenarios, expansión KEU internacional, estructura de pricing por tiers, inversión en marketing con ROI proyectado, plan de equipo y análisis de riesgos.</p>
+    </div>
+  </div>
+
+  <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=1400&q=80" alt="Vista aérea villa de lujo Costa Blanca" class="section-image" style="height:360px">
+
+  <!-- A) MODELO DE INGRESOS ACTUAL -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">A) Modelo de Ingresos Actual</h3>
+  <div class="cards-grid cards-grid-4" style="gap:1rem;margin-bottom:2rem">
+    <div class="card" style="text-align:center">
+      <span style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--dorado);display:block">60%</span>
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gris-texto);margin-top:0.3rem">Arquitectura<br>Obra Nueva</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <span style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--dorado);display:block">25%</span>
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gris-texto);margin-top:0.3rem">Reformas<br>Integrales</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <span style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--dorado);display:block">10%</span>
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gris-texto);margin-top:0.3rem">Interiorismo<br>y Diseño</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <span style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--dorado);display:block">5%</span>
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gris-texto);margin-top:0.3rem">KEU<br>Luxury Home</div>
+    </div>
+  </div>
+  <div style="background:var(--gris-oscuro);border:1px solid var(--gris-borde);padding:2rem;margin-bottom:3rem">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem">
+      <div>
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--dorado);margin-bottom:0.4rem">Honorarios típicos</div>
+        <div style="font-size:1rem;color:var(--blanco);font-weight:600">8-12% del presupuesto de obra</div>
+      </div>
+      <div>
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--dorado);margin-bottom:0.4rem">Presupuesto medio proyecto</div>
+        <div style="font-size:1rem;color:var(--blanco);font-weight:600">~350.000€</div>
+      </div>
+      <div>
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--dorado);margin-bottom:0.4rem">Honorarios medio por proyecto</div>
+        <div style="font-size:1rem;color:var(--blanco);font-weight:600">~35.000€</div>
+      </div>
+      <div>
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--dorado);margin-bottom:0.4rem">Facturación estimada actual</div>
+        <div style="font-size:1rem;color:var(--blanco);font-weight:600">140.000-210.000€/año</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B) PROYECCIONES 2026-2031 -->
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">B) Proyecciones Financieras 2026-2031 — 3 Escenarios</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Año</th>
+          <th colspan="3">Escenario Conservador (15%/año)</th>
+          <th colspan="3">Escenario Realista (30%/año)</th>
+          <th colspan="3">Escenario Optimista (50%/año + KEU)</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th style="font-size:0.62rem">Proyectos</th>
+          <th style="font-size:0.62rem">Honorarios €</th>
+          <th style="font-size:0.62rem">Facturación</th>
+          <th style="font-size:0.62rem">Proyectos</th>
+          <th style="font-size:0.62rem">Honorarios €</th>
+          <th style="font-size:0.62rem">Facturación</th>
+          <th style="font-size:0.62rem">Proyectos</th>
+          <th style="font-size:0.62rem">Honorarios €</th>
+          <th style="font-size:0.62rem">Facturación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-gold"><strong>2026</strong></td>
+          <td>5-6</td><td>35.000€</td><td>175-210K€</td>
+          <td>6-7</td><td>37.000€</td><td>220-260K€</td>
+          <td>7-8</td><td>38.000€</td><td>270-305K€</td>
+        </tr>
+        <tr>
+          <td class="td-gold"><strong>2027</strong></td>
+          <td>6-7</td><td>36.000€</td><td>215-252K€</td>
+          <td>8-10</td><td>40.000€</td><td>320-400K€</td>
+          <td>10-12</td><td>42.000€</td><td>420-504K€</td>
+        </tr>
+        <tr>
+          <td class="td-gold"><strong>2028</strong></td>
+          <td>7-8</td><td>37.000€</td><td>259-296K€</td>
+          <td>11-13</td><td>43.000€</td><td>473-559K€</td>
+          <td>14-16</td><td>47.000€</td><td>658-752K€</td>
+        </tr>
+        <tr>
+          <td class="td-gold"><strong>2029</strong></td>
+          <td>8-9</td><td>38.000€</td><td>304-342K€</td>
+          <td>14-16</td><td>46.000€</td><td>644-736K€</td>
+          <td>+KEU JV</td><td>—</td><td class="td-gold">1.0-1.2M€</td>
+        </tr>
+        <tr>
+          <td class="td-gold"><strong>2030</strong></td>
+          <td>9-11</td><td>39.000€</td><td>351-429K€</td>
+          <td>18-20</td><td>50.000€</td><td>900K-1M€</td>
+          <td>+KEU Intl.</td><td>—</td><td class="td-gold">1.5-2.0M€</td>
+        </tr>
+        <tr style="background:rgba(201,168,76,0.06)">
+          <td class="td-gold"><strong>2031</strong></td>
+          <td>11-13</td><td>40.000€</td><td>440-520K€</td>
+          <td class="td-green">20-25</td><td class="td-green">55.000€</td><td class="td-green">1.1-1.4M€</td>
+          <td class="td-gold">Escala KEU</td><td class="td-gold">—</td><td class="td-gold"><strong>2.5-3.5M€</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- C) KEU EXPANSION -->
+  <div style="margin-top:3.5rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">C) Hoja de Ruta Expansión KEU Luxury Home 2026-2031</h3>
+    <div class="timeline-wrap">
+      <div class="timeline-line"></div>
+      <div class="timeline-phases" style="grid-template-columns:repeat(5,1fr)">
+        <div class="timeline-phase">
+          <div class="timeline-dot" style="font-size:0.8rem">2026</div>
+          <div class="timeline-phase-title" style="font-size:1rem">Consolidación</div>
+          <div class="timeline-phase-label">Alicante-Murcia</div>
+          <ul class="timeline-items">
+            <li>5-8 unidades KEU en la zona</li>
+            <li>Landing page KEU dedicada</li>
+            <li>Ingresos KEU: 50K€</li>
+          </ul>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot" style="font-size:0.8rem">2027</div>
+          <div class="timeline-phase-title" style="font-size:1rem">Internacional</div>
+          <div class="timeline-phase-label">Alemania + Francia</div>
+          <ul class="timeline-items">
+            <li>Distribuidor local en Alemania</li>
+            <li>Distribuidor local en Francia</li>
+            <li>Ingresos KEU: 120K€</li>
+          </ul>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot" style="font-size:0.8rem">2028</div>
+          <div class="timeline-phase-title" style="font-size:1rem">Franquicia</div>
+          <div class="timeline-phase-label">Modelo distribución</div>
+          <ul class="timeline-items">
+            <li>Franquicia arquitectónica KEU</li>
+            <li>3-5 distribuidores activos</li>
+            <li>Ingresos KEU: 250K€</li>
+          </ul>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot" style="font-size:0.8rem">2029</div>
+          <div class="timeline-phase-title" style="font-size:1rem">Joint Venture</div>
+          <div class="timeline-phase-label">Urbanización villas</div>
+          <ul class="timeline-items">
+            <li>JV con promotora Costa Blanca</li>
+            <li>10-15 villas KEU en conjunto</li>
+            <li>Ingresos KEU: 500K€</li>
+          </ul>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot" style="font-size:0.8rem">2031</div>
+          <div class="timeline-phase-title" style="font-size:1rem">Exportación</div>
+          <div class="timeline-phase-label">Mercados emergentes</div>
+          <ul class="timeline-items">
+            <li>Portugal Algarve + Montenegro</li>
+            <li>Dubai low-rise</li>
+            <li>Ingresos KEU: 1M€+</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D) PRICING TIERS -->
+  <div style="margin-top:3.5rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">D) Estructura de Pricing Recomendada — 3 Tiers</h3>
+    <div class="cards-grid cards-grid-3" style="gap:1.5rem">
+      <div class="card" style="border-top:2px solid #5d6d7e">
+        <span class="card-label" style="color:#85929e">Tier 1 — Estudio</span>
+        <div class="card-title">Viviendas 150.000-250.000€</div>
+        <div style="font-size:2rem;font-family:'Playfair Display',serif;color:var(--blanco);margin:1rem 0">12-15%</div>
+        <p class="card-text" style="margin-bottom:1rem">Honorarios sobre presupuesto de obra. Ticket de diseño desde 18.000€. Proyecto completo con dirección de obra. Sin servicio de procurement de materiales.</p>
+        <div style="font-size:0.75rem;color:#85929e">Ejemplo: Casa 200K€ → honorarios ~28.000€</div>
+      </div>
+      <div class="card card-gold">
+        <span class="card-label">Tier 2 — Premium</span>
+        <div class="card-title">Viviendas 250.000-500.000€</div>
+        <div style="font-size:2rem;font-family:'Playfair Display',serif;color:var(--dorado);margin:1rem 0">10-12%</div>
+        <p class="card-text" style="margin-bottom:1rem">Honorarios completos incluyendo coordinación llave en mano. Selección de materiales + interiorismo integrado. Reuniones quincenales de seguimiento. Acceso al equipo completo.</p>
+        <div style="font-size:0.75rem;color:var(--dorado)">Ejemplo: Villa 400K€ → honorarios ~44.000€</div>
+      </div>
+      <div class="card" style="border-top:2px solid var(--dorado-claro)">
+        <span class="card-label" style="color:var(--dorado-claro)">Tier 3 — Signature</span>
+        <div class="card-title">Viviendas 500.000€+</div>
+        <div style="font-size:2rem;font-family:'Playfair Display',serif;color:var(--dorado-claro);margin:1rem 0">8-10% + fee</div>
+        <p class="card-text" style="margin-bottom:1rem">Honorarios + fee de gestión mensual durante obra. Acceso directo a Vidal. Servicio completo de interiorismo e integración domótica. Viajes si el proyecto lo requiere. SLA 24h.</p>
+        <div style="font-size:0.75rem;color:var(--dorado-claro)">Ejemplo: Villa 700K€ → honorarios ~63.000€ + gestión</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1.5rem;background:linear-gradient(135deg,rgba(201,168,76,0.06),transparent)">
+      <span class="card-label">KEU Luxury Home — Modelo de Comisiones</span>
+      <div class="card-title">15-20% sobre precio de venta + honorarios de proyecto</div>
+      <p class="card-text">Comisión de distribución sobre el precio de venta de la unidad KEU (15-20%) más los honorarios arquitectónicos de adaptación y proyecto de implantación (3-5% adicional). En una unidad KEU de 200K€, el ingreso de Vida Arquitectura es de 36.000-50.000€ sin incluir obra de urbanización.</p>
+    </div>
+  </div>
+
+  <!-- E) INVERSIÓN MARKETING -->
+  <div style="margin-top:3.5rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">E) Inversión en Marketing y ROI Proyectado</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Canal</th><th>Inversión Año 1</th><th>Leads Esperados/año</th><th>Proyectos Cerrados</th><th>Honorarios Captados</th><th>ROI</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SEO local + contenido</strong></td>
+            <td class="td-gold">12.000€</td>
+            <td>80-120 leads</td>
+            <td>4-6 proyectos</td>
+            <td class="td-green">140-210K€</td>
+            <td class="td-green">1.167-1.750%</td>
+          </tr>
+          <tr>
+            <td><strong>Google Business Profile</strong></td>
+            <td class="td-gold">3.000€</td>
+            <td>30-50 leads</td>
+            <td>2-3 proyectos</td>
+            <td class="td-green">70-105K€</td>
+            <td class="td-green">2.333%</td>
+          </tr>
+          <tr>
+            <td><strong>Branding + web rediseño</strong></td>
+            <td class="td-gold">8.000€</td>
+            <td>— (soporte)</td>
+            <td>+15% tasa conv. global</td>
+            <td class="td-green">Multiplicador</td>
+            <td class="td-gold">Soporte</td>
+          </tr>
+          <tr>
+            <td><strong>Contenido Instagram + YouTube</strong></td>
+            <td class="td-gold">6.000€</td>
+            <td>20-40 leads</td>
+            <td>1-3 proyectos</td>
+            <td class="td-green">35-105K€</td>
+            <td class="td-green">583-1.750%</td>
+          </tr>
+          <tr>
+            <td><strong>Stack IA automatización</strong></td>
+            <td class="td-gold">612€</td>
+            <td>Eficiencia</td>
+            <td>+1 proyecto (tiempo libre)</td>
+            <td class="td-green">28-42K€</td>
+            <td class="td-green">4.575%</td>
+          </tr>
+          <tr style="background:rgba(201,168,76,0.06)">
+            <td><strong>TOTAL</strong></td>
+            <td class="td-gold"><strong>29.612€</strong></td>
+            <td><strong>130-210 leads</strong></td>
+            <td><strong>8-13 proyectos</strong></td>
+            <td class="td-green"><strong>273-462K€</strong></td>
+            <td class="td-green"><strong>922-1.560%</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert-box alert-green" style="margin-top:1rem">
+      <div class="alert-title">Conclusión ROI</div>
+      <div class="alert-text">Cada euro invertido en la estrategia digital de Vida Arquitectura genera entre 9,2 y 15,6 euros en honorarios captados durante el primer año. A partir del año 2, el SEO y la reputación digital generan leads sin inversión marginal adicional. El coste por proyecto captado a través de SEO maduro (año 2-3) baja a 500-1.500€ por proyecto de 35.000€ de honorarios.</div>
+    </div>
+  </div>
+
+  <!-- F) EQUIPO -->
+  <div style="margin-top:3.5rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">F) Plan de Equipo y Crecimiento Organizacional</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Año</th><th>Incorporación</th><th>Justificación</th><th>Coste estimado</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-gold">2026</td>
+            <td>Asistente de comunicación / contenidos (media jornada)</td>
+            <td>Implementar el Content Machine y gestionar redes. Sin este recurso, el sistema de contenido no es sostenible con Vidal a jornada completa de proyectos.</td>
+            <td>12.000-18.000€/año</td>
+          </tr>
+          <tr>
+            <td class="td-gold">2027</td>
+            <td>Arquitecto junior para línea KEU (si ≥8 proyectos KEU anuales)</td>
+            <td>Gestionar proyectos KEU de implantación estándar liberando a Vidal para proyectos Signature y desarrollo de negocio internacional KEU.</td>
+            <td>28.000-35.000€/año</td>
+          </tr>
+          <tr>
+            <td class="td-gold">2028</td>
+            <td>Director Comercial Internacional KEU</td>
+            <td>Desarrollar mercados alemán, francés y portugués. Perfil bilingüe con experiencia en distribución de productos de lujo o construcción modular.</td>
+            <td>45.000-60.000€/año</td>
+          </tr>
+          <tr>
+            <td class="td-gold">2029</td>
+            <td>Socio Arquitecto para proyectos locales Signature</td>
+            <td>Mientras Vidal lidera la expansión KEU internacional, el socio gestiona la excelencia en proyectos residenciales locales de alto valor. Modelo de partnership, no empleado.</td>
+            <td>Partnership / equity</td>
+          </tr>
+          <tr style="background:rgba(201,168,76,0.06)">
+            <td class="td-gold">2030-31</td>
+            <td>Máximo 12-15 proyectos/año en línea boutique</td>
+            <td>La escalabilidad boutique requiere no crecer en volumen sino en ticket medio. Máximo 15 proyectos/año garantiza calidad y presencia personal de Vidal en cada uno.</td>
+            <td>Modelo preservado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- G) RIESGOS -->
+  <div style="margin-top:3.5rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--blanco);margin-bottom:1.5rem">G) Riesgos y Plan de Mitigación</h3>
+    <div class="cards-grid cards-grid-2" style="gap:1.2rem">
+      <div class="card" style="border-left:3px solid #e74c3c">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+          <span class="card-label" style="color:#e74c3c">Riesgo 1</span>
+          <span class="badge badge-red">Alto</span>
+        </div>
+        <div class="card-title">Dependencia de Vidal como único rostro visible</div>
+        <p class="card-text" style="margin-bottom:0.75rem">Si Vidal enferma, viaja o no puede atender, la captación colapsa.</p>
+        <div style="font-size:0.75rem;color:#2ecc71;font-weight:600">Mitigación:</div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.75)">Construir a Óscar Hernández como co-brand visible (Arquitecto Paisajista — diferenciador único). Sistema de contenido no depende de Vidal en directo. CRM con protocolos de respuesta sin el CEO.</p>
+      </div>
+      <div class="card" style="border-left:3px solid #e74c3c">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+          <span class="card-label" style="color:#e74c3c">Riesgo 2</span>
+          <span class="badge badge-gold">Moderado</span>
+        </div>
+        <div class="card-title">Corrección ciclo inmobiliario español 2027-2028</div>
+        <p class="card-text" style="margin-bottom:0.75rem">Posible enfriamiento del mercado después del máximo histórico actual.</p>
+        <div style="font-size:0.75rem;color:#2ecc71;font-weight:600">Mitigación:</div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.75)">Diversificación internacional vía KEU (no ligado al ciclo español). Acumular cartera de clientes de ciclo largo antes de 2027. El segmento lujo aguanta correcciones mejor que el mercado general.</p>
+      </div>
+      <div class="card" style="border-left:3px solid #f39c12">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+          <span class="card-label" style="color:#f39c12">Riesgo 3</span>
+          <span class="badge badge-gold">Moderado</span>
+        </div>
+        <div class="card-title">Grandes estudios entrando en el nicho lujo Alicante</div>
+        <p class="card-text" style="margin-bottom:0.75rem">Estudios de Madrid o Valencia con más recursos entran en Costa Blanca.</p>
+        <div style="font-size:0.75rem;color:#2ecc71;font-weight:600">Mitigación:</div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.75)">Velocidad de posicionamiento SEO ahora, antes de que lleguen. Ventaja del conocimiento local y la red de contactos construida. Diferenciador KEU imposible de replicar en 12 meses.</p>
+      </div>
+      <div class="card" style="border-left:3px solid #f39c12">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+          <span class="card-label" style="color:#f39c12">Riesgo 4</span>
+          <span class="badge badge-gray">Bajo</span>
+        </div>
+        <div class="card-title">Aumento de costes de construcción</div>
+        <p class="card-text" style="margin-bottom:0.75rem">Inflación de materiales y mano de obra reduce márgenes en proyectos de obra convencional.</p>
+        <div style="font-size:0.75rem;color:#2ecc71;font-weight:600">Mitigación:</div>
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.75)">KEU como alternativa de precio controlado (industrial, no artesanal). Comunicar transparencia de honorarios como diferenciador. Subir ticket medio (proyectos Tier 2 y 3) en lugar de aumentar volumen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECCIÓN 10 — PLAN DE ACCIÓN EJECUTIVO
+════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section class="section" id="s10">
+  <div class="section-header">
+    <div class="section-number">10</div>
+    <div class="section-title-group">
+      <span class="section-label">Plan de Acción Ejecutivo</span>
+      <h2 class="section-title">De la Estrategia a la Acción:<br>30 días · 90 días · 12 meses</h2>
+      <p class="section-desc">Plan de implementación priorizado con owner, métrica de éxito y plazo para cada acción. Sin ambigüedad, sin excusas. Empieza mañana.</p>
+    </div>
+  </div>
+
+  <!-- DIFERENCIADORES IRREPETIBLES -->
+  <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.02));border:1px solid rgba(201,168,76,0.3);padding:2.5rem;margin-bottom:3rem">
+    <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.25em;color:var(--dorado);margin-bottom:1.5rem">Los 3 Diferenciadores Únicos Irrepetibles</div>
+    <div class="cards-grid cards-grid-3" style="gap:1.5rem">
+      <div style="background:rgba(0,0,0,0.3);padding:1.5rem;border:1px solid rgba(201,168,76,0.2)">
+        <div style="font-size:2.5rem;font-family:'Playfair Display',serif;color:rgba(201,168,76,0.3);font-weight:900;line-height:1">01</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--blanco);margin:0.75rem 0">Construcción ejecutada en el Caribe, Miami y Canadá</div>
+        <p style="font-size:0.82rem;color:var(--gris-texto)">No visitas de estudio. No proyectos virtuales. Construcción real completada. El único estudio en Alicante-Murcia con este currículum activo.</p>
+      </div>
+      <div style="background:rgba(0,0,0,0.3);padding:1.5rem;border:1px solid rgba(201,168,76,0.2)">
+        <div style="font-size:2.5rem;font-family:'Playfair Display',serif;color:rgba(201,168,76,0.3);font-weight:900;line-height:1">02</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--blanco);margin:0.75rem 0">Distribuidor exclusivo KEU Luxury Home</div>
+        <p style="font-size:0.82rem;color:var(--gris-texto)">Producto modular premium con estándares náuticos, exportado a 6 países. Ningún otro estudio en la zona tiene acceso a este producto.</p>
+      </div>
+      <div style="background:rgba(0,0,0,0.3);padding:1.5rem;border:1px solid rgba(201,168,76,0.2)">
+        <div style="font-size:2.5rem;font-family:'Playfair Display',serif;color:rgba(201,168,76,0.3);font-weight:900;line-height:1">03</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--blanco);margin:0.75rem 0">Equipo boutique multidisciplinar completo</div>
+        <p style="font-size:0.82rem;color:var(--gris-texto)">2 arquitectos + 2 arquitectos técnicos + 1 ingeniero industrial. Llave en mano verdadero sin ninguna subcontrata en el equipo técnico.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLAN 30/90/365 -->
+  <div class="action-phases">
+    <!-- 30 DÍAS -->
+    <div class="action-phase action-phase-30">
+      <div class="action-phase-title">30 Días</div>
+      <div class="action-phase-label">Fundamentos — Victorias Rápidas</div>
+      <ul class="action-list">
+        <li class="action-item">
+          <div class="action-item-title">1. Verificar y optimizar Google Business Profile (Elche + Crevillente)</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Owner: Vidal Moreno<br>Métrica: Fichas verificadas + 5 primeras reseñas<br>Plazo: Días 1-7</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-red">Urgente</span><span class="badge badge-gold">2h de trabajo</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">2. Instalar Schema LocalBusiness + Architect en WordPress</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Owner: Desarrollador web / Vidal<br>Métrica: Schema validado en Google Rich Results Test<br>Plazo: Días 3-10</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-red">Técnico</span><span class="badge badge-gold">3h</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">3. Publicar 3 páginas geográficas (/arquitecto-elche/, /arquitecto-alicante/, /arquitecto-crevillente/)</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Owner: Asistente comunicación<br>Métrica: 3 páginas indexadas en GSC<br>Plazo: Días 7-20</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-red">SEO</span><span class="badge badge-gold">8h</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">4. Activar Lead Catcher: HubSpot + WPForms + WhatsApp</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Owner: Equipo técnico<br>Métrica: 1 lead de prueba recibido con notificación<br>Plazo: Días 10-20</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-blue">IA</span><span class="badge badge-gold">13h</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">5. Cambiar hero de la web: propuesta de valor + CTA "Cuéntanos tu proyecto"</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Owner: Vidal Moreno (aprobación) + desarrollador<br>Métrica: Tasa de clics en CTA > 3%<br>Plazo: Días 15-30</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-gold">CRO</span><span class="badge badge-gold">4h</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 90 DÍAS -->
+    <div class="action-phase action-phase-90">
+      <div class="action-phase-title">90 Días</div>
+      <div class="action-phase-label">Estructura — Primeras Posiciones</div>
+      <ul class="action-list">
+        <li class="action-item">
+          <div class="action-item-title">1. Publicar 4 páginas de servicio con keyword targeting</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Owner: Asistente comunicación + Vidal (revisión)<br>Métrica: Top 5 "arquitecto obra nueva Elche"<br>Plazo: Días 30-60</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-red">SEO</span><span class="badge badge-gold">16h</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">2. Perfiles personales de Vidal: LinkedIn optimizado + @vidalmoreno.arquitecto IG</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Owner: Vidal Moreno<br>Métrica: 500 seguidores LinkedIn, 1K IG personal en 90 días<br>Plazo: Días 30-45</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-blue">Marca personal</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">3. Activar Content Machine + publicar 8 primeros artículos SEO</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Owner: Content Machine (IA) + Asistente<br>Métrica: 8 artículos indexados, 300+ visitas/mes orgánicas<br>Plazo: Días 30-90</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-blue">IA</span><span class="badge badge-gold">Autom.</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">4. Conseguir 20+ reseñas Google (plan WhatsApp clientes + colaboradores)</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Owner: Vidal Moreno (envíos personales)<br>Métrica: 20 reseñas ≥4.8 estrellas en GBP Elche<br>Plazo: Días 1-90</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-green">GBP</span><span class="badge badge-gold">2h/semana</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">5. Primer vídeo YouTube: Tour Villa A&E completo</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Owner: Vidal Moreno (guión listo) + cámara/edición<br>Métrica: 500 visualizaciones + 50 suscriptores<br>Plazo: Días 60-90</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-gray">YouTube</span><span class="badge badge-gold">Guión listo</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 12 MESES -->
+    <div class="action-phase action-phase-365">
+      <div class="action-phase-title">12 Meses</div>
+      <div class="action-phase-label">Hitos — Liderazgo de Mercado</div>
+      <ul class="action-list">
+        <li class="action-item">
+          <div class="action-item-title">1. Top 3 "arquitecto Elche" y "arquitecto Alicante" en Google</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Métrica: Posiciones GSC<br>Impacto: 800-1.500 visitas/mes orgánicas</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-green">SEO Hito</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">2. 4-6 proyectos cerrados con origen atribuible a digital</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Métrica: UTMs en HubSpot por origen lead<br>Impacto: 140.000-210.000€ honorarios nuevos</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-green">Revenue</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">3. Vidal Moreno posicionado como referente en arquitectura residencial en Alicante</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Métrica: Aparición en prensa local + 1 publicación en revista de arquitectura + 5.000 seguidores LinkedIn<br>Impacto: Autoridad = clientes de mayor ticket</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-blue">Marca</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">4. KEU Luxury Home: 5-8 unidades vendidas, landing page posicionada</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Métrica: Unidades vendidas + ingresos KEU ≥50.000€<br>Impacto: Base para expansión 2027</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-gold">KEU</span></div>
+        </li>
+        <li class="action-item">
+          <div class="action-item-title">5. Sistema autónomo: Content Machine + Lead Catcher funcionando sin intervención diaria</div>
+          <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--gris-texto)">Métrica: 4 piezas de contenido/mes sin esfuerzo manual<br>Impacto: Vidal liberado para proyectos y desarrollo KEU</div>
+          <div class="action-item-meta" style="margin-top:0.5rem"><span class="badge badge-blue">IA</span><span class="badge badge-green">Operacional</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ALERTA FINAL -->
+  <div style="margin-top:4rem;background:linear-gradient(135deg,rgba(201,168,76,0.12),rgba(201,168,76,0.03));border:2px solid rgba(201,168,76,0.4);padding:3rem;text-align:center">
+    <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.3em;color:var(--dorado);margin-bottom:1.5rem">Mensaje Final del Director Estratégico</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--blanco);line-height:1.3;max-width:800px;margin:0 auto 1.5rem">
+      El mercado de la arquitectura premium en Alicante no ha estado nunca tan bien como hoy. Y Vida Arquitectura no ha estado nunca tan bien posicionada para capturarlo.
+    </h3>
+    <p style="font-size:1rem;color:var(--gris-texto);max-width:700px;margin:0 auto 2rem;line-height:1.8">La estrategia está escrita. Las herramientas están listas. El equipo existe. Los diferenciadores son irrepetibles. Lo único que falta es empezar. La ventana de 12-18 meses se cierra. Los competidores también lo saben. El que actúe primero gana el territorio.</p>
+    <div style="display:inline-flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+      <div style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);padding:0.8rem 1.5rem;font-size:0.82rem;color:var(--dorado)">vidaarquitectura.com</div>
+      <div style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);padding:0.8rem 1.5rem;font-size:0.82rem;color:var(--dorado)">+34 630 841 698</div>
+      <div style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);padding:0.8rem 1.5rem;font-size:0.82rem;color:var(--dorado)">info@vidaarquitectura.com</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Vida Arquitectura</div>
+      <p class="footer-desc">Estudio boutique de arquitectura residencial premium. Elche · Crevillente · Costa Blanca. Del Mediterráneo al Caribe y de vuelta con criterio.</p>
+      <div style="margin-top:1.5rem;display:flex;gap:0.75rem;flex-wrap:wrap">
+        <span class="badge badge-gold">Arquitectura</span>
+        <span class="badge badge-gold">Obra Nueva</span>
+        <span class="badge badge-gold">Reformas</span>
+        <span class="badge badge-gold">Interiorismo</span>
+        <span class="badge badge-gold">KEU Luxury Home</span>
+      </div>
+    </div>
+    <div>
+      <div class="footer-title">Contacto</div>
+      <ul class="footer-list">
+        <li>Teléfono: <span>+34 630 841 698</span></li>
+        <li>Email: <span>info@vidaarquitectura.com</span></li>
+        <li>Web: <span>vidaarquitectura.com</span></li>
+        <li>Instagram: <span>@vidaarquitectura</span></li>
+        <li>Ubicación: <span>Elche (Alicante) · Crevillente</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-title">El Equipo</div>
+      <ul class="footer-list">
+        <li>Vidal Moreno Mirete <span>— CEO · Arquitecto</span></li>
+        <li>Óscar Hernández Haro <span>— Arquitecto Paisajista</span></li>
+        <li>Víctor Agulló Ródenas <span>— Arquitecto Técnico</span></li>
+        <li>Jorge Guevara Navarro <span>— Arquitecto Técnico</span></li>
+        <li>Manuel Parra Monedero <span>— Ingeniero Industrial</span></li>
+      </ul>
+      <div style="margin-top:1.5rem">
+        <div class="footer-title">Portfolio Internacional</div>
+        <ul class="footer-list">
+          <li><span>Puerto Rico · Miami · Canadá · Alemania</span></li>
+          <li><span>Francia · Portugal · Costa Blanca</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>Informe Estratégico Definitivo · Vida Arquitectura 2026-2031 · Confidencial</div>
+    <div>Generado con 8 agentes especializados · Junio 2026</div>
+  </div>
+</footer>
+
+<!-- SCROLL INDICATOR -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Animate progress bars on scroll
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var fills = entry.target.querySelectorAll('.progress-fill');
+        fills.forEach(function(fill) {
+          fill.style.transition = 'width 1.2s ease-out';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.progress-bar').forEach(function(bar) {
+    observer.observe(bar);
+  });
+
+  // Highlight active nav link
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', function() {
+    var current = '';
+    sections.forEach(function(section) {
+      var sectionTop = section.offsetTop - 100;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(function(link) {
+      link.style.color = '';
+      if (link.getAttribute('href') === '#' + current) {
+        link.style.color = 'var(--dorado)';
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
