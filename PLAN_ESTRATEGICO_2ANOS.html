@@ -1,0 +1,2240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Estratégico 2026-2028 — Vida Arquitectura</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --bg4: #222222;
+    --gold: #c9a84c;
+    --gold-light: #e0c068;
+    --gold-dark: #9a7a30;
+    --white: #ffffff;
+    --white-70: rgba(255,255,255,0.7);
+    --white-40: rgba(255,255,255,0.4);
+    --white-10: rgba(255,255,255,0.1);
+    --urgent: #e53935;
+    --urgent-bg: rgba(229,57,53,0.15);
+    --important: #c9a84c;
+    --important-bg: rgba(201,168,76,0.15);
+    --planned: #1976d2;
+    --planned-bg: rgba(25,118,210,0.15);
+    --invisible: #2e7d32;
+    --invisible-bg: rgba(46,125,50,0.15);
+    --border: rgba(201,168,76,0.2);
+    --border-subtle: rgba(255,255,255,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--white-70);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-confidential {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--urgent);
+    text-transform: uppercase;
+    border: 1px solid var(--urgent);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  main { padding-top: 56px; }
+
+  section {
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  section + section {
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  /* ── COVER / HERO ── */
+  #cover {
+    min-height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 2rem;
+    max-width: 100%;
+  }
+
+  #cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(201,168,76,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cover-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .cover-eyebrow::before,
+  .cover-eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .cover-title .highlight { color: var(--gold); }
+
+  .cover-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--white-70);
+    margin-bottom: 3.5rem;
+    max-width: 640px;
+  }
+
+  .cover-metrics {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+
+  .metric-box {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    min-width: 180px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .metric-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .metric-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .metric-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white-70);
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2rem auto;
+  }
+
+  .cover-note {
+    font-size: 0.75rem;
+    color: var(--white-40);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-number {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-number::after {
+    content: '';
+    flex: 1;
+    max-width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-lead {
+    font-size: 1rem;
+    color: var(--white-70);
+    max-width: 700px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--bg3);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    border-color: var(--border);
+    transition: border-color 0.2s;
+  }
+  .card-gold {
+    border-color: var(--border);
+    background: linear-gradient(135deg, var(--bg3) 0%, rgba(201,168,76,0.05) 100%);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .badge-urgente {
+    background: var(--urgent-bg);
+    color: var(--urgent);
+    border: 1px solid rgba(229,57,53,0.3);
+  }
+  .badge-importante {
+    background: var(--important-bg);
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+  .badge-planificado {
+    background: var(--planned-bg);
+    color: #64b5f6;
+    border: 1px solid rgba(25,118,210,0.3);
+  }
+  .badge-invisible {
+    background: var(--invisible-bg);
+    color: #66bb6a;
+    border: 1px solid rgba(46,125,50,0.3);
+  }
+  .badge::before { content: '●'; font-size: 0.5rem; }
+
+  /* ── GRID LAYOUTS ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    margin: 2rem 0;
+  }
+  .timeline-track {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    height: 8px;
+    background: var(--bg4);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  .timeline-phase {
+    height: 100%;
+    border-radius: 0;
+  }
+  .phase-1 { background: linear-gradient(90deg, #2e7d32, #43a047); grid-column: 1 / 9; }
+  .phase-2 { background: linear-gradient(90deg, #c9a84c, #e0c068); grid-column: 9 / 19; }
+  .phase-3 { background: linear-gradient(90deg, #1565c0, #1976d2); grid-column: 19 / 25; }
+
+  .timeline-labels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .timeline-label {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-subtle);
+  }
+  .timeline-label .tl-phase {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+  .timeline-label .tl-months {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .timeline-label .tl-desc {
+    font-size: 0.75rem;
+    color: var(--white-70);
+  }
+  .tl-green { border-color: rgba(46,125,50,0.4); }
+  .tl-green .tl-phase, .tl-green .tl-months { color: #66bb6a; }
+  .tl-gold { border-color: var(--border); }
+  .tl-gold .tl-phase, .tl-gold .tl-months { color: var(--gold); }
+  .tl-blue { border-color: rgba(25,118,210,0.4); }
+  .tl-blue .tl-phase, .tl-blue .tl-months { color: #64b5f6; }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--white-70);
+    line-height: 1.5;
+  }
+  .checklist li input[type="checkbox"] {
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--gold);
+    cursor: pointer;
+  }
+  .checklist li span { flex: 1; }
+  .checklist li .item-badge {
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  /* ── PROGRESS BARS ── */
+  .progress-item {
+    margin-bottom: 1.25rem;
+  }
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+  }
+  .progress-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--white-70);
+  }
+  .progress-value {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .progress-bar {
+    height: 4px;
+    background: var(--bg4);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-left: 3px solid var(--gold);
+    background: rgba(201,168,76,0.07);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+  }
+  .callout-urgent {
+    border-left-color: var(--urgent);
+    background: rgba(229,57,53,0.07);
+  }
+  .callout-green {
+    border-left-color: var(--invisible);
+    background: rgba(46,125,50,0.07);
+  }
+  .callout-title {
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
+  }
+  .callout-urgent .callout-title { color: var(--urgent); }
+  .callout-green .callout-title { color: #66bb6a; }
+  .callout p { font-size: 0.9rem; color: var(--white-70); }
+
+  /* ── TABLE ── */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  thead th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg3);
+  }
+  tbody td {
+    padding: 0.75rem 1rem;
+    color: var(--white-70);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  tbody tr:hover td { background: rgba(255,255,255,0.02); }
+  tbody tr:last-child td {
+    font-weight: 700;
+    color: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: none;
+    background: rgba(201,168,76,0.06);
+  }
+  td:first-child { color: var(--white); font-weight: 500; }
+  td.amount { color: var(--gold); font-weight: 600; text-align: right; }
+  th:not(:first-child) { text-align: right; }
+
+  /* ── KPI CARDS ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .kpi-card {
+    background: var(--bg3);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .kpi-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .kpi-metric {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white-70);
+    margin-bottom: 0.5rem;
+  }
+  .kpi-desc { font-size: 0.8rem; color: var(--white-40); }
+
+  /* ── COMPETITOR TABLE ── */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+  }
+  .comp-card {
+    background: var(--bg3);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .comp-market {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .comp-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .comp-item:last-child { border-bottom: none; }
+  .comp-name { color: var(--white); font-weight: 500; }
+  .comp-handle { color: var(--white-40); font-size: 0.75rem; font-family: monospace; }
+  .strength-weak {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #66bb6a;
+    background: rgba(46,125,50,0.15);
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+  }
+  .strength-medium {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffb74d;
+    background: rgba(255,183,77,0.12);
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+  }
+  .strength-strong {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ef5350;
+    background: rgba(239,83,80,0.12);
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  /* ── TECH STACK ── */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .tech-item {
+    background: var(--bg3);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .tech-category {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .tech-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--white);
+  }
+  .tech-cost {
+    font-size: 0.8rem;
+    color: var(--white-40);
+  }
+
+  /* ── STEPS / NUMBERED LIST ── */
+  .step-list {
+    list-style: none;
+    counter-reset: steps;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .step-item {
+    display: flex;
+    gap: 1.25rem;
+    counter-increment: steps;
+  }
+  .step-number {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-top: 0.1rem;
+  }
+  .step-content { flex: 1; }
+  .step-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .step-body {
+    font-size: 0.875rem;
+    color: var(--white-70);
+    line-height: 1.7;
+  }
+  .step-body ul {
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .step-body li { color: var(--white-70); }
+
+  /* ── QUARTER BLOCKS ── */
+  .quarter {
+    background: var(--bg3);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  .quarter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg4);
+    border-bottom: 1px solid var(--border-subtle);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .quarter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .quarter-period {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .quarter-body {
+    padding: 1.5rem;
+  }
+  .week-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    margin-top: 1rem;
+  }
+  .week-label:first-child { margin-top: 0; }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2.5rem 0;
+    opacity: 0.4;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .highlight-box .hb-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .highlight-box p {
+    font-size: 0.9rem;
+    color: var(--white-70);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* ── INSTAGRAM TIP ── */
+  .insta-answer {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    position: relative;
+  }
+  .insta-answer::before {
+    content: 'RESPUESTA DIRECTA';
+    position: absolute;
+    top: -1px; left: 2rem;
+    background: var(--gold);
+    color: #000;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0 0 4px 4px;
+  }
+  .insta-yes {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #66bb6a;
+    margin: 1rem 0 0.5rem;
+  }
+  .insta-yes span {
+    font-size: 1rem;
+    color: var(--white-70);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+
+  /* ── PROTOCOL ── */
+  .protocol-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 2rem;
+  }
+  .protocol-steps::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+  }
+  .protocol-step {
+    position: relative;
+    padding: 0 0 1.5rem 1.5rem;
+  }
+  .protocol-step::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--bg);
+  }
+  .protocol-step .ps-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+  .protocol-step .ps-text {
+    font-size: 0.875rem;
+    color: var(--white-70);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  .footer-tagline {
+    font-size: 0.75rem;
+    color: var(--white-40);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .footer-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+    color: var(--white-40);
+    margin-bottom: 1rem;
+  }
+  .footer-meta span { display: flex; align-items: center; gap: 0.4rem; }
+  .footer-confidential {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--urgent);
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(229,57,53,0.3);
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    section { padding: 3rem 1.25rem; }
+    .cover-metrics { gap: 1rem; }
+    .metric-box { min-width: 140px; padding: 1.25rem 1.5rem; }
+    .timeline-labels { grid-template-columns: 1fr; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    table { font-size: 0.8rem; }
+    thead th, tbody td { padding: 0.6rem 0.75rem; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    nav { display: none; }
+    main { padding-top: 0; }
+    body { background: white; color: black; }
+    .card, .quarter, .comp-card, .tech-item, .kpi-card { background: #f9f9f9; border-color: #ddd; }
+    .callout { background: #f5f5f5; }
+    a { color: inherit; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-brand">Vida Arquitectura</div>
+  <ul class="nav-links">
+    <li><a href="#instagram">Instagram</a></li>
+    <li><a href="#acciones">Semana 1</a></li>
+    <li><a href="#ano1">Año 1</a></li>
+    <li><a href="#ano2">Año 2</a></li>
+    <li><a href="#presupuesto">Presupuesto</a></li>
+    <li><a href="#kpis">KPIs</a></li>
+  </ul>
+  <span class="nav-confidential">Confidencial</span>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 0: PORTADA / EXECUTIVE SUMMARY        -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="cover" style="max-width:100%;">
+  <div class="cover-eyebrow">Documento Estratégico Confidencial</div>
+
+  <h1 class="cover-title">
+    Plan Estratégico<br>
+    <span class="highlight">2026 – 2028</span>
+  </h1>
+
+  <p class="cover-subtitle">
+    Hoja de Ruta Discreta hacia la Independencia Profesional
+  </p>
+
+  <div class="cover-metrics">
+    <div class="metric-box">
+      <div class="metric-value">24</div>
+      <div class="metric-label">Meses de Transición</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-value">3</div>
+      <div class="metric-label">Mercados Objetivo</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-value" style="font-size:1.1rem; letter-spacing:0.05em;">MÁXIMO</div>
+      <div class="metric-label">Nivel de Discreción</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-value">3.200€</div>
+      <div class="metric-label">Inversión Año 1</div>
+    </div>
+  </div>
+
+  <div class="cover-divider"></div>
+
+  <p class="cover-note">
+    Vidal Moreno Mirete · Arquitecto CEO · Vida Arquitectura · Elche, España<br>
+    Generado: Junio 2026 &nbsp;·&nbsp; Próxima revisión: Diciembre 2026
+  </p>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1: INSTAGRAM — RESPUESTA DIRECTA       -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="instagram">
+  <div class="section-number">Sección 01</div>
+  <h2 class="section-title">La Pregunta del Instagram — Respuesta Directa</h2>
+  <p class="section-lead">¿Es posible construir un perfil de Instagram profesional sin que tus socios de KEU lo sepan? La respuesta es inequívoca.</p>
+
+  <div class="insta-answer">
+    <div class="insta-yes">SÍ, 100% factible. <span>— Y así es exactamente cómo lo haces:</span></div>
+  </div>
+
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <div class="step-title">
+          Crea la cuenta con el nombre correcto
+          <span class="badge badge-invisible">Invisible</span>
+        </div>
+        <div class="step-body">
+          Opciones recomendadas: <strong style="color:var(--gold);">@vidalmoreno.arquitecto</strong> o <strong style="color:var(--gold);">@vidaarquitectura.elche</strong>. La primera asocia tu nombre personal (marca personal duradera). La segunda es más local/comercial. Recomendación: <strong>@vidalmoreno.arquitecto</strong> — un arquitecto independiente usando su nombre es lo más natural del mundo.
+        </div>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <div class="step-title">
+          Configura el perfil como PRIVADO inmediatamente
+          <span class="badge badge-invisible">Invisible</span>
+        </div>
+        <div class="step-body">
+          En el momento de crear la cuenta: Configuración → Privacidad → Cuenta Privada. Con perfil privado, nadie puede ver tu contenido, tus seguidores o a quién sigues. Eres invisible hasta que tú decidas lo contrario.
+        </div>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <div class="step-title">
+          Construye tu biblioteca de contenido en borradores
+          <span class="badge badge-importante">Importante</span>
+        </div>
+        <div class="step-body">
+          Instagram tiene una función de <strong>Borradores</strong> que permite guardar posts completamente terminados sin publicarlos. Objetivo: crear <strong>20-30 posts antes de lanzar públicamente</strong>. Esto significa que cuando abras el perfil al público, tendrás un feed visualmente cohesionado desde el primer día — no el perfil vacío de alguien que empieza de cero.
+          <ul>
+            <li>Posts de proyectos completados (fotografías profesionales)</li>
+            <li>Reels de proceso constructivo (antes/después)</li>
+            <li>Contenido educativo: eficiencia energética, bioclimática</li>
+            <li>Territorio Levante: proyectos en Elche y alrededores</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <div class="step-title">
+          Sigue 50-100 cuentas estratégicas — esto es invisible
+          <span class="badge badge-invisible">Invisible</span>
+        </div>
+        <div class="step-body">
+          Con perfil privado, el hecho de que sigas a alguien no es visible para nadie. Sigue: arquitectos de referencia en Levante, promotores inmobiliarios de Elche/Alicante, constructoras locales, revistas de arquitectura españolas, estudios internacionales de referencia. Esto te permite estudiar el mercado y afinar tu posicionamiento antes de lanzar.
+        </div>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">5</div>
+      <div class="step-content">
+        <div class="step-title">
+          Usa un email personal — nunca vinculado a KEU
+          <span class="badge badge-urgente">Crítico</span>
+        </div>
+        <div class="step-body">
+          Crea la cuenta con <strong>vidal@vidaarquitectura.com</strong> o un Gmail personal no asociado a actividad de KEU. <strong>No conectes con Facebook</strong> si tienes una página o perfil Facebook asociado a KEU. Mantén las cuentas en ecosistemas separados.
+        </div>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-number">6</div>
+      <div class="step-content">
+        <div class="step-title">
+          El lanzamiento público: Meses 8-10
+          <span class="badge badge-planificado">Planificado</span>
+        </div>
+        <div class="step-body">
+          Cuando tengas: 20+ posts en borradores, 5+ fotografías profesionales de proyectos, y una bio clara — flip a público y publica los posts en secuencia durante las primeras semanas. La estrategia de "presencia invisible" durante 6-8 meses, seguida de un lanzamiento con un feed ya completo y profesional, es exponencialmente más efectiva que empezar desde cero en público.
+        </div>
+      </div>
+    </li>
+  </ol>
+
+  <div class="callout callout-green">
+    <div class="callout-title">La función de Borradores de Instagram</div>
+    <p>Los borradores de Instagram se guardan <strong>indefinidamente</strong> en el dispositivo (y en la nube si tienes copia activada). Puedes tener 50 posts preparados durante meses y publicarlos cuando tú decidas. Nadie los ve hasta que los publicas. Esta función es la clave de la estrategia de "presencia invisible".</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2: PRINCIPIO RECTOR                   -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="principio">
+  <div class="section-number">Sección 02</div>
+  <h2 class="section-title">Principio Rector — La Estrategia de la Sombra</h2>
+  <p class="section-lead">Todo lo que puede construirse en silencio, se construye en silencio. El objetivo es llegar al momento de la transición con una marca ya consolidada — no empezando desde cero.</p>
+
+  <div class="timeline">
+    <div class="timeline-track">
+      <div class="timeline-phase phase-1"></div>
+      <div class="timeline-phase phase-2"></div>
+      <div class="timeline-phase phase-3"></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; font-size:0.65rem; color:var(--white-40); margin-bottom:1rem;">
+      <span>Mes 1</span><span>Mes 6</span><span>Mes 12</span><span>Mes 18</span><span>Mes 24</span>
+    </div>
+    <div class="timeline-labels">
+      <div class="timeline-label tl-green">
+        <div class="tl-phase">Fase 1</div>
+        <div class="tl-months">Meses 1–8</div>
+        <div class="tl-desc">Fundación Invisible<br>Infraestructura sin huella pública</div>
+      </div>
+      <div class="timeline-label tl-gold">
+        <div class="tl-phase">Fase 2</div>
+        <div class="tl-months">Meses 9–18</div>
+        <div class="tl-desc">Emergencia Selectiva<br>Visibilidad profesional controlada</div>
+      </div>
+      <div class="timeline-label tl-blue">
+        <div class="tl-phase">Fase 3</div>
+        <div class="tl-months">Meses 19–24</div>
+        <div class="tl-desc">Autonomía Plena<br>Transición KEU completada</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:2rem;">
+    <div class="card card-gold">
+      <div class="card-header">
+        <div class="card-title">Fase 1 — Fundación Invisible</div>
+        <span class="badge badge-invisible">Meses 1-8</span>
+      </div>
+      <p style="font-size:0.875rem; color:var(--white-70); margin-bottom:1rem;">Todo lo que puede hacerse sin dejar rastro público. Registros legales, infraestructura digital, contenido en borradores, análisis de competidores.</p>
+      <div class="progress-item">
+        <div class="progress-header"><span class="progress-label">Visibilidad pública</span><span class="progress-value">5%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:5%; background:linear-gradient(90deg,#2e7d32,#43a047);"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-header"><span class="progress-label">Riesgo de exposición</span><span class="progress-value">Mínimo</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:8%; background:linear-gradient(90deg,#2e7d32,#43a047);"></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Fase 2 — Emergencia Selectiva</div>
+        <span class="badge badge-importante">Meses 9-18</span>
+      </div>
+      <p style="font-size:0.875rem; color:var(--white-70); margin-bottom:1rem;">Instagram público, blog activo, Google My Business optimizado. Participación en eventos sectoriales. KEU todavía en operación — narrativa: "trabajo en ambos ámbitos, como muchos arquitectos."</p>
+      <div class="progress-item">
+        <div class="progress-header"><span class="progress-label">Visibilidad pública</span><span class="progress-value">60%</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:60%;"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-header"><span class="progress-label">Riesgo de exposición</span><span class="progress-value">Moderado-controlado</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:35%;"></div></div>
+      </div>
+    </div>
+    <div class="card" style="grid-column: 1 / -1;">
+      <div class="card-header">
+        <div class="card-title">Fase 3 — Autonomía Plena</div>
+        <span class="badge badge-planificado">Meses 19-24</span>
+      </div>
+      <p style="font-size:0.875rem; color:var(--white-70); margin-bottom:1rem;">Transición KEU completada naturalmente. LinkedIn actualizado. Tres mercados activos. Vida Arquitectura opera con independencia total. La marca ya tiene historia, proyectos publicados y reputación online.</p>
+      <div class="grid-3" style="margin-top:1rem;">
+        <div class="progress-item">
+          <div class="progress-header"><span class="progress-label">Visibilidad pública</span><span class="progress-value">100%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%; background:linear-gradient(90deg,#1565c0,#1976d2);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span class="progress-label">Independencia KEU</span><span class="progress-value">100%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%; background:linear-gradient(90deg,#1565c0,#1976d2);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span class="progress-label">Mercados activos</span><span class="progress-value">3/3</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%; background:linear-gradient(90deg,#1565c0,#1976d2);"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3: ACCIONES INMEDIATAS (Semana 1-2)   -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="acciones">
+  <div class="section-number">Sección 03</div>
+  <h2 class="section-title">Acciones INMEDIATAS — Semana 1 y 2</h2>
+  <p class="section-lead">Estas 5 acciones pueden ejecutarse esta semana. Ninguna deja huella pública visible. Son la base sobre la que se construye todo lo demás.</p>
+
+  <div class="callout callout-green">
+    <div class="callout-title">Principio de esta semana</div>
+    <p>Todas las acciones de la Semana 1-2 son <strong>completamente invisibles</strong>. Ningún competidor, cliente, ni socio puede saber que las has ejecutado. Son acciones legales, técnicas y administrativas que ocurren en privado.</p>
+  </div>
+
+  <ol class="step-list" style="margin-top:2rem;">
+    <li class="step-item">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <div class="step-title">
+          MARCA REGISTRADA — "Vida Arquitectura"
+          <span class="badge badge-urgente">Urgente — 125€</span>
+          <span class="badge badge-invisible">Invisible</span>
+        </div>
+        <div class="step-body">
+          <strong>¿Dónde?</strong> sede.oepm.gob.es (Oficina Española de Patentes y Marcas) o a través de un abogado de propiedad intelectual.<br><br>
+          <strong>¿Qué clase?</strong> Clase 42 del sistema de Niza — servicios de arquitectura, diseño de interiores, consultoría de construcción.<br><br>
+          <strong>¿Por qué urgente?</strong> "Arte y Vida Arquitectura" (Cuenca) aparece actualmente como resultado nº1 en Google para búsquedas relacionadas. Si ellos registran "Vida Arquitectura" antes que tú, tendrás un problema legal costoso. El registro de marca tarda 12-18 meses en completarse, pero la <strong>fecha de solicitud es lo que cuenta</strong> legalmente — presentar este mes ya te protege.<br><br>
+          <strong>Proceso:</strong> Rellenar formulario M-9902, pago de 125€ tasas administrativas, envío electrónico. Plazo de presentación: 2-3 días. Resultado: número de expediente inmediato.
+        </div>
+      </div>
+    </li>
+
+    <li class="step-item">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <div class="step-title">
+          DOMINIO vidaarquitectura.es
+          <span class="badge badge-importante">10€/año</span>
+          <span class="badge badge-invisible">Invisible</span>
+        </div>
+        <div class="step-body">
+          Verifica disponibilidad en <strong>Arsys, Namecheep, o Dondominio</strong>. Dado que vidaarquitectura.com ya está en tu posesión, el .es debería estar libre.<br><br>
+          <ul>
+            <li>Regístralo hoy para asegurar la extensión española</li>
+            <li>Apunta a una página de "Próximamente" o redirige al .com actual</li>
+            <li>En el futuro, el .es puede ser el dominio principal para el mercado local</li>
+            <li>El .es tiene mejor posicionamiento orgánico en Google España</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+
+    <li class="step-item">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <div class="step-title">
+          CUENTA DE EMAIL PROFESIONAL
+          <span class="badge badge-invisible">Invisible</span>
+        </div>
+        <div class="step-body">
+          Configura <strong>vidal@vidaarquitectura.com</strong> (o .es cuando se active) como cuenta de trabajo exclusiva para Vida Arquitectura. Reglas de uso:<br><br>
+          <ul>
+            <li>Nunca acceder desde dispositivos de KEU</li>
+            <li>Nunca mencionar en comunicaciones de KEU</li>
+            <li>Usar para: registro de dominios, redes sociales, CRM, contactos de clientes españoles</li>
+            <li>Si ya existe: audita qué está registrado con qué email — consolida bajo este</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+
+    <li class="step-item">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <div class="step-title">
+          INSTAGRAM PRIVADO
+          <span class="badge badge-invisible">Invisible</span>
+        </div>
+        <div class="step-body">
+          Handle recomendado: <strong style="color:var(--gold);">@vidalmoreno.arquitecto</strong><br><br>
+          <ul>
+            <li>Crear con vidal@vidaarquitectura.com — nunca con email de KEU</li>
+            <li>Activar privacidad inmediatamente tras crear la cuenta</li>
+            <li>NO conectar con Facebook si ese perfil/página tiene relación con KEU</li>
+            <li>Empezar a cargar posts en borradores (ver Sección 1 para estrategia completa)</li>
+            <li>Seguir 50-100 cuentas estratégicas del sector en Levante</li>
+            <li>Fotografía de perfil: foto profesional, fondo neutro, no logos de KEU</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+
+    <li class="step-item">
+      <div class="step-number">5</div>
+      <div class="step-content">
+        <div class="step-title">
+          GOOGLE BUSINESS PROFILE — Segunda ubicación Crevillente
+          <span class="badge badge-importante">Acción pública</span>
+        </div>
+        <div class="step-body">
+          Ya tienes GBP en Elche. Añadir Crevillente es una acción natural de mantenimiento del negocio — nadie lo cuestiona.<br><br>
+          <ul>
+            <li>Accede a Google Business Profile Manager</li>
+            <li>Añade "Ubicación" con dirección en Crevillente</li>
+            <li>Esta acción sí es pública pero aparece como gestión ordinaria del negocio</li>
+            <li>Ayuda a capturar búsquedas locales en el área de Vega Baja</li>
+            <li>Optimiza ambas fichas: fotos recientes, servicios, horarios, FAQ</li>
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ol>
+
+  <div class="highlight-box" style="margin-top:2.5rem;">
+    <div class="hb-title">Tiempo estimado: 6-8 horas en total</div>
+    <p>Las 5 acciones anteriores pueden completarse en una tarde de trabajo. La marca OEPM requiere un formulario de 20 minutos. El dominio, 5 minutos. El email, 10 minutos. El Instagram, 15 minutos. El GBP, 30 minutos. Total: menos de una jornada laboral para sentar las bases de los próximos dos años.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4: PLAN AÑO 1 (2026)                  -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="ano1">
+  <div class="section-number">Sección 04</div>
+  <h2 class="section-title">Plan Año 1 (2026) — Fundación Discreta</h2>
+  <p class="section-lead">Doce meses de construcción sistemática. La primera mitad del año es casi completamente invisible. La segunda mitad, emerges con una base sólida.</p>
+
+  <!-- Q1 -->
+  <div class="quarter">
+    <div class="quarter-header">
+      <div class="quarter-title">Trimestre 1 — Infraestructura Invisible</div>
+      <div class="quarter-period">Enero – Marzo 2026</div>
+    </div>
+    <div class="quarter-body">
+
+      <div class="week-label">Semana 1–2: Fundación legal y digital</div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t1-1"><span>Registrar marca "Vida Arquitectura" en OEPM Clase 42 (125€)</span>
+          <span class="item-badge"><span class="badge badge-urgente">Urgente</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-2"><span>Registrar dominio vidaarquitectura.es (10€)</span>
+          <span class="item-badge"><span class="badge badge-invisible">Invisible</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-3"><span>Crear cuenta Instagram privada (@vidalmoreno.arquitecto)</span>
+          <span class="item-badge"><span class="badge badge-invisible">Invisible</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-4"><span>Abrir cuenta email dedicada vidal@vidaarquitectura.com</span>
+          <span class="item-badge"><span class="badge badge-invisible">Invisible</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-5"><span>Configurar HubSpot CRM (gratis) — pipeline de contactos</span>
+          <span class="item-badge"><span class="badge badge-invisible">Invisible</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-6"><span>Crear cuenta Make.com (9€/mes) para automatizaciones</span>
+          <span class="item-badge"><span class="badge badge-invisible">Invisible</span></span>
+        </li>
+      </ul>
+
+      <div class="week-label" style="margin-top:1.5rem;">Semana 3–4: Auditoría y análisis</div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t1-7"><span>Auditar contenido actual de vidaarquitectura.com — identificar gaps</span>
+          <span class="item-badge"><span class="badge badge-invisible">Invisible</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-8"><span>Instalar Google Analytics 4 + Google Search Console</span>
+          <span class="item-badge"><span class="badge badge-invisible">Invisible</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-9"><span>Identificar 20 palabras clave prioritarias para Elche (ej: "arquitecto Elche", "proyectos vivienda Elche")</span>
+          <span class="item-badge"><span class="badge badge-importante">Importante</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-10"><span>Listar 10 proyectos de archivo para fotografiar y documentar</span>
+          <span class="item-badge"><span class="badge badge-planificado">Planificado</span></span>
+        </li>
+      </ul>
+
+      <div class="week-label" style="margin-top:1.5rem;">Mes 2: Contenido y fotografía</div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t1-11"><span>Contratar fotógrafo para 3 proyectos (500-800€) — puede camuflarse como documentación de portfolio para KEU</span>
+          <span class="item-badge"><span class="badge badge-importante">500-800€</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-12"><span>Escribir 4 artículos de blog en borrador (NO publicar aún)</span>
+          <span class="item-badge"><span class="badge badge-invisible">Invisible</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-13"><span>Crear 20 posts de Instagram en borradores con textos y hashtags</span>
+          <span class="item-badge"><span class="badge badge-invisible">Invisible</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-14"><span>Optimizar fichas Google My Business — Elche y Crevillente</span>
+          <span class="item-badge"><span class="badge badge-importante">Importante</span></span>
+        </li>
+      </ul>
+
+      <div class="week-label" style="margin-top:1.5rem;">Mes 3: Primeras publicaciones</div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t1-15"><span>Publicar primeros 4 artículos de blog en vidaarquitectura.com</span>
+          <span class="item-badge"><span class="badge badge-importante">Importante</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-16"><span>Solicitar primeras 5 reseñas Google a clientes de confianza</span>
+          <span class="item-badge"><span class="badge badge-importante">Importante</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-17"><span>Conectar LinkedIn con Vida Arquitectura (con cuidado — ver Sección 6)</span>
+          <span class="item-badge"><span class="badge badge-planificado">Ver nota</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t1-18"><span>Configurar primeras automatizaciones Make.com: formulario web → CRM → email de bienvenida</span>
+          <span class="item-badge"><span class="badge badge-planificado">Planificado</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quarter">
+    <div class="quarter-header">
+      <div class="quarter-title">Trimestre 2 — Primeros Contenidos</div>
+      <div class="quarter-period">Abril – Junio 2026</div>
+    </div>
+    <div class="quarter-body">
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t2-1"><span>Publicar 2 artículos/mes en blog: arquitectura Elche, bioclimática, eficiencia energética, rehabilitación</span>
+          <span class="item-badge"><span class="badge badge-importante">2x/mes</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t2-2"><span>Activar perfil Instagram a "semi-público" — solo arquitectura, nada personal ni vinculado a KEU</span>
+          <span class="item-badge"><span class="badge badge-importante">Mes 4-5</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t2-3"><span>Participar en 1 evento sectorial local en Elche o Alicante (sin vincular a KEU explícitamente)</span>
+          <span class="item-badge"><span class="badge badge-planificado">Planificado</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t2-4"><span>Iniciar contacto con 3 promotores inmobiliarios de Elche</span>
+          <span class="item-badge"><span class="badge badge-importante">Importante</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t2-5"><span>Objetivo: alcanzar 10 reseñas Google en Elche GBP</span>
+          <span class="item-badge"><span class="badge badge-planificado">KPI Q2</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t2-6"><span>Crear perfil en Houzz y Arquimaster con proyectos fotografiados</span>
+          <span class="item-badge"><span class="badge badge-planificado">Planificado</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t2-7"><span>Sesión fotográfica segunda ronda (500-800€) — 3 proyectos nuevos</span>
+          <span class="item-badge"><span class="badge badge-importante">500-800€</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quarter">
+    <div class="quarter-header">
+      <div class="quarter-title">Trimestre 3 — Tracción SEO</div>
+      <div class="quarter-period">Julio – Septiembre 2026</div>
+    </div>
+    <div class="quarter-body">
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t3-1"><span>Blog: 2-3 artículos/mes con enfoque local Elche + Alicante + palabras clave long-tail</span>
+          <span class="item-badge"><span class="badge badge-importante">SEO</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t3-2"><span>Instagram: flip a PÚBLICO y publicar 4 posts/semana (Mes 8-9)</span>
+          <span class="item-badge"><span class="badge badge-urgente">Hito</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t3-3"><span>Activar Buffer o Later (15€/mes) para programar posts con antelación</span>
+          <span class="item-badge"><span class="badge badge-planificado">15€/mes</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t3-4"><span>Iniciar presencia activa en Houzz — publicar 5+ proyectos completos</span>
+          <span class="item-badge"><span class="badge badge-planificado">Planificado</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t3-5"><span>Primer proyecto firmado exclusivamente bajo el paraguas de Vida Arquitectura</span>
+          <span class="item-badge"><span class="badge badge-urgente">Hito</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t3-6"><span>Objetivo KPI: aparecer en Top 5 Google para "arquitecto Elche"</span>
+          <span class="item-badge"><span class="badge badge-planificado">KPI Q3</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t3-7"><span>Activar herramienta SEO (Ubersuggest 29€/mes) para tracking de posiciones</span>
+          <span class="item-badge"><span class="badge badge-planificado">29€/mes</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quarter">
+    <div class="quarter-header">
+      <div class="quarter-title">Trimestre 4 — Consolidación</div>
+      <div class="quarter-period">Octubre – Diciembre 2026</div>
+    </div>
+    <div class="quarter-body">
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t4-1"><span>Revisión completa de métricas SEO — ajustar estrategia de contenidos para 2027</span>
+          <span class="item-badge"><span class="badge badge-importante">Revisión</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t4-2"><span>Evento local o ponencia en Colegio de Arquitectos Alicante</span>
+          <span class="item-badge"><span class="badge badge-planificado">Opcional</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t4-3"><span>Preparar propuesta de valor diferenciada para mercado Alicante (para Q1 2027)</span>
+          <span class="item-badge"><span class="badge badge-importante">Importante</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t4-4"><span>Sesión fotográfica Q4 — capturar proyectos de otoño (500-800€)</span>
+          <span class="item-badge"><span class="badge badge-planificado">500-800€</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t4-5"><span>Objetivo: 5 consultas/mes entrantes por canales digitales</span>
+          <span class="item-badge"><span class="badge badge-planificado">KPI Q4</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t4-6"><span>Objetivo: 15+ reseñas Google en Elche GBP</span>
+          <span class="item-badge"><span class="badge badge-planificado">KPI Q4</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="t4-7"><span>Objetivo: 500+ seguidores en Instagram</span>
+          <span class="item-badge"><span class="badge badge-planificado">KPI Q4</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5: PLAN AÑO 2 (2027)                  -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="ano2">
+  <div class="section-number">Sección 05</div>
+  <h2 class="section-title">Plan Año 2 (2027) — Emergencia y Autonomía</h2>
+  <p class="section-lead">El segundo año es de expansión geográfica y consolidación de independencia. KEU entra en fase de cierre natural. Vida Arquitectura opera en tres mercados simultáneos.</p>
+
+  <!-- Q5 -->
+  <div class="quarter">
+    <div class="quarter-header">
+      <div class="quarter-title">Enero – Marzo 2027: Expansión a Alicante</div>
+      <div class="quarter-period">Trimestre 5</div>
+    </div>
+    <div class="quarter-body">
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="a2t1-1"><span>Abrir Google Business Profile en Alicante ciudad</span>
+          <span class="item-badge"><span class="badge badge-importante">Nuevo mercado</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t1-2"><span>Publicaciones de blog específicas para Alicante: "arquitecto Alicante", "reforma vivienda Alicante"</span>
+          <span class="item-badge"><span class="badge badge-importante">SEO</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t1-3"><span>3 reuniones con promotores y constructoras en Alicante</span>
+          <span class="item-badge"><span class="badge badge-importante">Networking</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t1-4"><span>Análisis de competidores Alicante: COR Architecture, Eneseis Arquitectura, Martínez Amores</span>
+          <span class="item-badge"><span class="badge badge-planificado">Análisis</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t1-5"><span>Contratar colaborador junior o freelance para gestión de contenidos Instagram</span>
+          <span class="item-badge"><span class="badge badge-planificado">Delegación</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t1-6"><span>Instalar HubSpot pipeline diferenciado: Elche / Alicante / Proyectos especiales</span>
+          <span class="item-badge"><span class="badge badge-planificado">CRM</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="quarter">
+    <div class="quarter-header">
+      <div class="quarter-title">Abril – Junio 2027: LinkedIn Estratégico</div>
+      <div class="quarter-period">Trimestre 6 — KEU en fase de cierre natural</div>
+    </div>
+    <div class="quarter-body">
+      <div class="callout" style="margin-bottom:1.5rem;">
+        <div class="callout-title">Contexto LinkedIn en este momento</div>
+        <p>A estas alturas, KEU debería estar en fase de cierre o reducción natural del pipeline. Los socios ya pueden percibir la situación. Es el momento de hacer el cambio en LinkedIn de forma orgánica.</p>
+      </div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="a2t2-1"><span>Actualizar LinkedIn: pasar KEU a "posición anterior" y añadir Vida Arquitectura como posición actual principal</span>
+          <span class="item-badge"><span class="badge badge-urgente">Hito</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t2-2"><span>Publicar 2 artículos/mes en LinkedIn sobre expertise técnico: sostenibilidad, bioclimática, normativa CTE</span>
+          <span class="item-badge"><span class="badge badge-importante">2x/mes</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t2-3"><span>Conectar con 100 nuevos contactos: sector construcción Levante, promotores, administraciones</span>
+          <span class="item-badge"><span class="badge badge-planificado">Networking</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t2-4"><span>Personalizar URL LinkedIn: linkedin.com/in/vidalmoreno-arquitecto</span>
+          <span class="item-badge"><span class="badge badge-importante">Marca personal</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t2-5"><span>Eliminar badge #Hiring de perfil LinkedIn — ruido irrelevante</span>
+          <span class="item-badge"><span class="badge badge-urgente">Esta semana</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="quarter">
+    <div class="quarter-header">
+      <div class="quarter-title">Julio – Septiembre 2027: Murcia</div>
+      <div class="quarter-period">Trimestre 7 — Tercer mercado</div>
+    </div>
+    <div class="quarter-body">
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="a2t3-1"><span>Iniciar penetración mercado Murcia — blog + GBP en Murcia o Cartagena</span>
+          <span class="item-badge"><span class="badge badge-planificado">Nuevo mercado</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t3-2"><span>Análisis competidores Murcia: Pacheco Arquitectos, L'Aura Ortín, Keinzo Interiores</span>
+          <span class="item-badge"><span class="badge badge-planificado">Análisis</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t3-3"><span>Objetivo: primer proyecto en Murcia — prospección activa de contactos</span>
+          <span class="item-badge"><span class="badge badge-importante">Objetivo</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t3-4"><span>Publicaciones Instagram con obras en Murcia cuando se realicen</span>
+          <span class="item-badge"><span class="badge badge-planificado">Contenido</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t3-5"><span>Sesión fotográfica Q3 — proyectos Alicante + primeras obras Murcia (500-800€)</span>
+          <span class="item-badge"><span class="badge badge-planificado">500-800€</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="quarter">
+    <div class="quarter-header">
+      <div class="quarter-title">Octubre – Diciembre 2027: Independencia Total</div>
+      <div class="quarter-period">Trimestre 8 — Objetivo final</div>
+    </div>
+    <div class="quarter-body">
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="a2t4-1"><span>KEU: transición completada — comunicación formal a socios (ver Sección 11)</span>
+          <span class="item-badge"><span class="badge badge-urgente">Hito final</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t4-2"><span>LinkedIn: perfil completamente actualizado como CEO de Vida Arquitectura</span>
+          <span class="item-badge"><span class="badge badge-importante">Identidad</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t4-3"><span>Instagram: objetivo 2,000+ seguidores orgánicos</span>
+          <span class="item-badge"><span class="badge badge-planificado">KPI</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t4-4"><span>3 mercados activos operando: Elche (consolidado), Alicante (crecimiento), Murcia (penetración)</span>
+          <span class="item-badge"><span class="badge badge-planificado">KPI</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t4-5"><span>Objetivo financiero: 8-12 proyectos activos/año firmados bajo Vida Arquitectura</span>
+          <span class="item-badge"><span class="badge badge-importante">KPI financiero</span></span>
+        </li>
+        <li>
+          <input type="checkbox" id="a2t4-6"><span>Revisión estratégica para 2028 — expansión o consolidación</span>
+          <span class="item-badge"><span class="badge badge-planificado">Revisión</span></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 6: LINKEDIN Y KEU                     -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="linkedin">
+  <div class="section-number">Sección 06</div>
+  <h2 class="section-title">Nota Crítica — LinkedIn y KEU</h2>
+  <p class="section-lead">LinkedIn es la red con más visibilidad para tus socios de KEU. Requiere la mayor cautela y el calendario más preciso.</p>
+
+  <div class="callout callout-urgent">
+    <div class="callout-title">Acción urgente — ESTA SEMANA</div>
+    <p>Elimina el badge #Hiring de tu perfil LinkedIn. Es ruido irrelevante que señala confusión sobre tu situación actual. No cambia nada estratégicamente, pero quita un elemento disonante.</p>
+  </div>
+
+  <div class="grid-2" style="margin-top:2rem;">
+    <div class="card">
+      <div class="card-title" style="margin-bottom:1rem; color:var(--urgent);">Lo que NO hacer ahora (Año 1)</div>
+      <ul class="checklist">
+        <li><input type="checkbox" disabled><span>Cambiar KEU como empleador actual</span></li>
+        <li><input type="checkbox" disabled><span>Añadir Vida Arquitectura como posición principal</span></li>
+        <li><input type="checkbox" disabled><span>Conectar con promotores de Elche desde el perfil LinkedIn (aún)</span></li>
+        <li><input type="checkbox" disabled><span>Publicar sobre proyectos Levante en LinkedIn</span></li>
+      </ul>
+      <p style="font-size:0.8rem; color:var(--white-40); margin-top:1rem;">Los socios de KEU siguen tu actividad en LinkedIn. Cualquier cambio en Año 1 genera preguntas prematuras.</p>
+    </div>
+
+    <div class="card card-gold">
+      <div class="card-title" style="margin-bottom:1rem; color:var(--gold);">Opción intermedia (Mes 6-12)</div>
+      <p style="font-size:0.875rem; color:var(--white-70); margin-bottom:1rem;">Muchos arquitectos tienen múltiples roles simultáneos. Añadir "Fundador" en Vida Arquitectura como <strong>segunda posición actual</strong> — sin quitar KEU — es natural y no levanta sospechas.</p>
+      <div class="protocol-steps">
+        <div class="protocol-step">
+          <div class="ps-label">Paso 1</div>
+          <div class="ps-text">Añadir Vida Arquitectura como posición secundaria actual</div>
+        </div>
+        <div class="protocol-step">
+          <div class="ps-label">Paso 2</div>
+          <div class="ps-text">Describir el rol como "Estudio de arquitectura residencial en Levante español"</div>
+        </div>
+        <div class="protocol-step">
+          <div class="ps-label">Paso 3</div>
+          <div class="ps-text">Narrativa natural: "Mi práctica local española, paralela a los proyectos internacionales"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <div class="card-header">
+      <div class="card-title">Calendario de cambios en LinkedIn</div>
+    </div>
+    <div class="timeline-labels" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="timeline-label" style="text-align:left; padding:1rem;">
+        <div class="tl-phase" style="color:#66bb6a;">Meses 1-6</div>
+        <div style="font-size:0.85rem; font-weight:600; margin-bottom:0.25rem; color:var(--white);">Sin cambios</div>
+        <div class="tl-desc">Solo eliminar badge #Hiring. Perfil estático.</div>
+      </div>
+      <div class="timeline-label" style="text-align:left; padding:1rem;">
+        <div class="tl-phase">Meses 6-18</div>
+        <div style="font-size:0.85rem; font-weight:600; margin-bottom:0.25rem; color:var(--white);">Doble posición</div>
+        <div class="tl-desc">Añadir Vida Arquitectura como rol secundario activo.</div>
+      </div>
+      <div class="timeline-label tl-blue" style="text-align:left; padding:1rem;">
+        <div class="tl-phase" style="color:#64b5f6;">Mes 18-24</div>
+        <div style="font-size:0.85rem; font-weight:600; margin-bottom:0.25rem; color:var(--white);">Transición completa</div>
+        <div class="tl-desc">KEU a posición anterior. Vida Arquitectura como principal.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-green" style="margin-top:1.5rem;">
+    <div class="callout-title">URL a personalizar esta semana</div>
+    <p>Personaliza tu URL de LinkedIn a: <strong>linkedin.com/in/vidalmoreno-arquitecto</strong> — esto puede hacerse en cualquier momento, no levanta ninguna alerta y mejora tu SEO personal en Google.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 7: INTELIGENCIA COMPETITIVA           -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="competencia">
+  <div class="section-number">Sección 07</div>
+  <h2 class="section-title">La Trampa de Instagram — Inteligencia Competitiva</h2>
+  <p class="section-lead">La mayoría de estudios de arquitectura en Levante tienen presencia digital débil. Esta es tu principal ventana de oportunidad.</p>
+
+  <div class="callout callout-green">
+    <div class="callout-title">La oportunidad real</div>
+    <p>Publicando consistentemente <strong>4 posts/semana</strong> con fotografía profesional de calidad, puedes superar a la mayoría de competidores locales en <strong>12 meses</strong>. El umbral no es alto — la constancia es todo.</p>
+  </div>
+
+  <div class="comp-grid" style="margin-top:2rem;">
+    <div class="comp-card">
+      <div class="comp-market">Mercado Elche</div>
+      <div class="comp-item">
+        <div>
+          <div class="comp-name">Singular Studio</div>
+          <div class="comp-handle">@singularstudio_arq</div>
+        </div>
+        <span class="strength-medium">Moderado</span>
+      </div>
+      <div class="comp-item">
+        <div>
+          <div class="comp-name">Sepulcre Arquitecturas</div>
+          <div class="comp-handle">—</div>
+        </div>
+        <span class="strength-weak">Débil</span>
+      </div>
+      <div class="comp-item">
+        <div>
+          <div class="comp-name">Kinze Studio</div>
+          <div class="comp-handle">—</div>
+        </div>
+        <span class="strength-weak">Débil</span>
+      </div>
+      <div style="margin-top:1rem; padding-top:0.75rem; border-top:1px solid var(--border-subtle); font-size:0.78rem; color:#66bb6a;">
+        Oportunidad ALTA — mercado de origen, conoces el territorio
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-market">Mercado Alicante</div>
+      <div class="comp-item">
+        <div>
+          <div class="comp-name">COR Architecture</div>
+          <div class="comp-handle">—</div>
+        </div>
+        <span class="strength-strong">Fuerte</span>
+      </div>
+      <div class="comp-item">
+        <div>
+          <div class="comp-name">Eneseis Arquitectura</div>
+          <div class="comp-handle">Blog + redes</div>
+        </div>
+        <span class="strength-medium">Moderado</span>
+      </div>
+      <div class="comp-item">
+        <div>
+          <div class="comp-name">Martínez Amores</div>
+          <div class="comp-handle">Instagram activo</div>
+        </div>
+        <span class="strength-medium">Moderado</span>
+      </div>
+      <div style="margin-top:1rem; padding-top:0.75rem; border-top:1px solid var(--border-subtle); font-size:0.78rem; color:#ffb74d;">
+        Oportunidad MEDIA — requiere diferenciación clara, 2027
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-market">Mercado Murcia</div>
+      <div class="comp-item">
+        <div>
+          <div class="comp-name">Pacheco Arquitectos</div>
+          <div class="comp-handle">Web fuerte</div>
+        </div>
+        <span class="strength-weak">Débil en redes</span>
+      </div>
+      <div class="comp-item">
+        <div>
+          <div class="comp-name">L'Aura Ortín</div>
+          <div class="comp-handle">Diseño interior</div>
+        </div>
+        <span class="strength-medium">Moderado</span>
+      </div>
+      <div class="comp-item">
+        <div>
+          <div class="comp-name">Keinzo Interiores</div>
+          <div class="comp-handle">Instagram activo</div>
+        </div>
+        <span class="strength-medium">Activo</span>
+      </div>
+      <div style="margin-top:1rem; padding-top:0.75rem; border-top:1px solid var(--border-subtle); font-size:0.78rem; color:#66bb6a;">
+        Oportunidad ALTA — mercado menos saturado digitalmente
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <div class="card-title" style="margin-bottom:1.25rem;">Ventajas competitivas de Vidal Moreno Mirete</div>
+    <div class="grid-3">
+      <div>
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">Diferenciador 1</div>
+        <div style="font-size:0.875rem; color:var(--white-70);">Experiencia en proyectos de lujo internacionales (KEU) — un arquitecto de Elche con referencias en el Caribe es algo completamente único en el mercado local.</div>
+      </div>
+      <div>
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">Diferenciador 2</div>
+        <div style="font-size:0.875rem; color:var(--white-70);">Conocimiento profundo del territorio Levante + expertise en arquitectura contemporánea de alta gama. Combinación que no ofrece ningún competidor directo.</div>
+      </div>
+      <div>
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">Diferenciador 3</div>
+        <div style="font-size:0.875rem; color:var(--white-70);">Narración visual de arquitectura sostenible y bioclimática en el contexto climático mediterráneo — contenido con alta demanda de búsqueda orgánica en España.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 8: STACK TECNOLÓGICO                  -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="stack">
+  <div class="section-number">Sección 08</div>
+  <h2 class="section-title">Stack Tecnológico Discreto</h2>
+  <p class="section-lead">Todo el stack puede configurarse de forma completamente privada. Ninguna de estas herramientas tiene visibilidad pública en el momento de la configuración.</p>
+
+  <div class="tech-grid">
+    <div class="tech-item">
+      <div class="tech-category">CRM</div>
+      <div class="tech-name">HubSpot Free</div>
+      <div class="tech-cost">Gratis — pipeline ilimitado</div>
+      <div style="font-size:0.78rem; color:var(--white-40); margin-top:0.25rem;">Gestión de contactos, seguimiento de leads, pipeline de proyectos.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-category">Email Marketing</div>
+      <div class="tech-name">Brevo (ex-Sendinblue)</div>
+      <div class="tech-cost">Gratis hasta 300 emails/día</div>
+      <div style="font-size:0.78rem; color:var(--white-40); margin-top:0.25rem;">Newsletters a clientes, seguimiento post-consulta, automatización de respuestas.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-category">Automatización</div>
+      <div class="tech-name">Make.com</div>
+      <div class="tech-cost">9€/mes (Core)</div>
+      <div style="font-size:0.78rem; color:var(--white-40); margin-top:0.25rem;">Formulario web → CRM → Email automático de bienvenida. Flujos de notificación.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-category">Analytics</div>
+      <div class="tech-name">Google Analytics 4</div>
+      <div class="tech-cost">Gratis</div>
+      <div style="font-size:0.78rem; color:var(--white-40); margin-top:0.25rem;">+ Google Search Console. Tracking de tráfico, posiciones, conversiones web.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-category">SEO Tracking</div>
+      <div class="tech-name">Ubersuggest</div>
+      <div class="tech-cost">29€/mes (empezar con plan básico)</div>
+      <div style="font-size:0.78rem; color:var(--white-40); margin-top:0.25rem;">Seguimiento de posiciones, análisis de competidores, investigación de palabras clave.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-category">Programación Social</div>
+      <div class="tech-name">Buffer / Later</div>
+      <div class="tech-cost">15€/mes</div>
+      <div style="font-size:0.78rem; color:var(--white-40); margin-top:0.25rem;">Programar posts de Instagram con semanas de antelación. Análisis de mejores horarios.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-category">Fotografía</div>
+      <div class="tech-name">Fotógrafo de arquitectura</div>
+      <div class="tech-cost">500-800€ / sesión (x4/año)</div>
+      <div style="font-size:0.78rem; color:var(--white-40); margin-top:0.25rem;">La diferencia entre un perfil de Instagram que crece y uno que no es, casi siempre, la calidad fotográfica.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-category">Contenido AI</div>
+      <div class="tech-name">Claude API</div>
+      <div class="tech-cost">Pay-per-use (~20-40€/mes)</div>
+      <div style="font-size:0.78rem; color:var(--white-40); margin-top:0.25rem;">Generación de borradores de artículos de blog en español, captions para Instagram, respuestas a consultas.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-green" style="margin-top:1rem;">
+    <div class="callout-title">Configuración discreta garantizada</div>
+    <p>Todas estas herramientas se configuran con el email vidal@vidaarquitectura.com. Ninguna tiene visibilidad pública en el momento de la activación. Puedes operar el stack completo durante meses antes de que ningún cliente o socio sepa que existe.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 9: PRESUPUESTO AÑO 1                  -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="presupuesto">
+  <div class="section-number">Sección 09</div>
+  <h2 class="section-title">Presupuesto Discreto Año 1</h2>
+  <p class="section-lead">3.200€ para construir la infraestructura digital de una empresa de arquitectura independiente. Menos del 10% del honorario de un proyecto residencial medio.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Concepto</th>
+          <th>Inversión Inicial</th>
+          <th>Coste Mensual</th>
+          <th>Total Año 1</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Marca OEPM (Clase 42)</td>
+          <td class="amount">125€</td>
+          <td class="amount">—</td>
+          <td class="amount">125€</td>
+        </tr>
+        <tr>
+          <td>Dominio vidaarquitectura.es</td>
+          <td class="amount">10€</td>
+          <td class="amount">—</td>
+          <td class="amount">10€</td>
+        </tr>
+        <tr>
+          <td>Make.com Core (automatización)</td>
+          <td class="amount">—</td>
+          <td class="amount">9€</td>
+          <td class="amount">108€</td>
+        </tr>
+        <tr>
+          <td>Buffer / Later (social scheduling)</td>
+          <td class="amount">—</td>
+          <td class="amount">15€</td>
+          <td class="amount">180€</td>
+        </tr>
+        <tr>
+          <td>Ubersuggest SEO Tool</td>
+          <td class="amount">—</td>
+          <td class="amount">29€</td>
+          <td class="amount">348€</td>
+        </tr>
+        <tr>
+          <td>Fotografía arquitectura (4 sesiones × 600€)</td>
+          <td class="amount">—</td>
+          <td class="amount">—</td>
+          <td class="amount">2.400€</td>
+        </tr>
+        <tr>
+          <td>Claude API (contenido blog)</td>
+          <td class="amount">—</td>
+          <td class="amount">~30€</td>
+          <td class="amount">~360€</td>
+        </tr>
+        <tr>
+          <td><strong>TOTAL AÑO 1</strong></td>
+          <td class="amount"><strong>135€</strong></td>
+          <td class="amount"><strong>~83€/mes</strong></td>
+          <td class="amount"><strong>~3.531€</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2" style="margin-top:2rem;">
+    <div class="highlight-box" style="margin:0;">
+      <div class="hb-title">ROI Esperado</div>
+      <p>Un proyecto residencial medio en Elche genera entre 15.000€ y 40.000€ en honorarios. <strong>Un solo proyecto conseguido vía digital en el Año 1 cubre toda la inversión del plan</strong> con beneficio. El objetivo conservador es 3-5 proyectos firmados en 2026.</p>
+    </div>
+    <div class="card card-gold" style="margin:0;">
+      <div class="card-title" style="margin-bottom:1rem;">Costes gratuitos incluidos</div>
+      <ul class="checklist">
+        <li><input type="checkbox" checked disabled><span>HubSpot CRM (gratis)</span></li>
+        <li><input type="checkbox" checked disabled><span>Brevo email marketing (gratis hasta 300/día)</span></li>
+        <li><input type="checkbox" checked disabled><span>Google Analytics 4 (gratis)</span></li>
+        <li><input type="checkbox" checked disabled><span>Google Search Console (gratis)</span></li>
+        <li><input type="checkbox" checked disabled><span>Google My Business — todas las ubicaciones (gratis)</span></li>
+        <li><input type="checkbox" checked disabled><span>Instagram (gratis)</span></li>
+        <li><input type="checkbox" checked disabled><span>LinkedIn (perfil básico gratis)</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 10: KPIs Y MÉTRICAS DE ÉXITO          -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="kpis">
+  <div class="section-number">Sección 10</div>
+  <h2 class="section-title">KPIs y Métricas de Éxito</h2>
+  <p class="section-lead">Los números que definen si el plan está funcionando. Revisión trimestral obligatoria.</p>
+
+  <h3 style="font-family:'Playfair Display',serif; font-size:1.15rem; color:var(--gold); margin-bottom:1.5rem;">Al final de Año 1 — Diciembre 2026</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-number">+300%</div>
+      <div class="kpi-metric">Tráfico Web</div>
+      <div class="kpi-desc">De 0 orgánico a 500 visitas/mes</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">Top 5</div>
+      <div class="kpi-metric">Google "arquitecto Elche"</div>
+      <div class="kpi-desc">Posición en resultados orgánicos</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">15+</div>
+      <div class="kpi-metric">Reseñas Google</div>
+      <div class="kpi-desc">En Google Business Profile Elche</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">500+</div>
+      <div class="kpi-metric">Seguidores Instagram</div>
+      <div class="kpi-desc">Crecimiento orgánico en Levante</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">5-8</div>
+      <div class="kpi-metric">Consultas/mes</div>
+      <div class="kpi-desc">Leads entrantes por canales digitales</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">3-5</div>
+      <div class="kpi-metric">Proyectos firmados</div>
+      <div class="kpi-desc">Exclusivamente bajo Vida Arquitectura</div>
+    </div>
+  </div>
+
+  <div class="gold-divider"></div>
+
+  <h3 style="font-family:'Playfair Display',serif; font-size:1.15rem; color:var(--gold); margin-bottom:1.5rem;">Al final de Año 2 — Diciembre 2027</h3>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-number">2.000+</div>
+      <div class="kpi-metric">Visitas Web/mes</div>
+      <div class="kpi-desc">Tráfico orgánico consolidado</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">Top 3</div>
+      <div class="kpi-metric">Google "arquitecto Elche"</div>
+      <div class="kpi-desc">Objetivo posición top 3</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">2.000+</div>
+      <div class="kpi-metric">Seguidores Instagram</div>
+      <div class="kpi-desc">Comunidad local activa</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">15-20</div>
+      <div class="kpi-metric">Consultas/mes</div>
+      <div class="kpi-desc">Pipeline saludable de leads</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">8-12</div>
+      <div class="kpi-metric">Proyectos/año</div>
+      <div class="kpi-desc">Objetivo financiero de operación</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-number">3</div>
+      <div class="kpi-metric">Mercados activos</div>
+      <div class="kpi-desc">Elche + Alicante + Murcia</div>
+    </div>
+  </div>
+
+  <!-- Progress visualizations -->
+  <div class="card" style="margin-top:2rem;">
+    <div class="card-title" style="margin-bottom:1.5rem;">Progresión de métricas clave a 24 meses</div>
+    <div class="progress-item">
+      <div class="progress-header">
+        <span class="progress-label">Tráfico web orgánico (visitas/mes)</span>
+        <span class="progress-value">0 → 500 → 2.000+</span>
+      </div>
+      <div style="position:relative; height:20px; background:var(--bg4); border-radius:4px; overflow:hidden; margin-bottom:0.25rem;">
+        <div style="position:absolute; left:0; top:0; height:100%; width:25%; background:linear-gradient(90deg,var(--gold-dark),var(--gold)); border-radius:4px; display:flex; align-items:center; justify-content:flex-end; padding-right:0.5rem; font-size:0.65rem; font-weight:700;">Dic 2026</div>
+        <div style="position:absolute; left:0; top:0; height:100%; width:100%; background:linear-gradient(90deg,var(--gold-dark),var(--gold)); border-radius:4px; opacity:0.3;"></div>
+      </div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-header">
+        <span class="progress-label">Seguidores Instagram</span>
+        <span class="progress-value">0 → 500 → 2.000+</span>
+      </div>
+      <div class="progress-bar" style="height:8px;">
+        <div class="progress-fill" style="width:25%;"></div>
+      </div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-header">
+        <span class="progress-label">Consultas mensuales entrantes</span>
+        <span class="progress-value">0 → 5-8 → 15-20</span>
+      </div>
+      <div class="progress-bar" style="height:8px;">
+        <div class="progress-fill" style="width:35%;"></div>
+      </div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-header">
+        <span class="progress-label">Mercados geográficos activos</span>
+        <span class="progress-value">1 → 2 → 3</span>
+      </div>
+      <div class="progress-bar" style="height:8px;">
+        <div class="progress-fill" style="width:33%; background:linear-gradient(90deg,#1565c0,#1976d2);"></div>
+      </div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-header">
+        <span class="progress-label">Independencia de KEU</span>
+        <span class="progress-value">0% → 50% → 100%</span>
+      </div>
+      <div class="progress-bar" style="height:8px;">
+        <div class="progress-fill" style="width:50%; background:linear-gradient(90deg,#2e7d32,#43a047);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 11: PROTOCOLO TRANSICIÓN KEU          -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="transicion">
+  <div class="section-number">Sección 11</div>
+  <h2 class="section-title">El Momento de la Transición — Protocolo KEU</h2>
+  <p class="section-lead">No hay necesidad de esconder nada para siempre. El objetivo es que la transición sea natural, no forzada. El timing lo decide el pipeline de KEU, no tú.</p>
+
+  <div class="callout">
+    <div class="callout-title">Insight clave sobre la estrategia</div>
+    <p>El riesgo real no es que tus socios vean que estás construyendo Vida Arquitectura — es que <strong>parezca que estás abandonando KEU prematuramente</strong>. La estrategia de la sombra te protege de ese riesgo. Cuando hagan la transición, el pipeline de KEU ya estará cerrando naturalmente.</p>
+  </div>
+
+  <div class="grid-2" style="margin-top:2rem;">
+    <div class="card">
+      <div class="card-title" style="margin-bottom:1.25rem;">Señales de que el momento ha llegado</div>
+      <ul class="checklist">
+        <li><input type="checkbox" disabled><span>Pipeline de nuevos proyectos KEU cae por debajo del 30% del habitual</span></li>
+        <li><input type="checkbox" disabled><span>Los socios plantean "¿qué hacemos con la empresa?" de forma abierta</span></li>
+        <li><input type="checkbox" disabled><span>Los proyectos en curso en el Caribe están en fase de entrega/cierre</span></li>
+        <li><input type="checkbox" disabled><span>Han pasado 18+ meses desde que Vida Arquitectura tiene proyectos propios</span></li>
+        <li><input type="checkbox" disabled><span>Vida Arquitectura genera ingresos suficientes para cubrir tus necesidades sin KEU</span></li>
+      </ul>
+    </div>
+
+    <div class="card card-gold">
+      <div class="card-title" style="margin-bottom:1.25rem; color:var(--gold);">El mensaje a tus socios</div>
+      <div class="callout" style="margin:0; background:rgba(201,168,76,0.05);">
+        <div class="callout-title">Narrativa recomendada</div>
+        <p style="font-style:italic;">"Vida Arquitectura es mi práctica local española — no compite con el modelo internacional de lujo de KEU. Son mercados completamente distintos. La experiencia internacional que hemos construido juntos en el Caribe es lo que me posiciona como diferente en España."</p>
+      </div>
+      <p style="font-size:0.85rem; color:var(--white-70); margin-top:1rem;">Ambas narrativas coexisten perfectamente: <strong>experiencia internacional (KEU) + expertise local (Vida Arquitectura)</strong>. El KEU en el CV no es un conflicto — es una ventaja competitiva.</p>
+    </div>
+  </div>
+
+  <div class="gold-divider"></div>
+
+  <div class="highlight-box">
+    <div class="hb-title">La paradoja del plan</div>
+    <p>Cuanto más éxito tenga Vida Arquitectura en silencio durante los próximos 24 meses, menos difícil será la conversación con los socios cuando llegue el momento. Llegarás a esa conversación con proyectos firmados, clientes satisfechos y una marca establecida — desde una posición de fortaleza, no de necesidad.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Vida Arquitectura</div>
+    <div class="footer-tagline">Elche · Alicante · Murcia · España</div>
+
+    <div class="footer-meta">
+      <span>Documento confidencial</span>
+      <span>Vidal Moreno Mirete, Arquitecto CEO</span>
+      <span>Generado: Junio 2026</span>
+      <span>Próxima revisión: Diciembre 2026</span>
+    </div>
+
+    <div style="color:var(--white-40); font-size:0.78rem; line-height:1.6; max-width:500px; margin:1rem auto;">
+      Este documento es de uso exclusivo de Vidal Moreno Mirete. Contiene información estratégica confidencial. No debe compartirse, imprimirse ni almacenarse en dispositivos o cuentas asociados a KEU Luxury Home.
+    </div>
+
+    <div class="footer-confidential">Confidencial — Uso Exclusivo VMM</div>
+  </div>
+</footer>
+
+</body>
+</html>
